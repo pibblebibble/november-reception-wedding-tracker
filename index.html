@@ -113,24 +113,28 @@ body{background:var(--cream);color:var(--black)}
 /* Travelling plan: one continuous, scroll-linked itinerary rather than another stack of cards. */
 #travel .travel-head{margin-bottom:0}
 #travel .travel-head p{max-width:620px}
-.travel-summary{display:flex;align-items:center;gap:13px;margin-top:22px;padding-top:18px;border-top:1px solid var(--black);font-size:13px;font-weight:700}
-.travel-summary strong{font-size:17px}
-.travel-summary span+span:before{content:"→";margin-right:13px}
+.travel-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px;padding-top:18px;border-top:1px solid var(--black)}
+.travel-summary>div{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:0 18px}
+.travel-summary>div:first-child{padding-left:0}
+.travel-summary>div+div{border-left:1px solid var(--black)}
+.travel-summary strong{font-size:14px}
+.travel-summary time{font-size:12px;font-weight:700;white-space:nowrap}
 .travel-draft-note{margin:28px 0 0;padding:0 0 0 18px;border-left:3px solid var(--black);font-size:13px}
 .travel-timeline{position:relative;margin:44px 0 20px;padding:0 0 0 50px}
 .travel-rail{position:absolute;z-index:2;top:8px;bottom:8px;left:8px;width:3px;background:rgba(17,17,17,.18)}
 .travel-progress-fill{position:absolute;top:0;left:0;width:100%;height:0;background:var(--black);transition:height .08s linear}
 .travel-progress-fill:after{content:"";position:absolute;right:50%;bottom:-7px;width:13px;height:13px;background:var(--black);border:4px solid var(--cream);border-radius:50%;transform:translateX(50%)}
-.travel-day{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);gap:34px;padding:0 0 66px}
+.travel-day{position:relative;display:block;padding:0 0 66px}
 .travel-day:last-child{padding-bottom:6px}
 .travel-day:before{content:"";position:absolute;z-index:3;top:7px;left:-48px;width:13px;height:13px;background:var(--white);border:2px solid var(--black);border-radius:50%}
+.travel-date{margin-bottom:18px}
 .travel-date time{display:flex;align-items:center;gap:10px;line-height:1}
 .travel-date-day{font-size:43px;font-weight:800;letter-spacing:-.06em}
 .travel-date-meta{display:grid;gap:4px}
 .travel-date-month{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
 .travel-date-year{font-size:11px;font-weight:700;letter-spacing:.04em}
 .travel-day-body{padding-top:0}
-.travel-day-body h3{display:flex;align-items:center;min-height:43px;margin:0 0 16px;font-size:25px;line-height:1.15}
+.travel-day-body h3{display:block;min-height:0;margin:0 0 16px;font-size:25px;line-height:1.15}
 .travel-agenda{list-style:none;margin:0;padding:0;border-top:1px solid var(--black)}
 .travel-agenda li{display:grid;grid-template-columns:105px minmax(0,1fr);gap:22px;padding:13px 0;border-top:1px solid rgba(17,17,17,.28)}
 .travel-agenda li:first-child{border-top:0}
@@ -138,10 +142,12 @@ body{background:var(--cream);color:var(--black)}
 .travel-agenda strong{display:block;font-size:15px}
 .travel-agenda p{margin:3px 0 0;font-size:13px;line-height:1.45}
 .travel-placeholder{display:inline-block;margin-top:6px;padding:2px 6px;background:#f4dfbd;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.travel-section-break{position:relative;margin:2px 0 58px;padding:30px 0 27px;border-top:3px solid var(--black);border-bottom:1px solid var(--black)}
+.travel-section-break span{display:block;font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:.035em;text-transform:uppercase}
 .travel-plan-link{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:11px 14px;border:1px solid var(--black);background:var(--black);color:var(--white);font-size:13px;font-weight:800;cursor:pointer}
 .travel-plan-link:after{content:"→";font-size:16px}
 .travel-plan-link:hover,.travel-plan-link:focus-visible{background:var(--white);color:var(--black);outline:none}
-@media(max-width:680px){.travel-summary{align-items:flex-start;flex-wrap:wrap}.travel-summary strong{flex:0 0 100%}.travel-draft-note{margin-top:22px}.travel-timeline{margin-top:34px;padding-left:35px}.travel-rail{left:7px}.travel-day{display:grid;grid-template-columns:102px minmax(0,1fr);gap:0 14px;padding-bottom:54px}.travel-day:before{top:6px;left:-34px}.travel-date{grid-column:1;margin:0}.travel-date-day{font-size:36px}.travel-date-month{font-size:11px}.travel-date-year{font-size:10px}.travel-day-body{display:contents}.travel-day-body h3{grid-column:2;align-self:center;min-height:36px;margin:0;font-size:20px}.travel-agenda{grid-column:1/-1;margin-top:18px}.travel-agenda li{grid-template-columns:76px minmax(0,1fr);gap:12px}.travel-plan-link{grid-column:1/-1;width:100%;justify-content:space-between}}
+@media(max-width:680px){.travel-summary{grid-template-columns:1fr;padding-top:8px}.travel-summary>div{padding:10px 0}.travel-summary>div+div{border-top:1px solid rgba(17,17,17,.3);border-left:0}.travel-draft-note{margin-top:22px}.travel-timeline{margin-top:34px;padding-left:35px}.travel-rail{left:7px}.travel-day{display:block;padding-bottom:54px}.travel-day:before{top:6px;left:-34px}.travel-date{margin:0 0 17px}.travel-date-day{font-size:36px}.travel-date-month{font-size:11px}.travel-date-year{font-size:10px}.travel-day-body{display:block}.travel-day-body h3{min-height:0;margin:0 0 15px;font-size:22px}.travel-agenda{margin-top:0}.travel-agenda li{grid-template-columns:76px minmax(0,1fr);gap:12px}.travel-section-break{margin:0 0 48px;padding:24px 0 22px}.travel-section-break span{font-size:24px}.travel-plan-link{width:100%;justify-content:space-between}}
 @media print{.travel-progress-fill{height:100%!important}}
 .site-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-top:78px;padding:26px 2px 12px;border-top:1px solid var(--black)}
 .site-footer strong,.site-footer span{display:block}
@@ -165,7 +171,7 @@ body{background:var(--cream);color:var(--black)}
       <button class="drawer-close" onclick="toggleMenu(false)" aria-label="Close menu">×</button>
       <div class="drawer-links">
         <button onclick="showView('plan')">Plan &amp; Venues</button>
-        <button onclick="showView('travel')">Travelling Plan</button>
+        <button onclick="showView('travel')">Travel Itinerary</button>
         <button onclick="showView('guests')">Guest List</button>
         <button onclick="showView('pending')">Pending Items</button>
       </div>
@@ -177,11 +183,11 @@ body{background:var(--cream);color:var(--black)}
       <div class="home-heading">
         <p class="home-kicker"><span>November 1st</span><span aria-hidden="true">|</span><span>Plan Tracker</span></p>
         <h1>Glasshouse Mansion Reception</h1>
-        <p class="home-updated">Last Updated: 17 Aug 2026</p>
+        <p class="home-updated">Last Updated: 18 Aug 2026</p>
       </div>
       <div class="menu">
         <button onclick="showView('plan')"><strong>Plan &amp; Venues</strong><span>Locations, schedule and timings</span></button>
-        <button onclick="showView('travel')"><strong>Travelling Plan</strong><span>Arrival, daily movements and departure</span></button>
+        <button onclick="showView('travel')"><strong>Travel Itinerary</strong><span>Arrival, daily movements and departure</span></button>
         <button onclick="showView('guests')"><strong>Guest List</strong><span>RSVP and seating</span></button>
         <button onclick="showView('pending')"><strong>Pending Items</strong><span>Outstanding confirmations</span></button>
       </div>
@@ -238,11 +244,15 @@ body{background:var(--cream);color:var(--black)}
   <section class="view" id="travel">
     <div class="page-head travel-head">
       <button class="back" onclick="showView('home')">← Home</button>
-      <h2>Travelling Plan</h2>
+      <h2>Travel Itinerary</h2>
       <p>Jon's parents' arrivals, daily movements and flight home. This is a working itinerary while the final details are collected.</p>
-      <div class="travel-summary" aria-label="Main travel window"><strong>Main wedding trip</strong><span>29 Oct</span><span>2 Nov</span></div>
+      <div class="travel-summary" aria-label="Key event dates">
+        <div><strong>JPN ROM</strong><time datetime="2026-09-30">30 Sep</time></div>
+        <div><strong>Tea Ceremony</strong><time datetime="2026-10-31">31st Oct</time></div>
+        <div><strong>Wedding Reception</strong><time datetime="2026-11-01">1st Nov</time></div>
+      </div>
     </div>
-    <p class="travel-draft-note"><strong>Draft:</strong> Flight numbers, terminals, pickup details and the unfinished programme items are placeholders for now.</p>
+    <p class="travel-draft-note"><strong>Working itinerary:</strong> Late-October flight, hotel and remaining venue details are still pending.</p>
 
     <article class="travel-timeline" id="travelTimeline" aria-label="Travel itinerary timeline">
       <div class="travel-rail" id="travelProgressRail" role="progressbar" aria-label="Timeline scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="travel-progress-fill" id="travelProgressFill"></span></div>
@@ -250,12 +260,13 @@ body{background:var(--cream);color:var(--black)}
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-09-29"><span class="travel-date-day">29</span><span class="travel-date-meta"><span class="travel-date-month">September</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Arrival &amp; settle in</h3>
+          <h3>Parents Arrival - For JPN ROM</h3>
           <ol class="travel-agenda">
-            <li><time>Arrival</time><div><strong>Land in Kuala Lumpur</strong><p>Flight and airport details to be added.</p><span class="travel-placeholder">Details TBC</span></div></li>
-            <li><time>Lunch</time><div><strong>Lunch with Jon</strong><p>Pickup and restaurant to be confirmed.</p></div></li>
-            <li><time>After lunch</time><div><strong>Send parents to hotel</strong><p>Hotel and check-in arrangement to be added.</p></div></li>
-            <li><time>Dinner</time><div><strong>Viv joins for dinner</strong><p>Time and place to be confirmed.</p></div></li>
+            <li><time>12:50 PM</time><div><strong>Parents arrive</strong><p>Flight AK5105.</p></div></li>
+            <li><time>Lunch</time><div><strong>Lunch with Jon</strong><p>Jon and his parents · Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
+            <li><time>4:00 PM</time><div><strong>Check in at Concord Hotel Shah Alam</strong></div></li>
+            <li><time>6:00 PM</time><div><strong>Leave home</strong><p>Freshen up and pick up Viv.</p></div></li>
+            <li><time>8:00 PM</time><div><strong>Dinner with Jon's parents</strong><p>Jon and Viv · Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
           </ol>
         </div>
       </section>
@@ -263,25 +274,30 @@ body{background:var(--cream);color:var(--black)}
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-09-30"><span class="travel-date-day">30</span><span class="travel-date-meta"><span class="travel-date-month">September</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>JPN signing day</h3>
+          <h3>JPN Shah Alam - ROM</h3>
           <ol class="travel-agenda">
-            <li><time>8:30 AM</time><div><strong>Pick up at hotel</strong></div></li>
-            <li><time>9:00 AM</time><div><strong>Reach JPN and meet the photographer</strong></div></li>
-            <li><time>9:30 AM</time><div><strong>JPN signing</strong></div></li>
-            <li><time>10:00 AM</time><div><strong>Photos near the JPN building</strong></div></li>
-            <li><time>Lunch</time><div><strong>Lunch together</strong><p>Restaurant is still pending.</p><span class="travel-placeholder">Place TBC</span></div></li>
+            <li><time>8:30 AM</time><div><strong>Pick up parents at the hotel</strong><p>Request a late checkout.</p></div></li>
+            <li><time>9:30 AM</time><div><strong>Meet the photographer at JPN</strong></div></li>
+            <li><time>9:30 AM</time><div><strong>JPN signing</strong><p>Allow 45 minutes for verification, payment and registration.</p></div></li>
+            <li><time>10:30 AM</time><div><strong>Leave for the Japanese Garden</strong><p>Photoshoot begins on arrival.</p></div></li>
+            <li><time>11:30 AM</time><div><strong>Photoshoot ends</strong></div></li>
+            <li><time>12:00 PM</time><div><strong>Celebration</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
+            <li><time>2:00 PM</time><div><strong>Check out and leave for the airport</strong></div></li>
+            <li><time>4:30 PM</time><div><strong>Parents depart</strong><p>Flight AK5112.</p></div></li>
           </ol>
         </div>
       </section>
 
+      <div class="travel-section-break" role="separator" aria-label="Wedding Reception"><span>Wedding Reception</span></div>
+
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-10-29"><span class="travel-date-day">29</span><span class="travel-date-meta"><span class="travel-date-month">October</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Wedding trip arrival</h3>
+          <h3>Arrival</h3>
           <ol class="travel-agenda">
-            <li><time>12:45 PM</time><div><strong>Land at KLIA Terminal 1</strong><p>Placeholder flight MY 203 · Baggage collection and pickup after landing.</p><span class="travel-placeholder">Dummy flight details</span></div></li>
-            <li><time>Afternoon</time><div><strong>Airport pickup and hotel check-in</strong><p>Driver, vehicle and hotel details to be added.</p><span class="travel-placeholder">Details TBC</span></div></li>
-            <li><time>Evening</time><div><strong>Dinner / rest</strong><p>Plan to be confirmed.</p></div></li>
+            <li><time>Pending</time><div><strong>Family flight plans</strong><p>Details will be updated tomorrow.</p><span class="travel-placeholder">Update pending</span></div></li>
+            <li><time>Pending</time><div><strong>Hotel check-in</strong><p>Details will be updated tomorrow.</p><span class="travel-placeholder">Update pending</span></div></li>
+            <li><time>Pending</time><div><strong>Dinner plans</strong><p>Details will be updated tomorrow.</p><span class="travel-placeholder">Update pending</span></div></li>
           </ol>
         </div>
       </section>
@@ -289,9 +305,15 @@ body{background:var(--cream);color:var(--black)}
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-10-30"><span class="travel-date-day">30</span><span class="travel-date-meta"><span class="travel-date-month">October</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Free day</h3>
+          <h3>Rest day</h3>
           <ol class="travel-agenda">
-            <li><time>All day</time><div><strong>No fixed programme</strong><p>Meals, transport and any family plans can be added later.</p><span class="travel-placeholder">Open schedule</span></div></li>
+            <li><time>All day</time><div><strong>Family free time</strong><p>Jon's family can spend the day as they wish.</p></div></li>
+            <li><time>8–9 AM</time><div><strong>Breakfast at the hotel</strong></div></li>
+            <li><time>10:00 AM</time><div><strong>Jon collects the wedding items</strong><p>Wedding gown, Cheong Sam and decorations.</p></div></li>
+            <li><time>After collection</time><div><strong>Drop off and return items</strong><p>Pass the decorations to Ground Eatery and bring the clothes back to the hotel.</p></div></li>
+            <li><time>Brunch / Lunch</time><div><strong>Meal with the family</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
+            <li><time>4–5 PM</time><div><strong>Jon &amp; Viv return home for housekeeping</strong></div></li>
+            <li><time>7:00 PM</time><div><strong>Meet for dinner</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
           </ol>
         </div>
       </section>
@@ -299,11 +321,19 @@ body{background:var(--cream);color:var(--black)}
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-10-31"><span class="travel-date-day">31</span><span class="travel-date-meta"><span class="travel-date-month">October</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Tea ceremony &amp; dinner</h3>
+          <h3>Tea Ceremony — Ground Eatery</h3>
           <ol class="travel-agenda">
-            <li><time>2:00 PM</time><div><strong>Leave for Puchong</strong><p>Pickup point and driver to be confirmed.</p></div></li>
-            <li><time>3:00 PM</time><div><strong>Tea ceremony begins</strong></div></li>
-            <li><time>7:00 PM</time><div><strong>Tea ceremony and dinner end</strong><p>Return arrangement to be added.</p></div></li>
+            <li><time>Morning</time><div><strong>Breakfast at the hotel or brunch</strong><p>Brunch venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
+            <li><time>Before 3:30 PM</time><div><strong>Prepare for the tea ceremony</strong><p>Take the morning and early afternoon at an easy pace.</p></div></li>
+            <li><time>3:30 PM</time><div><strong>Meet at Ground Eatery</strong></div></li>
+            <li><time>4–4:15 PM</time><div><strong>Guests arrive</strong></div></li>
+            <li><time>4:30 PM</time><div><strong>Tea ceremony begins</strong><p>Nick gathers everyone and announces the relatives receiving tea using Jon's prepared list.</p></div></li>
+            <li><time>During ceremony</time><div><strong>Cousin June prepares the tea</strong><p>Order: Direct family → Father's side → Mother's side.</p></div></li>
+            <li><time>6:00 PM</time><div><strong>Tea ceremony ends</strong></div></li>
+            <li><time>6:30 PM</time><div><strong>Dinner begins</strong></div></li>
+            <li><time>7–7:30 PM</time><div><strong>Dinner finishes</strong><p>Family returns to the hotel first.</p></div></li>
+            <li><time>After dinner</time><div><strong>Jon &amp; Viv return home for housekeeping</strong></div></li>
+            <li><time>11:00 PM</time><div><strong>Jon &amp; Viv return to the hotel</strong></div></li>
           </ol>
           <button class="travel-plan-link" type="button" onclick="goToPlanSection('plan-tea-ceremony')">Open Tea Ceremony plan</button>
         </div>
@@ -312,13 +342,9 @@ body{background:var(--cream);color:var(--black)}
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-11-01"><span class="travel-date-day">1</span><span class="travel-date-meta"><span class="travel-date-month">November</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Glasshouse Mansion reception</h3>
+          <h3>Reception - Blossom A Glassmansion</h3>
           <ol class="travel-agenda">
-            <li><time>9:00 AM</time><div><strong>Arrive at Glasshouse Mansion</strong></div></li>
-            <li><time>9:30 AM</time><div><strong>Family photo</strong></div></li>
-            <li><time>Morning</time><div><strong>Reception programme</strong><p>Additional sequence and responsibilities to be added.</p><span class="travel-placeholder">Programme TBC</span></div></li>
-            <li><time>2:00 PM</time><div><strong>Reception ends</strong></div></li>
-            <li><time>After 2 PM</time><div><strong>Return / rest of day</strong><p>Transport and any later plans to be confirmed.</p><span class="travel-placeholder">Details TBC</span></div></li>
+            <li><time>Pending</time><div><strong>Family-focused wedding schedule</strong><p>To be confirmed. For the full event schedule, use the button below.</p><span class="travel-placeholder">TBC</span></div></li>
           </ol>
           <button class="travel-plan-link" type="button" onclick="goToPlanSection('plan-glasshouse-reception')">Open Glasshouse Mansion plan</button>
         </div>
@@ -327,10 +353,9 @@ body{background:var(--cream);color:var(--black)}
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-11-02"><span class="travel-date-day">2</span><span class="travel-date-meta"><span class="travel-date-month">November</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Fly home</h3>
+          <h3>Departure</h3>
           <ol class="travel-agenda">
-            <li><time>8:00 AM</time><div><strong>Leave hotel for airport</strong><p>Pickup time depends on the confirmed flight.</p></div></li>
-            <li><time>11:35 AM</time><div><strong>Depart from KLIA Terminal 1</strong><p>Placeholder flight MY 204 · Check-in and gate details to follow.</p><span class="travel-placeholder">Dummy flight details</span></div></li>
+            <li><time>Pending</time><div><strong>Departure plans</strong><p>Flight and transfer details to be confirmed.</p><span class="travel-placeholder">TBC</span></div></li>
           </ol>
         </div>
       </section>
