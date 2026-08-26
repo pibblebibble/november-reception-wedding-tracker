@@ -847,6 +847,8 @@ body.drawer-open { overflow: hidden; }
   .guest-table tr { padding: 8px 0; border-bottom: 1px solid var(--line); }
   .guest-table td { width: auto !important; padding: 7px 14px; border: 0; text-align: left !important; }
   .guest-table td::before { content: attr(data-label); display: block; margin-bottom: 3px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+  .guest-table td.guest-number { display: flex; align-items: baseline; gap: 4px; }
+  .guest-table td.guest-number::before { display: inline; margin-bottom: 0; }
   .guest-table td.no-additional-guests { display: none; }
   .guest-group-toggle { min-height: 84px; }
   .group-status { gap: 7px; }
