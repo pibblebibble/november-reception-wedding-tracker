@@ -194,7 +194,7 @@ body{background:var(--cream);color:var(--black)}
       <div class="home-heading">
         <p class="home-kicker"><span>November 1st</span><span aria-hidden="true">|</span><span>Plan Tracker</span></p>
         <h1>Glasshouse Mansion Reception</h1>
-        <p class="home-updated">Last Updated: 27 Aug 2026</p>
+        <p class="home-updated">Last Updated: 31 Aug 2026</p>
       </div>
       <div class="dashboard-grid">
         <div class="dashboard-main">
@@ -214,7 +214,7 @@ body{background:var(--cream);color:var(--black)}
           <div class="section-title"><h2>Next up</h2><button type="button" onclick="showView('travel')">View itinerary</button></div>
           <button class="upcoming-event" type="button" onclick="goToPlanSection('plan-tea-ceremony')">
             <time datetime="2026-10-31"><span>Oct</span><strong>31</strong><small>Sat</small></time>
-            <span><small>4:00 PM</small><strong>Tea Ceremony</strong><span><i class="ph ph-map-pin" aria-hidden="true"></i>Ground Eatery</span></span>
+            <span><small>3:30 PM</small><strong>Tea Ceremony</strong><span><i class="ph ph-map-pin" aria-hidden="true"></i>Ground Eatery</span></span>
           </button>
           <button class="upcoming-event" type="button" onclick="goToPlanSection('plan-glasshouse-reception')">
             <time datetime="2026-11-01"><span>Nov</span><strong>01</strong><small>Sun</small></time>
@@ -239,16 +239,52 @@ body{background:var(--cream);color:var(--black)}
       <header class="event-card-header">
         <h3>Tea Ceremony &amp; Dinner</h3>
         <p class="event-place">Ground Eatery</p>
-        <div class="event-meta"><span>31 October 2026</span><span>4:00-7:00 PM</span></div>
+        <div class="event-meta"><span>31 October 2026</span><span>3:30-7:30 PM</span></div>
       </header>
       <div class="event-schedule">
         <h4>Schedule</h4>
         <ol>
-          <li><time>4:00 PM</time><span>Guests arrive and settle in.</span></li>
-          <li><time>4:30 PM</time><span>Tea ceremony begins; Nicholas manages the sequence.</span></li>
-          <li><time>After tea</time><span>Family photographs, then dinner.</span></li>
-          <li><time>7:00 PM</time><span>Event ends.</span></li>
+          <li><time>3:30-4:00 PM</time><span>Bride, groom and main family arrive.</span></li>
+          <li><time>4:00-4:15 PM</time><span>Guests arrive and register.</span></li>
+          <li><time>4:15 PM</time><span>Nicholas asks everyone to gather and sit while waiting to be called.</span></li>
+          <li><time>4:15-5:50 PM</time><span>Tea ceremony.</span></li>
+          <li><time>6:00 PM</time><span>Nicholas asks everyone to be seated and announces that dinner will be served.</span></li>
+          <li><time>6:00-7:30 PM</time><span>Dinner.</span></li>
         </ol>
+        <div class="tea-call-sequence" aria-label="Tea ceremony sequence to call">
+          <h4>Sequence to Call</h4>
+          <div class="tea-call-groups">
+            <section>
+              <h5>Elders &amp; Married Cousins</h5>
+              <ol>
+                <li>Richard Tay &amp; Mary Thien</li>
+                <li>Uncle James &amp; Aunty Susan</li>
+                <li>Uncle Toh Pang Chun &amp; Aunty Elizabeth</li>
+                <li>Uncle Terrance &amp; Aunty Sally</li>
+                <li>Aunty Catherine</li>
+                <li>Ng Wei Sung &amp; Stephanie Tay</li>
+                <li>Jaimie Tay</li>
+                <li>Aunty Agnes</li>
+                <li>Aunty Alice</li>
+                <li>Aunty Amy</li>
+                <li>Desmond Chin &amp; Kate</li>
+                <li>Kent Chin &amp; Joanne</li>
+              </ol>
+            </section>
+            <section>
+              <h5>Cousins</h5>
+              <ol start="13">
+                <li>Nicholas Tay</li>
+                <li>Ethan Ng</li>
+                <li>Elisa Ng</li>
+                <li>Wilson Tay</li>
+                <li>June Ho</li>
+                <li>Kayden Chin</li>
+                <li>Claire Chin</li>
+              </ol>
+            </section>
+          </div>
+        </div>
       </div>
     </article>
     <article class="event-card" id="plan-glasshouse-reception">
@@ -367,13 +403,13 @@ body{background:var(--cream);color:var(--black)}
           <ol class="travel-agenda">
             <li><time>Morning</time><div><strong>Breakfast at the hotel or brunch</strong><p>Brunch venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
             <li><time>Before 3:30 PM</time><div><strong>Prepare for the tea ceremony</strong><p>Take the morning and early afternoon at an easy pace.</p></div></li>
-            <li><time>3:30 PM</time><div><strong>Meet at Ground Eatery</strong></div></li>
-            <li><time>4–4:15 PM</time><div><strong>Guests arrive</strong></div></li>
-            <li><time>4:30 PM</time><div><strong>Tea ceremony begins</strong><p>Nick gathers everyone and announces the relatives receiving tea using Jon's prepared list.</p></div></li>
-            <li><time>During ceremony</time><div><strong>Cousin June prepares the tea</strong><p>Order: Direct family → Father's side → Mother's side.</p></div></li>
-            <li><time>6:00 PM</time><div><strong>Tea ceremony ends</strong></div></li>
-            <li><time>6:30 PM</time><div><strong>Dinner begins</strong></div></li>
-            <li><time>7–7:30 PM</time><div><strong>Dinner finishes</strong><p>Family returns to the hotel first.</p></div></li>
+            <li><time>3:30-4:00 PM</time><div><strong>Bride, groom and main family arrive</strong></div></li>
+            <li><time>4:00-4:15 PM</time><div><strong>Guests arrive and register</strong></div></li>
+            <li><time>4:15 PM</time><div><strong>Nicholas gathers everyone</strong><p>Everyone is seated and waits for their turn to be called.</p></div></li>
+            <li><time>4:15-5:50 PM</time><div><strong>Tea ceremony</strong><p>Follow the confirmed sequence to call.</p></div></li>
+            <li><time>During ceremony</time><div><strong>Cousin June prepares the tea</strong></div></li>
+            <li><time>6:00 PM</time><div><strong>Nicholas announces dinner</strong><p>Everyone is seated and dinner is served.</p></div></li>
+            <li><time>6:00-7:30 PM</time><div><strong>Dinner</strong><p>Family returns to the hotel first after dinner.</p></div></li>
             <li><time>After dinner</time><div><strong>Jon &amp; Viv return home for housekeeping</strong></div></li>
             <li><time>11:00 PM</time><div><strong>Jon &amp; Viv return to the hotel</strong></div></li>
           </ol>
