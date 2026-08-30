@@ -201,7 +201,7 @@ body{background:var(--cream);color:var(--black)}
           <div class="home-stats" aria-label="Wedding plan summary">
             <div><span class="stat-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><p><strong id="daysToReception">68</strong><span>Days to go</span></p></div>
             <div><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
-            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">12</strong><span>Tasks pending</span></p></div>
+            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">21</strong><span>Tasks pending</span></p></div>
           </div>
           <div class="menu" aria-label="Quick links">
             <button onclick="showView('plan')"><span class="menu-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span><span><strong>Plan &amp; Venues</strong><small>Locations, schedule and timings</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
@@ -214,7 +214,7 @@ body{background:var(--cream);color:var(--black)}
           <div class="section-title"><h2>Next up</h2><button type="button" onclick="showView('travel')">View itinerary</button></div>
           <button class="upcoming-event" type="button" onclick="goToPlanSection('plan-tea-ceremony')">
             <time datetime="2026-10-31"><span>Oct</span><strong>31</strong><small>Sat</small></time>
-            <span><small>3:30 PM</small><strong>Tea Ceremony</strong><span><i class="ph ph-map-pin" aria-hidden="true"></i>Ground Eatery</span></span>
+            <span><small>4:00 PM</small><strong>Tea Ceremony</strong><span><i class="ph ph-map-pin" aria-hidden="true"></i>Ground Eatery</span></span>
           </button>
           <button class="upcoming-event" type="button" onclick="goToPlanSection('plan-glasshouse-reception')">
             <time datetime="2026-11-01"><span>Nov</span><strong>01</strong><small>Sun</small></time>
@@ -239,18 +239,24 @@ body{background:var(--cream);color:var(--black)}
       <header class="event-card-header">
         <h3>Tea Ceremony &amp; Dinner</h3>
         <p class="event-place">Ground Eatery</p>
-        <div class="event-meta"><span>31 October 2026</span><span>3:30-7:30 PM</span></div>
+        <div class="event-meta"><span>31 October 2026</span><span>4:00-7:00 PM</span></div>
       </header>
       <div class="event-schedule">
         <h4>Schedule</h4>
         <ol>
-          <li><time>3:30-4:00 PM</time><span>Bride, groom and main family arrive.</span></li>
-          <li><time>4:00-4:15 PM</time><span>Guests arrive and register.</span></li>
-          <li><time>4:15 PM</time><span>Nicholas asks everyone to gather and sit while waiting to be called.</span></li>
-          <li><time>4:15-5:50 PM</time><span>Tea ceremony.</span></li>
-          <li><time>6:00 PM</time><span>Nicholas asks everyone to be seated and announces that dinner will be served.</span></li>
-          <li><time>6:00-7:30 PM</time><span>Dinner.</span></li>
+          <li><time>30 October</time><span>Send the décor to Ground Eatery for Shirley, the Ground Eatery admin, to set up.</span></li>
+          <li><time>4:00-4:15 PM</time><span>June and Nicholas manage the registration table and confirm guest attendance.</span></li>
+          <li><time>4:15 PM</time><span>Tea ceremony begins once guest attendance is confirmed. The bride and groom are ready in a kneeling position in front of the chair.</span></li>
         </ol>
+        <div class="tea-ceremony-breakdown">
+          <h4>Tea Ceremony Breakdown</h4>
+          <ol>
+            <li><span>Nicholas announces the sequence for the Elders &amp; Married Cousins according to the list.</span></li>
+            <li><span>For each sequence, June passes the tea and Nicholas collects any gifts from the group.</span></li>
+            <li><span>Once the Elders &amp; Married Cousins are done, the Singles come forward. Vivien and Jon sit while the Singles kneel.</span></li>
+            <li><span>Once the Singles are done, the tea ceremony ends and dinner is announced.</span></li>
+          </ol>
+        </div>
         <div class="tea-call-sequence" aria-label="Tea ceremony sequence to call">
           <h4>Sequence to Call</h4>
           <div class="tea-call-groups">
@@ -263,7 +269,7 @@ body{background:var(--cream);color:var(--black)}
                 <li>Uncle Terrance &amp; Aunty Sally</li>
                 <li>Aunty Catherine</li>
                 <li>Ng Wei Sung &amp; Stephanie Tay</li>
-                <li>Jaimie Tay</li>
+                <li>Jasmine Tay</li>
                 <li>Aunty Agnes</li>
                 <li>Aunty Alice</li>
                 <li>Aunty Amy</li>
@@ -272,7 +278,7 @@ body{background:var(--cream);color:var(--black)}
               </ol>
             </section>
             <section>
-              <h5>Cousins</h5>
+              <h5>Singles</h5>
               <ol start="13">
                 <li>Nicholas Tay</li>
                 <li>Ethan Ng</li>
@@ -285,6 +291,7 @@ body{background:var(--cream);color:var(--black)}
             </section>
           </div>
         </div>
+        <p class="event-footnote"><strong>Event window:</strong> 4:00-7:00 PM.</p>
       </div>
     </article>
     <article class="event-card" id="plan-glasshouse-reception">
@@ -388,7 +395,7 @@ body{background:var(--cream);color:var(--black)}
             <li><time>All day</time><div><strong>Family free time</strong><p>Jon's family can spend the day as they wish.</p></div></li>
             <li><time>8–9 AM</time><div><strong>Breakfast at the hotel</strong></div></li>
             <li><time>10:00 AM</time><div><strong>Jon collects the wedding items</strong><p>Wedding gown, Cheong Sam and decorations.</p></div></li>
-            <li><time>After collection</time><div><strong>Drop off and return items</strong><p>Pass the decorations to Ground Eatery and bring the clothes back to the hotel.</p></div></li>
+            <li><time>After collection</time><div><strong>Send décor to Ground Eatery</strong><p>Shirley, the Ground Eatery admin, will set it up. Bring the clothes back to the hotel.</p></div></li>
             <li><time>Brunch / Lunch</time><div><strong>Meal with the family</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
             <li><time>4–5 PM</time><div><strong>Jon &amp; Viv return home for housekeeping</strong></div></li>
             <li><time>7:00 PM</time><div><strong>Meet for dinner</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
@@ -402,14 +409,13 @@ body{background:var(--cream);color:var(--black)}
           <h3>Tea Ceremony — Ground Eatery</h3>
           <ol class="travel-agenda">
             <li><time>Morning</time><div><strong>Breakfast at the hotel or brunch</strong><p>Brunch venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
-            <li><time>Before 3:30 PM</time><div><strong>Prepare for the tea ceremony</strong><p>Take the morning and early afternoon at an easy pace.</p></div></li>
-            <li><time>3:30-4:00 PM</time><div><strong>Bride, groom and main family arrive</strong></div></li>
-            <li><time>4:00-4:15 PM</time><div><strong>Guests arrive and register</strong></div></li>
-            <li><time>4:15 PM</time><div><strong>Nicholas gathers everyone</strong><p>Everyone is seated and waits for their turn to be called.</p></div></li>
-            <li><time>4:15-5:50 PM</time><div><strong>Tea ceremony</strong><p>Follow the confirmed sequence to call.</p></div></li>
-            <li><time>During ceremony</time><div><strong>Cousin June prepares the tea</strong></div></li>
-            <li><time>6:00 PM</time><div><strong>Nicholas announces dinner</strong><p>Everyone is seated and dinner is served.</p></div></li>
-            <li><time>6:00-7:30 PM</time><div><strong>Dinner</strong><p>Family returns to the hotel first after dinner.</p></div></li>
+            <li><time>Before 4:00 PM</time><div><strong>Prepare for the tea ceremony</strong></div></li>
+            <li><time>4:00-4:15 PM</time><div><strong>Registration and attendance</strong><p>June and Nicholas manage the registration table and confirm guest attendance.</p></div></li>
+            <li><time>4:15 PM</time><div><strong>Tea ceremony begins</strong><p>The bride and groom are ready kneeling in front of the chair once attendance is confirmed.</p></div></li>
+            <li><time>During ceremony</time><div><strong>Follow the sequence to call</strong><p>Nicholas calls each group, June passes the tea and Nicholas collects any gifts.</p></div></li>
+            <li><time>After Elders</time><div><strong>Singles come forward</strong><p>Vivien and Jon sit while the Singles kneel.</p></div></li>
+            <li><time>After Singles</time><div><strong>Tea ceremony ends</strong><p>Dinner is announced.</p></div></li>
+            <li><time>Until 7:00 PM</time><div><strong>Dinner</strong><p>Family returns to the hotel first after dinner.</p></div></li>
             <li><time>After dinner</time><div><strong>Jon &amp; Viv return home for housekeeping</strong></div></li>
             <li><time>11:00 PM</time><div><strong>Jon &amp; Viv return to the hotel</strong></div></li>
           </ol>
@@ -494,7 +500,7 @@ body{background:var(--cream);color:var(--black)}
         <ul class="tea-attendee-list" id="tea-dad-list" hidden>
           <li><span class="tea-attendee-name">Uncle James</span></li>
           <li><span class="tea-attendee-name">Aunty Susan</span></li>
-          <li><span class="tea-attendee-name">Jasmine</span></li>
+          <li><span class="tea-attendee-name">Jasmine Tay</span></li>
           <li><span class="tea-attendee-name">Xeno</span></li>
           <li><span class="tea-attendee-name">Aunty Catherine</span></li>
           <li><span class="tea-attendee-name">Aunty Elizabeth</span></li>
@@ -573,7 +579,7 @@ body{background:var(--cream);color:var(--black)}
             <tbody>
               <tr><td class="guest-number" data-label="No.">19</td><td data-label="Guest"><strong>Uncle James</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
               <tr><td class="guest-number" data-label="No.">20</td><td data-label="Guest"><strong>Aunty Susan</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">21</td><td data-label="Guest"><strong>Sean</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>21.1</b><span>Jasmine</span></div><div class="guest-subitem"><b>21.2</b><span>Xeno</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 3<small>Reception: 1 Nov · WhatsApp<br>Tea Ceremony: Jasmine &amp; Xeno attending</small></td></tr>
+              <tr><td class="guest-number" data-label="No.">21</td><td data-label="Guest"><strong>Sean</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>21.1</b><span>Jasmine Tay</span></div><div class="guest-subitem"><b>21.2</b><span>Xeno</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 3<small>Reception: 1 Nov · WhatsApp<br>Tea Ceremony: Jasmine Tay &amp; Xeno attending</small></td></tr>
               <tr><td class="guest-number" data-label="No.">22</td><td data-label="Guest"><strong>Gordon Ling</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>22.1</b><span>Jaslynn Tay</span></div><div class="guest-subitem"><b>22.2</b><span>Caitlyn Ling</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
               <tr><td class="guest-number" data-label="No.">23</td><td data-label="Guest"><strong>Catherine Tay</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>23.1</b><span>RaeAnne</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 2</td></tr>
               <tr><td class="guest-number" data-label="No.">24</td><td data-label="Guest"><strong>Adelyn</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>24.1</b><span>Husband</span></div><div class="guest-subitem"><b>24.2</b><span>Child</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status">Declined — 3<small>1 Nov · Family update</small></td></tr>
@@ -643,7 +649,7 @@ body{background:var(--cream);color:var(--black)}
     <div class="page-head">
       <button class="back" onclick="showView('home')">Overview</button>
       <h2>Pending Items</h2>
-      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 12 completed</strong></p>
+      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 21 completed</strong></p>
     </div>
     <div class="pending-content">
     <article class="pending-group" id="pending-jpn"><h3><time datetime="2026-09-30"><span class="pending-day">30</span><span class="pending-month">September</span></time><span class="pending-event">JPN Signing</span><span class="pending-section-count">0 / 4 complete</span></h3><div class="pending-list">
@@ -652,18 +658,27 @@ body{background:var(--cream);color:var(--black)}
       <label class="pending-item"><input type="checkbox" data-key="pending-jpn-oskc"><span class="pending-check" aria-hidden="true"></span><strong>Printed Online Application from OSKC</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-jpn-photos"><span class="pending-check" aria-hidden="true"></span><strong>Passport-sized photos</strong></label>
     </div></article>
-    <article class="pending-group" id="pending-tea"><h3><time datetime="2026-10-31"><span class="pending-day">31</span><span class="pending-month">October</span></time><span class="pending-event">Tea Ceremony</span><span class="pending-section-count">0 / 3 complete</span></h3><div class="pending-list">
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-guests"><span class="pending-check" aria-hidden="true"></span><strong>Urgent — Jon to finalize the Tea Ceremony guest list for Sherli at Ground Eatery to confirm the final headcount</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-menu"><span class="pending-check" aria-hidden="true"></span><strong>Finalize Dinner Menu</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-flow"><span class="pending-check" aria-hidden="true"></span><strong>Urgent — Jon to plan and finalize the Tea Ceremony flow</strong></label>
+    <article class="pending-group" id="pending-tea"><h3><time datetime="2026-10-31"><span class="pending-day">31</span><span class="pending-month">October</span></time><span class="pending-event">Tea Ceremony</span><span class="pending-section-count">0 / 10 complete</span></h3><div class="pending-list">
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-photographer"><span class="pending-check" aria-hidden="true"></span><strong>Jon to figure out the photographer arrangement</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-extension"><span class="pending-check" aria-hidden="true"></span><strong>Jon to obtain written confirmation from Shirley that dinner can extend to 7:30 PM and setup arrival can be before 4:00 PM</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-registration-table"><span class="pending-check" aria-hidden="true"></span><strong>Jon to ask Shirley whether a registration table can be added, its cost and whether additional décor is needed</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-deco-ready"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm with Shirley that the décor will be set up before 4:00 PM</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-deco-rearrange"><span class="pending-check" aria-hidden="true"></span><strong>Jon to ask Shirley whether the décor must be rearranged after the Tea Ceremony to accommodate dinner</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-layout"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm the Tea Ceremony arrangement and layout with Shirley</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-logistics"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm the tea logistics: who prepares it beforehand, whether staff can prepare it and pass it to June, any additional cost and the type of tea</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-briefing"><span class="pending-check" aria-hidden="true"></span><strong>Jon to brief Nicholas and June on their tasks, including Nicholas's MC arrangement</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-singles-angpow"><span class="pending-check" aria-hidden="true"></span><strong>Jon to prepare the angpow for the Singles' blessing</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-angpow-packets"><span class="pending-check" aria-hidden="true"></span><strong>Jon to purchase angpow packets</strong></label>
     </div></article>
-    <article class="pending-group" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">0 / 5 complete</span></h3><div class="pending-list">
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-rsvp"><span class="pending-check" aria-hidden="true"></span><strong>Follow up on RSVP for the final time. To confirm through WhatsApp if not able to use the online form.</strong></label>
+    <article class="pending-group" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">0 / 7 complete</span></h3><div class="pending-list">
       <label class="pending-item"><input type="checkbox" data-key="pending-reception-blessing"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the duration for Jon's speech and Aunty Amy's blessing at 11:00 AM</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-guests"><span class="pending-check" aria-hidden="true"></span><strong>Finalize Guest List [Urgent]</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-seating"><span class="pending-check" aria-hidden="true"></span><strong>Design seating layout for Gean</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-schedule"><span class="pending-check" aria-hidden="true"></span><strong>Finalize schedule and sequence arrangement for Gean</strong></label>
-    </div><aside class="pending-alert"><strong>Urgent — Blocked</strong><p>Nov 1 Seating layout and Schedule is currently blocked until Guest List is finalized</p></aside></article>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-name-cards"><span class="pending-check" aria-hidden="true"></span><strong>Design and create name seating cards with The Print Shop</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-table-seating"><span class="pending-check" aria-hidden="true"></span><strong>Finalize the seating arrangement for each table</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-gean-layout"><span class="pending-check" aria-hidden="true"></span><strong>Get Gean to suggest the layout</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-main-table-meals"><span class="pending-check" aria-hidden="true"></span><strong>Check with Gean whether staff can bring meals from the buffet to the main table for the bride and groom's family</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-table-details"><span class="pending-check" aria-hidden="true"></span><strong>Check with Glasshouse Decor on the reception table details and acrylic QR code dimensions</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-speech-schedule"><span class="pending-check" aria-hidden="true"></span><strong>Update the schedule breakdown to include the speech and send it to Gean ASAP</strong></label>
+    </div></article>
     </div>
   </section>
 

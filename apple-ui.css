@@ -396,6 +396,11 @@ body.drawer-open { overflow: hidden; }
 .event-schedule li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 22px; padding: 14px 0; }
 .event-schedule li + li { border-top: 1px solid var(--line); }
 .event-schedule time { font-weight: 700; }
+.tea-ceremony-breakdown { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line-strong); }
+.tea-ceremony-breakdown > h4 { margin-bottom: 12px; }
+.tea-ceremony-breakdown ol { counter-reset: tea-step; }
+.tea-ceremony-breakdown li { counter-increment: tea-step; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; }
+.tea-ceremony-breakdown li::before { content: counter(tea-step, decimal-leading-zero); color: var(--muted); font-size: 10px; font-weight: 700; }
 .tea-call-sequence { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line-strong); }
 .tea-call-sequence > h4 { margin-bottom: 18px; }
 .tea-call-groups { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(220px, .75fr); gap: 34px; }
@@ -403,6 +408,7 @@ body.drawer-open { overflow: hidden; }
 .tea-call-groups ol { list-style: decimal; padding-left: 28px; }
 .tea-call-groups li { display: list-item; padding: 8px 0 8px 4px; }
 .tea-call-groups li + li { border-top: 1px solid var(--line); }
+.event-footnote { margin: 24px 0 0; padding-top: 18px; border-top: 1px solid var(--line-strong); font-size: 13px; }
 .bottom-nav { margin-top: 28px; }
 .bottom-nav button, .travel-plan-link {
   min-height: 44px;
@@ -835,6 +841,7 @@ body.drawer-open { overflow: hidden; }
   .event-meta { display: grid; gap: 5px; }
   .event-meta span + span { padding-left: 0; border-left: 0; }
   .event-schedule li { grid-template-columns: 92px minmax(0, 1fr); gap: 14px; }
+  .tea-ceremony-breakdown li { grid-template-columns: 26px minmax(0, 1fr); gap: 10px; }
   .tea-call-groups { grid-template-columns: 1fr; gap: 26px; }
   .tea-call-groups li { display: list-item; padding: 9px 0 9px 3px; }
   .travel-timeline { margin-top: 42px; padding-left: 35px; }
