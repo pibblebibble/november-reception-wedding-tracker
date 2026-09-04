@@ -162,7 +162,7 @@ body{background:var(--cream);color:var(--black)}
 @media print{.site-footer{margin-top:30px}.footer-top{display:none}}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="apple-ui.css">
+<link rel="stylesheet" href="apple-ui.css?v=20260903-3">
 </head>
 <body>
 <main class="site">
@@ -173,6 +173,7 @@ body{background:var(--cream);color:var(--black)}
       <button type="button" data-view="plan" onclick="showView('plan')">Plan &amp; Venues</button>
       <button type="button" data-view="travel" onclick="showView('travel')">Travel Itinerary</button>
       <button type="button" data-view="guests" onclick="showView('guests')">Guest List</button>
+      <button type="button" data-view="seating" onclick="showView('seating')">Table Grouping</button>
       <button type="button" data-view="pending" onclick="showView('pending')">Pending Items</button>
     </nav>
     <button class="icon-button" id="menuButton" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list" aria-hidden="true"></i></button>
@@ -185,6 +186,7 @@ body{background:var(--cream);color:var(--black)}
         <button data-view="plan" onclick="showView('plan')"><i class="ph ph-map-pin" aria-hidden="true"></i>Plan &amp; Venues</button>
         <button data-view="travel" onclick="showView('travel')"><i class="ph ph-airplane-tilt" aria-hidden="true"></i>Travel Itinerary</button>
         <button data-view="guests" onclick="showView('guests')"><i class="ph ph-users" aria-hidden="true"></i>Guest List</button>
+        <button data-view="seating" onclick="showView('seating')"><i class="ph ph-table" aria-hidden="true"></i>Table Grouping</button>
         <button data-view="pending" onclick="showView('pending')"><i class="ph ph-check-square" aria-hidden="true"></i>Pending Items</button>
       </div>
     </nav>
@@ -201,12 +203,13 @@ body{background:var(--cream);color:var(--black)}
           <div class="home-stats" aria-label="Wedding plan summary">
             <div><span class="stat-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><p><strong id="daysToReception">68</strong><span>Days to go</span></p></div>
             <div><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
-            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">21</strong><span>Tasks pending</span></p></div>
+            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">20</strong><span>Tasks pending</span></p></div>
           </div>
           <div class="menu" aria-label="Quick links">
             <button onclick="showView('plan')"><span class="menu-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span><span><strong>Plan &amp; Venues</strong><small>Locations, schedule and timings</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button onclick="showView('travel')"><span class="menu-icon"><i class="ph ph-airplane-tilt" aria-hidden="true"></i></span><span><strong>Travel Itinerary</strong><small>Arrival, daily movements and departure</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button onclick="showView('guests')"><span class="menu-icon"><i class="ph ph-users" aria-hidden="true"></i></span><span><strong>Guest List</strong><small>Tea ceremony and reception attendance</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button onclick="showView('seating')"><span class="menu-icon"><i class="ph ph-table" aria-hidden="true"></i></span><span><strong>Table Grouping</strong><small>Reception seating draft and open seats</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button onclick="showView('pending')"><span class="menu-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><span><strong>Pending Items</strong><small>Outstanding confirmations</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
@@ -244,15 +247,16 @@ body{background:var(--cream);color:var(--black)}
       <div class="event-schedule">
         <h4>Schedule</h4>
         <ol>
-          <li><time>30 October</time><span>Send the décor to Ground Eatery for Shirley, the Ground Eatery admin, to set up.</span></li>
-          <li><time>4:00-4:15 PM</time><span>June and Nicholas manage the registration table and confirm guest attendance.</span></li>
+          <li><time>30 October</time><span>Send the décor to Ground Eatery for Shirley, the Ground Eatery GM, to set up. The décor will be ready before 4:00 PM on 31 October.</span></li>
+          <li><time>4:00-4:15 PM</time><span>Nicholas and June manage guest registration and confirm attendance.</span></li>
           <li><time>4:15 PM</time><span>Tea ceremony begins once guest attendance is confirmed. The bride and groom are ready in a kneeling position in front of the chair.</span></li>
         </ol>
         <div class="tea-ceremony-breakdown">
           <h4>Tea Ceremony Breakdown</h4>
           <ol>
-            <li><span>Nicholas announces the sequence for the Elders &amp; Married Cousins according to the list.</span></li>
+            <li><span>Shirley announces each name according to the sequence for the Elders &amp; Married Cousins.</span></li>
             <li><span>For each sequence, June passes the tea and Nicholas collects any gifts from the group.</span></li>
+            <li><span>Ground Eatery keeps hot water on standby. Jon and Vivien provide the paper cups, teapot and tea to Shirley.</span></li>
             <li><span>Once the Elders &amp; Married Cousins are done, the Singles come forward. Vivien and Jon sit while the Singles kneel.</span></li>
             <li><span>Once the Singles are done, the tea ceremony ends and dinner is announced.</span></li>
           </ol>
@@ -264,10 +268,10 @@ body{background:var(--cream);color:var(--black)}
               <h5>Elders &amp; Married Cousins</h5>
               <ol>
                 <li>Richard Tay &amp; Mary Thien</li>
-                <li>Uncle James &amp; Aunty Susan</li>
+                <li>Uncle James Tay &amp; Aunty Susan Tay</li>
                 <li>Uncle Toh Pang Chun &amp; Aunty Elizabeth</li>
-                <li>Uncle Terrance &amp; Aunty Sally</li>
                 <li>Aunty Catherine</li>
+                <li>Uncle Terrance &amp; Aunty Sally</li>
                 <li>Ng Wei Sung &amp; Stephanie Tay</li>
                 <li>Jasmine Tay</li>
                 <li>Aunty Agnes</li>
@@ -292,6 +296,7 @@ body{background:var(--cream);color:var(--black)}
           </div>
         </div>
         <p class="event-footnote"><strong>Event window:</strong> 4:00-7:00 PM.</p>
+        <p class="event-footnote"><strong>Shirley</strong> - Ground Eatery GM.</p>
       </div>
     </article>
     <article class="event-card" id="plan-glasshouse-reception">
@@ -303,17 +308,22 @@ body{background:var(--cream);color:var(--black)}
       <div class="event-schedule">
         <h4>Schedule</h4>
         <ol>
-          <li><time>7:00 AM</time><span>Decorator access.</span></li>
-          <li><time>9:00 AM</time><span>Photography begins.</span></li>
-          <li><time>10:30 AM</time><span>Guest arrival, registration table with Nicholas and June, and photobooth.</span></li>
-          <li><time>11:00 AM</time><span>Vivien and Jon enter; Jon's speech and Aunty Amy's blessing. Duration to be confirmed.</span></li>
+          <li><time>7:00 AM</time><span>Decorator access for Wonderloon @ Mandy's team to begin venue setup.</span></li>
+          <li><time>8:00 AM</time><span>Jon and Vivien arrive to set up the table cards, distribute wedding favours on the tables and double-check the venue.</span></li>
+          <li><time>8:30 AM</time><span>Jon's family arrives.</span></li>
+          <li><time>9:00 AM</time><span>Photography coverage begins. Take family photographs around the venue first, followed by bride-and-groom and individual photographs.</span></li>
+          <li><time>10:30 AM</time><span>Doors open. Nicholas and Wei Sung stand by at the registration table, and the photobooth opens.</span></li>
+          <li><time>11:00 AM</time><span>Vivien and Jon enter. Jon gives a five-minute welcome speech, then segues to Aunty Amy.</span></li>
+          <li><time>11:05 AM</time><span>Aunty Amy gives a five-minute speech.</span></li>
           <li><time>11:30 AM</time><span>Western brunch buffet, mingling and photographs.</span></li>
-          <li><time>1:30 PM</time><span>Guest departure begins.</span></li>
-          <li><time>2:00 PM</time><span>Venue and photographer coverage end.</span></li>
+          <li><time>1:30 PM</time><span>Jon and Vivien give a ten-minute thank-you speech, thank everyone for attending, announce the close of the event and direct guests to take photographs at the front.</span></li>
+          <li><time>1:40 PM</time><span>Jon and Vivien move immediately to the front backdrop for guest photographs and farewells.</span></li>
+          <li><time>2:00 PM</time><span>Wonderloon @ Mandy's team begins taking down the décor. Venue and photographer coverage end.</span></li>
         </ol>
+        <p class="event-footnote"><strong>Registration team - Nicholas and Wei Sung:</strong> Register guests, receive angpow and direct each guest to their table number using the guest list.</p>
       </div>
     </article>
-    <div class="bottom-nav"><button onclick="showView('guests')">Guest List</button></div>
+    <div class="bottom-nav"><button onclick="showView('guests')">Guest List</button><button onclick="showView('seating')">Table Grouping</button></div>
   </section>
 
   <section class="view" id="travel">
@@ -395,7 +405,7 @@ body{background:var(--cream);color:var(--black)}
             <li><time>All day</time><div><strong>Family free time</strong><p>Jon's family can spend the day as they wish.</p></div></li>
             <li><time>8–9 AM</time><div><strong>Breakfast at the hotel</strong></div></li>
             <li><time>10:00 AM</time><div><strong>Jon collects the wedding items</strong><p>Wedding gown, Cheong Sam and decorations.</p></div></li>
-            <li><time>After collection</time><div><strong>Send décor to Ground Eatery</strong><p>Shirley, the Ground Eatery admin, will set it up. Bring the clothes back to the hotel.</p></div></li>
+            <li><time>After collection</time><div><strong>Send décor to Ground Eatery</strong><p>Shirley, the Ground Eatery GM, will set it up. Bring the clothes back to the hotel.</p></div></li>
             <li><time>Brunch / Lunch</time><div><strong>Meal with the family</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
             <li><time>4–5 PM</time><div><strong>Jon &amp; Viv return home for housekeeping</strong></div></li>
             <li><time>7:00 PM</time><div><strong>Meet for dinner</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
@@ -410,9 +420,10 @@ body{background:var(--cream);color:var(--black)}
           <ol class="travel-agenda">
             <li><time>Morning</time><div><strong>Breakfast at the hotel or brunch</strong><p>Brunch venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
             <li><time>Before 4:00 PM</time><div><strong>Prepare for the tea ceremony</strong></div></li>
-            <li><time>4:00-4:15 PM</time><div><strong>Registration and attendance</strong><p>June and Nicholas manage the registration table and confirm guest attendance.</p></div></li>
+            <li><time>4:00-4:15 PM</time><div><strong>Registration and attendance</strong><p>Nicholas and June manage guest registration and confirm attendance.</p></div></li>
             <li><time>4:15 PM</time><div><strong>Tea ceremony begins</strong><p>The bride and groom are ready kneeling in front of the chair once attendance is confirmed.</p></div></li>
-            <li><time>During ceremony</time><div><strong>Follow the sequence to call</strong><p>Nicholas calls each group, June passes the tea and Nicholas collects any gifts.</p></div></li>
+            <li><time>During ceremony</time><div><strong>Follow the sequence to call</strong><p>Shirley announces each name, June passes the tea and Nicholas collects any gifts.</p></div></li>
+            <li><time>Tea service</time><div><strong>Prepare the tea</strong><p>Ground Eatery keeps hot water on standby. Jon and Vivien provide paper cups, a teapot and tea to Shirley.</p></div></li>
             <li><time>After Elders</time><div><strong>Singles come forward</strong><p>Vivien and Jon sit while the Singles kneel.</p></div></li>
             <li><time>After Singles</time><div><strong>Tea ceremony ends</strong><p>Dinner is announced.</p></div></li>
             <li><time>Until 7:00 PM</time><div><strong>Dinner</strong><p>Family returns to the hotel first after dinner.</p></div></li>
@@ -498,8 +509,8 @@ body{background:var(--cream);color:var(--black)}
       <section class="tea-attendee-group">
         <button class="tea-attendee-heading" type="button" aria-expanded="false" aria-controls="tea-dad-list" onclick="toggleTeaGroup(this)"><span><strong>Dad's Side</strong><small>15 guests</small></span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
         <ul class="tea-attendee-list" id="tea-dad-list" hidden>
-          <li><span class="tea-attendee-name">Uncle James</span></li>
-          <li><span class="tea-attendee-name">Aunty Susan</span></li>
+          <li><span class="tea-attendee-name">Uncle James Tay</span></li>
+          <li><span class="tea-attendee-name">Aunty Susan Tay</span></li>
           <li><span class="tea-attendee-name">Jasmine Tay</span></li>
           <li><span class="tea-attendee-name">Xeno</span></li>
           <li><span class="tea-attendee-name">Aunty Catherine</span></li>
@@ -526,8 +537,8 @@ body{background:var(--cream);color:var(--black)}
         <div><strong>28</strong><span>Declined</span></div>
       </div>
       <nav class="guest-tabs" aria-label="Filter guest list">
-        <button class="active" type="button" data-guest-filter="full" aria-pressed="true" onclick="filterGuestList('full')">Full List <span>97</span></button>
-        <button type="button" data-guest-filter="registered" aria-pressed="false" onclick="filterGuestList('registered')">Registered <span>69</span></button>
+        <button class="active" type="button" data-guest-filter="registered" aria-pressed="true" onclick="filterGuestList('registered')">Registered <span>69</span></button>
+        <button type="button" data-guest-filter="full" aria-pressed="false" onclick="filterGuestList('full')">Full List <span>97</span></button>
         <button type="button" data-guest-filter="not-registered" aria-pressed="false" onclick="filterGuestList('not-registered')">Not Registered <span>0</span></button>
         <button type="button" data-guest-filter="declined" aria-pressed="false" onclick="filterGuestList('declined')">Declined <span>28</span></button>
       </nav>
@@ -577,8 +588,8 @@ body{background:var(--cream);color:var(--black)}
           <table class="guest-table">
             <thead><tr><th>No.</th><th>Guest</th><th>Additional Guests</th><th>RSVP Status</th></tr></thead>
             <tbody>
-              <tr><td class="guest-number" data-label="No.">19</td><td data-label="Guest"><strong>Uncle James</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">20</td><td data-label="Guest"><strong>Aunty Susan</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
+              <tr><td class="guest-number" data-label="No.">19</td><td data-label="Guest"><strong>James Tay</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
+              <tr><td class="guest-number" data-label="No.">20</td><td data-label="Guest"><strong>Susan Tay</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
               <tr><td class="guest-number" data-label="No.">21</td><td data-label="Guest"><strong>Sean</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>21.1</b><span>Jasmine Tay</span></div><div class="guest-subitem"><b>21.2</b><span>Xeno</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 3<small>Reception: 1 Nov · WhatsApp<br>Tea Ceremony: Jasmine Tay &amp; Xeno attending</small></td></tr>
               <tr><td class="guest-number" data-label="No.">22</td><td data-label="Guest"><strong>Gordon Ling</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>22.1</b><span>Jaslynn Tay</span></div><div class="guest-subitem"><b>22.2</b><span>Caitlyn Ling</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
               <tr><td class="guest-number" data-label="No.">23</td><td data-label="Guest"><strong>Catherine Tay</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>23.1</b><span>RaeAnne</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 2</td></tr>
@@ -645,39 +656,183 @@ body{background:var(--cream);color:var(--black)}
     </div>
   </section>
 
+  <section class="view" id="seating">
+    <div class="page-head seating-head">
+      <button class="back" onclick="showView('home')">Overview</button>
+      <h2>Table Grouping</h2>
+      <p>1 November reception seating draft.</p>
+    </div>
+    <div class="seating-summary" aria-label="Seating draft summary">
+      <div><strong>71</strong><span>People assigned</span></div>
+      <div><strong>7</strong><span>Tables</span></div>
+      <div><strong>14</strong><span>Open seats</span></div>
+      <div><strong>1</strong><span>Baby chair</span></div>
+    </div>
+    <div class="seating-grid">
+      <article class="seating-table">
+        <header><div><span>Table</span><strong>01</strong></div><p><strong>9 assigned</strong><span>3 open seats</span></p></header>
+        <ol>
+          <li><span class="seat-name"><strong>Jonathan Tay</strong><small>Groom</small></span></li>
+          <li><span class="seat-name"><strong>Vivien Chiew</strong><small>Bride</small></span></li>
+          <li><span class="seat-name"><strong>Richard Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Mary Thien</strong></span></li>
+          <li><span class="seat-name"><strong>Stephanie Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Ng Wei Sung</strong></span></li>
+          <li><span class="seat-name"><strong>Nicholas Tay Yau Yung</strong></span></li>
+          <li><span class="seat-name"><strong>Ethan Ng</strong></span></li>
+          <li><span class="seat-name"><strong>Elisa Ng</strong></span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+        </ol>
+      </article>
+
+      <article class="seating-table">
+        <header><div><span>Table</span><strong>02</strong></div><p><strong>11 assigned</strong><span>1 open seat</span></p></header>
+        <ol>
+          <li><span class="seat-name"><strong>Zizi Dani</strong></span></li>
+          <li><span class="seat-name"><strong>Bashir Jayos</strong></span></li>
+          <li><span class="seat-name"><strong>Anna Leong</strong></span></li>
+          <li><span class="seat-name"><strong>Danial</strong></span></li>
+          <li><span class="seat-name"><strong>Alissa Nassihin</strong></span></li>
+          <li><span class="seat-name"><strong>Lee Xin Ying</strong></span></li>
+          <li><span class="seat-name"><strong>Chong Harry</strong></span></li>
+          <li><span class="seat-name"><strong>Marcovy Duwin</strong></span></li>
+          <li><span class="seat-name"><strong>Evans Hu</strong></span></li>
+          <li><span class="seat-name"><strong>Haziq Rohaimi</strong></span></li>
+          <li><span class="seat-name"><strong>Sufi Khirul Bahri</strong></span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+        </ol>
+      </article>
+
+      <article class="seating-table">
+        <header><div><span>Table</span><strong>03</strong></div><p><strong>10 assigned</strong><span>2 open seats</span></p></header>
+        <ol>
+          <li><span class="seat-name"><strong>Agnes Thien</strong></span></li>
+          <li><span class="seat-name"><strong>Alice Thien</strong></span></li>
+          <li><span class="seat-name"><strong>Amy Thien</strong></span></li>
+          <li><span class="seat-name"><strong>Kent Chin</strong></span></li>
+          <li><span class="seat-name"><strong>Joanne Yoong</strong></span></li>
+          <li><span class="seat-name"><strong>Kayden Chin</strong></span></li>
+          <li><span class="seat-name"><strong>Claire Chin</strong></span></li>
+          <li><span class="seat-name"><strong>Desmond Chin</strong></span></li>
+          <li><span class="seat-name"><strong>Kate</strong></span></li>
+          <li><span class="seat-name"><strong>June Ho</strong></span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+        </ol>
+      </article>
+
+      <article class="seating-table seating-table-baby">
+        <header><div><span>Table</span><strong>04</strong></div><p><strong>13 assigned</strong><span>Includes baby chair</span></p></header>
+        <ol>
+          <li><span class="seat-name"><strong>James Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Susan Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Catherine Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Toh Pang Chun</strong></span></li>
+          <li><span class="seat-name"><strong>Elizabeth Tay Siew Noi</strong></span></li>
+          <li><span class="seat-name"><strong>Terrance Ng</strong></span></li>
+          <li><span class="seat-name"><strong>Sally Tay Siew Git</strong></span></li>
+          <li><span class="seat-name"><strong>RaeAnne</strong></span></li>
+          <li><span class="seat-name"><strong>Michael Ng</strong></span></li>
+          <li><span class="seat-name"><strong>Ann Oh</strong></span></li>
+          <li><span class="seat-name"><strong>Ng Ler Xuan</strong></span></li>
+          <li><span class="seat-name"><strong>Ng Jig Hong</strong></span></li>
+          <li class="seat-baby"><span class="seat-name"><strong>Ng Zhy Xuan</strong><small>Baby chair needed</small></span></li>
+        </ol>
+      </article>
+
+      <article class="seating-table">
+        <header><div><span>Table</span><strong>05</strong></div><p><strong>9 assigned</strong><span>3 open seats</span></p></header>
+        <ol>
+          <li><span class="seat-name"><strong>Sean</strong></span></li>
+          <li><span class="seat-name"><strong>Jasmine Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Xeno</strong></span></li>
+          <li><span class="seat-name"><strong>Gordon Ling</strong></span></li>
+          <li><span class="seat-name"><strong>Jaslynn Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Caitlyn Ling</strong></span></li>
+          <li><span class="seat-name"><strong>Wilson Tay</strong></span></li>
+          <li><span class="seat-name"><strong>Eugene Bong</strong></span></li>
+          <li><span class="seat-name"><strong>Kai Hui</strong></span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+        </ol>
+      </article>
+
+      <article class="seating-table">
+        <header><div><span>Table</span><strong>06</strong></div><p><strong>9 assigned</strong><span>3 open seats</span></p></header>
+        <ol>
+          <li><span class="seat-name"><strong>Ng Ai Cher</strong></span></li>
+          <li><span class="seat-name"><strong>Daniel Yong</strong></span></li>
+          <li><span class="seat-name"><strong>Denise Yong</strong></span></li>
+          <li><span class="seat-name"><strong>Deseree Yong</strong></span></li>
+          <li><span class="seat-name"><strong>Darius Yong</strong></span></li>
+          <li><span class="seat-name"><strong>Jocelyn Hui</strong></span></li>
+          <li><span class="seat-name"><strong>Zhi Hsuen</strong></span></li>
+          <li><span class="seat-name"><strong>Yhi Tong</strong></span></li>
+          <li><span class="seat-name"><strong>Mary Ong</strong></span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+        </ol>
+      </article>
+
+      <article class="seating-table">
+        <header><div><span>Table</span><strong>07</strong></div><p><strong>10 assigned</strong><span>2 open seats</span></p></header>
+        <ol>
+          <li><span class="seat-name"><strong>Choon Yen</strong></span></li>
+          <li><span class="seat-name"><strong>Sara Chong</strong></span></li>
+          <li><span class="seat-name"><strong>Ryan Ng</strong></span></li>
+          <li><span class="seat-name"><strong>Rayden Ng</strong></span></li>
+          <li><span class="seat-name"><strong>Renzo</strong></span></li>
+          <li><span class="seat-name"><strong>Sri Andianti</strong></span></li>
+          <li><span class="seat-name"><strong>Yan Fei</strong></span></li>
+          <li><span class="seat-name"><strong>Ing Ing</strong></span></li>
+          <li><span class="seat-name"><strong>Damian Ng</strong></span></li>
+          <li><span class="seat-name"><strong>Han Yu</strong></span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+          <li class="seat-empty"><span>Open seat</span></li>
+        </ol>
+      </article>
+    </div>
+    <p class="seating-note"><i class="ph ph-info" aria-hidden="true"></i>Draft arrangement for the 1 November reception. Table 4 requires one baby chair.</p>
+  </section>
+
   <section class="view" id="pending">
     <div class="page-head">
       <button class="back" onclick="showView('home')">Overview</button>
       <h2>Pending Items</h2>
-      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 21 completed</strong></p>
+      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 20 completed</strong></p>
     </div>
     <div class="pending-content">
+    <article class="pending-group" id="pending-travel"><h3><time><span class="pending-day">29 Sep-31 Oct</span></time><span class="pending-event">Travel Venues</span><span class="pending-section-count">0 / 8 complete</span></h3><div class="pending-list">
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-sep29-lunch"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 September lunch venue for Jon and his parents</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-sep29-dinner"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 September dinner venue for Jon, Vivien and Jon's parents</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-sep30-celebration"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 30 September ROM celebration venue</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct29-hotel"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 October hotel and check-in details</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct29-dinner"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 October family dinner venue</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct30-lunch"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 30 October family brunch or lunch venue</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct30-dinner"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 30 October family dinner venue</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct31-brunch"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 31 October breakfast or brunch venue</strong></label>
+    </div></article>
     <article class="pending-group" id="pending-jpn"><h3><time datetime="2026-09-30"><span class="pending-day">30</span><span class="pending-month">September</span></time><span class="pending-event">JPN Signing</span><span class="pending-section-count">0 / 4 complete</span></h3><div class="pending-list">
       <label class="pending-item"><input type="checkbox" data-key="pending-jpn-ic"><span class="pending-check" aria-hidden="true"></span><strong>Prepare IC Copies for Witnesses + Bride and Groom</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-jpn-kc02"><span class="pending-check" aria-hidden="true"></span><strong>Form JPN.KC02</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-jpn-oskc"><span class="pending-check" aria-hidden="true"></span><strong>Printed Online Application from OSKC</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-jpn-photos"><span class="pending-check" aria-hidden="true"></span><strong>Passport-sized photos</strong></label>
     </div></article>
-    <article class="pending-group" id="pending-tea"><h3><time datetime="2026-10-31"><span class="pending-day">31</span><span class="pending-month">October</span></time><span class="pending-event">Tea Ceremony</span><span class="pending-section-count">0 / 10 complete</span></h3><div class="pending-list">
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-photographer"><span class="pending-check" aria-hidden="true"></span><strong>Jon to figure out the photographer arrangement</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-extension"><span class="pending-check" aria-hidden="true"></span><strong>Jon to obtain written confirmation from Shirley that dinner can extend to 7:30 PM and setup arrival can be before 4:00 PM</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-registration-table"><span class="pending-check" aria-hidden="true"></span><strong>Jon to ask Shirley whether a registration table can be added, its cost and whether additional décor is needed</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-deco-ready"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm with Shirley that the décor will be set up before 4:00 PM</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-deco-rearrange"><span class="pending-check" aria-hidden="true"></span><strong>Jon to ask Shirley whether the décor must be rearranged after the Tea Ceremony to accommodate dinner</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-layout"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm the Tea Ceremony arrangement and layout with Shirley</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-logistics"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm the tea logistics: who prepares it beforehand, whether staff can prepare it and pass it to June, any additional cost and the type of tea</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-briefing"><span class="pending-check" aria-hidden="true"></span><strong>Jon to brief Nicholas and June on their tasks, including Nicholas's MC arrangement</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-singles-angpow"><span class="pending-check" aria-hidden="true"></span><strong>Jon to prepare the angpow for the Singles' blessing</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-tea-angpow-packets"><span class="pending-check" aria-hidden="true"></span><strong>Jon to purchase angpow packets</strong></label>
+    <article class="pending-group" id="pending-tea"><h3><time datetime="2026-10-31"><span class="pending-day">31</span><span class="pending-month">October</span></time><span class="pending-event">Tea Ceremony</span><span class="pending-section-count">0 / 2 complete</span></h3><div class="pending-list">
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-registration-deco"><span class="pending-check" aria-hidden="true"></span><strong>Confirm with Shirley whether we need to bring our own décor for the reception/registration table</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-tea-briefing"><span class="pending-check" aria-hidden="true"></span><strong>Jon to brief Nicholas and June on guest registration and their Tea Ceremony duties</strong></label>
     </div></article>
-    <article class="pending-group" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">0 / 7 complete</span></h3><div class="pending-list">
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-blessing"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the duration for Jon's speech and Aunty Amy's blessing at 11:00 AM</strong></label>
+    <article class="pending-group" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">0 / 6 complete</span></h3><div class="pending-list">
       <label class="pending-item"><input type="checkbox" data-key="pending-reception-name-cards"><span class="pending-check" aria-hidden="true"></span><strong>Design and create name seating cards with The Print Shop</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-reception-table-seating"><span class="pending-check" aria-hidden="true"></span><strong>Finalize the seating arrangement for each table</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-gean-layout"><span class="pending-check" aria-hidden="true"></span><strong>Get Gean to suggest the layout</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-main-table-meals"><span class="pending-check" aria-hidden="true"></span><strong>Check with Gean whether staff can bring meals from the buffet to the main table for the bride and groom's family</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-table-details"><span class="pending-check" aria-hidden="true"></span><strong>Check with Glasshouse Decor on the reception table details and acrylic QR code dimensions</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-reception-speech-schedule"><span class="pending-check" aria-hidden="true"></span><strong>Update the schedule breakdown to include the speech and send it to Gean ASAP</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-gean-layout"><span class="pending-check" aria-hidden="true"></span><strong>Get Gibson to suggest the layout</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-main-table-meals"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm the main-table pax count and notify Gibson how many meals to bring from the buffet</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-table-details"><span class="pending-check" aria-hidden="true"></span><strong>Jon to print an A5 QR code for the acrylic stand provided by Glasshouse Decor</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-speech-schedule"><span class="pending-check" aria-hidden="true"></span><strong>Update the schedule breakdown to include the speeches and send it to Gibson ASAP</strong></label>
     </div></article>
     </div>
   </section>
@@ -713,7 +868,7 @@ function updatePendingProgress(){const boxes=[...document.querySelectorAll('#pen
 function bindChecklist(){document.querySelectorAll('#pending input[type="checkbox"][data-key]').forEach(box=>{const key=STORE+box.dataset.key;box.checked=localStorage.getItem(key)==='1';box.addEventListener('change',()=>{localStorage.setItem(key,box.checked?'1':'0');updatePendingProgress()})});updatePendingProgress()}
 function decorateChecklist(){document.querySelectorAll('.pending-check').forEach(check=>{if(!check.querySelector('i'))check.innerHTML='<i class="ph ph-check" aria-hidden="true"></i>'})}
 function updateDaysToReception(){const output=document.querySelector('#daysToReception');if(!output)return;const target=new Date('2026-11-01T00:00:00+08:00');const now=new Date();output.textContent=String(Math.max(0,Math.ceil((target-now)/86400000)))}
-decorateChecklist();bindEdits();bindChecklist();labelTable();setupGuestAccordions();filterGuestList('full');switchGuestEvent('tea');updateDaysToReception();showView(location.hash.slice(1)||'home');
+decorateChecklist();bindEdits();bindChecklist();labelTable();setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');updateDaysToReception();showView(location.hash.slice(1)||'home');
 </script>
 </body>
 </html>
