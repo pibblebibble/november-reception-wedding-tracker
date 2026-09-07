@@ -386,7 +386,28 @@ body.drawer-open { overflow: hidden; }
   box-shadow: var(--shadow-soft);
 }
 .event-card-header { padding: 28px 30px; }
+.event-card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
 .event-card h3 { margin: 0; font-size: 28px; letter-spacing: -.025em; }
+.event-print-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--black);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.event-print-button i { font-size: 16px; }
+.event-print-button:hover { border-color: var(--black); background: var(--white); transform: translateY(-1px); }
+.event-print-button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .event-place { margin: 8px 0 0; color: #303033; font-size: 16px; font-weight: 600; }
 .event-meta { display: flex; gap: 18px; margin-top: 18px; color: var(--muted); font-size: 13px; font-weight: 600; }
 .event-meta span + span { padding-left: 18px; border-left: 1px solid var(--line-strong); }
@@ -805,6 +826,9 @@ body.drawer-open { overflow: hidden; }
 .pending-event { display: block; margin-top: 12px; font-size: 23px; letter-spacing: -.025em; }
 .pending-section-count { display: block; margin-top: 10px; color: var(--muted); font-size: 10px; font-weight: 600; }
 .pending-list { display: grid; padding: 14px 24px; }
+.pending-clear { display: flex; align-items: center; gap: 11px; min-height: 76px; margin: 0; color: var(--blue-dark); }
+.pending-clear i { font-size: 24px; }
+.pending-clear strong { font-size: 15px; letter-spacing: .04em; }
 .pending-item {
   position: relative;
   display: grid;
@@ -922,6 +946,8 @@ body.drawer-open { overflow: hidden; }
   .home-note { align-items: flex-start; }
   .page-head { margin-bottom: 30px; }
   .page-head h2 { font-size: 42px; }
+  .event-card-heading { display: block; }
+  .event-print-button { margin-top: 16px; }
   .event-card-header, .event-schedule { padding-left: 20px; padding-right: 20px; }
   .event-meta { display: grid; gap: 5px; }
   .event-meta span + span { padding-left: 0; border-left: 0; }
@@ -962,9 +988,25 @@ body.drawer-open { overflow: hidden; }
 
 @media print {
   body { background: var(--surface); }
-  .topbar, .back, .bottom-nav, .footer-top, .guest-event-selector { display: none !important; }
+  .topbar, .back, .bottom-nav, .footer-top, .guest-event-selector, .event-print-button { display: none !important; }
   .view { display: none !important; width: 100%; padding: 0; }
   .view.active { display: block !important; }
   .event-card, .guest-event-panel, .pending-group { box-shadow: none; break-inside: avoid; }
   .travel-progress-fill { height: 100% !important; }
+  body.printing-event-card { background: #fff; }
+  body.printing-event-card .site { max-width: none; padding: 0; }
+  body.printing-event-card .site > * { display: none !important; }
+  body.printing-event-card .site > #plan { display: block !important; }
+  body.printing-event-card #plan > * { display: none !important; }
+  body.printing-event-card #plan > .event-card.print-target {
+    display: block !important;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    break-inside: auto;
+  }
+  body.printing-event-card .event-card-header { padding: 0 0 22px; }
+  body.printing-event-card .event-schedule { padding: 22px 0 0; background: #fff; }
+  body.printing-event-card .event-schedule li { break-inside: avoid; }
 }
