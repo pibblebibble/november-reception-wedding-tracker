@@ -614,7 +614,8 @@ body.drawer-open { overflow: hidden; }
   background: rgba(255, 255, 255, .88);
   box-shadow: var(--shadow-soft);
 }
-.guest-event-panel > h3 { margin: 0; font-size: 27px; letter-spacing: -.025em; }
+.guest-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 22px; }
+.guest-panel-heading h3 { margin: 0; font-size: 27px; letter-spacing: -.025em; }
 .guest-context { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
 .tea-attendee-group { margin-top: 20px; border-top: 1px solid var(--line); }
 .tea-attendee-heading {
@@ -721,6 +722,57 @@ body.drawer-open { overflow: hidden; }
 .guest-subitem b { font-size: 10px; }
 #familyGuestList[data-filter="full"] tr[data-rsvp="registered"] td { background: rgba(237, 244, 255, .62); }
 .guest-list[hidden], .guest-group[hidden], .guest-table tr[hidden] { display: none !important; }
+
+/* Attendance format preview */
+#attendance { max-width: 1120px; }
+.attendance-head { position: relative; }
+.attendance-kicker {
+  display: inline-block;
+  margin: 18px 0 8px;
+  color: var(--blue-dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.attendance-sheet {
+  overflow: hidden;
+  margin-bottom: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+.attendance-sheet-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 28px;
+  border-bottom: 1px solid var(--line);
+}
+.attendance-sheet-header span { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.attendance-sheet-header h3 { margin: 5px 0 2px; font-size: 25px; letter-spacing: -.025em; }
+.attendance-sheet-header p { margin: 0; color: var(--muted); font-size: 12px; }
+.attendance-sheet-header > strong { color: var(--blue-dark); font-size: 12px; }
+.attendance-table { padding: 8px 28px 20px; }
+.attendance-table-head, .attendance-row { display: grid; grid-template-columns: 62px minmax(170px, 1.2fr) minmax(150px, .8fr); gap: 14px; align-items: center; }
+.attendance-table-head { padding: 12px 0 9px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.attendance-row { min-height: 52px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 12px; }
+.attendance-row strong { font-size: 13px; font-weight: 600; }
+.attendance-check { display: inline-block; width: 17px; height: 17px; border: 1.5px solid var(--line-strong); border-radius: 4px; background: var(--surface); }
+.attendance-batches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 22px 28px 28px; }
+.attendance-batch { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); }
+.attendance-batch > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 18px 15px; background: var(--surface-soft); }
+.attendance-batch > header div > span { display: block; color: var(--blue-dark); font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.attendance-batch > header div > strong { display: block; margin-top: 4px; font-size: 15px; }
+.attendance-batch > header div > small { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
+.attendance-batch > header label { display: flex; align-items: baseline; gap: 7px; color: var(--muted); font-size: 10px; font-weight: 600; text-transform: uppercase; }
+.attendance-batch > header label span { min-width: 44px; padding: 2px 5px; border-bottom: 1px solid var(--ink); color: var(--ink); font-size: 13px; font-weight: 700; text-align: center; text-transform: none; }
+.attendance-batch ul { display: grid; gap: 10px; margin: 0; padding: 16px 18px; list-style: none; }
+.attendance-batch li { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.attendance-preview-footnote { display: flex; align-items: flex-start; gap: 9px; margin: 0; color: var(--muted); font-size: 12px; }
+.attendance-preview-footnote i { color: var(--blue); font-size: 17px; }
 
 /* Reception table grouping */
 #seating { max-width: 1180px; }
@@ -965,7 +1017,9 @@ body.drawer-open { overflow: hidden; }
   .travel-agenda li { grid-template-columns: 84px minmax(0, 1fr); gap: 12px; }
   .travel-plan-link { width: 100%; }
   .guest-event-panel { padding: 20px; }
-  .guest-event-panel > h3 { font-size: 24px; }
+  .guest-panel-heading { display: block; }
+  .guest-panel-heading h3 { font-size: 24px; }
+  .guest-panel-heading .event-print-button { margin-top: 14px; }
   .guest-summary { grid-template-columns: 1fr 1fr; }
   .guest-tabs { grid-template-columns: 1fr 1fr; }
   .guest-list { overflow: visible; }
@@ -979,6 +1033,16 @@ body.drawer-open { overflow: hidden; }
   .guest-table td.no-additional-guests { display: none; }
   .guest-group-toggle { min-height: 84px; }
   .group-status { gap: 7px; }
+  .attendance-sheet-header { display: block; padding: 22px 20px; }
+  .attendance-sheet-header > strong { display: block; margin-top: 14px; }
+  .attendance-table { padding: 8px 20px 18px; }
+  .attendance-table-head { display: none; }
+  .attendance-row { grid-template-columns: 24px minmax(0, 1fr); gap: 5px 10px; }
+  .attendance-row > span:nth-child(3) { grid-column: 2; }
+  .attendance-row > span:nth-child(3) { color: var(--muted); }
+  .attendance-batches { grid-template-columns: 1fr; padding: 18px 20px 22px; }
+  .attendance-batch > header { padding: 16px; }
+  .attendance-batch ul { padding-right: 16px; padding-left: 16px; }
   .pending-group { display: block; }
   .pending-group h3 { padding: 22px; border-right: 0; border-bottom: 1px solid var(--line); }
   .pending-list { padding: 8px 20px; }
@@ -988,7 +1052,7 @@ body.drawer-open { overflow: hidden; }
 
 @media print {
   body { background: var(--surface); }
-  .topbar, .back, .bottom-nav, .footer-top, .guest-event-selector, .event-print-button { display: none !important; }
+  .topbar, .back, .bottom-nav, .footer-top, .guest-event-selector, .guest-tabs, .event-print-button { display: none !important; }
   .view { display: none !important; width: 100%; padding: 0; }
   .view.active { display: block !important; }
   .event-card, .guest-event-panel, .pending-group { box-shadow: none; break-inside: avoid; }

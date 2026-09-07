@@ -162,7 +162,7 @@ body{background:var(--cream);color:var(--black)}
 @media print{.site-footer{margin-top:30px}.footer-top{display:none}}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="apple-ui.css?v=20260907-2">
+<link rel="stylesheet" href="apple-ui.css?v=20260907-6">
 </head>
 <body>
 <main class="site">
@@ -195,7 +195,7 @@ body{background:var(--cream);color:var(--black)}
     <div class="hero">
       <div class="home-heading">
         <p class="home-kicker"><span>November 1st</span><span aria-hidden="true">|</span><span>Plan Tracker</span></p>
-        <h1>Glasshouse Mansion Reception</h1>
+        <h1>Jon Viv - Wedding Itinerary</h1>
         <p class="home-updated">Last Updated: 31 Aug 2026</p>
       </div>
       <div class="dashboard-grid">
@@ -254,8 +254,8 @@ body{background:var(--cream);color:var(--black)}
         <h4>Schedule</h4>
         <ol>
           <li><time>30 October</time><span>Send the décor to Ground Eatery for Shirley, the Ground Eatery GM, to set up. The décor will be ready before 4:00 PM on 31 October.</span></li>
-          <li><time>4:00-4:15 PM</time><span>Nicholas and June manage guest registration and confirm attendance.</span></li>
-          <li><time>4:15 PM</time><span>Tea ceremony begins once guest attendance is confirmed. The bride and groom are ready in a kneeling position in front of the chair.</span></li>
+          <li><time>4:00-4:30 PM</time><span>Guest arrival and registration. Nicholas and June manage attendance and allow guests 30 minutes to arrive.</span></li>
+          <li><time>4:30 PM</time><span>Tea ceremony begins once guest attendance is confirmed. The bride and groom are ready in a kneeling position in front of the chair.</span></li>
         </ol>
         <div class="tea-ceremony-breakdown">
           <h4>Tea Ceremony Breakdown</h4>
@@ -430,8 +430,8 @@ body{background:var(--cream);color:var(--black)}
           <ol class="travel-agenda">
             <li><time>Morning</time><div><strong>Breakfast at the hotel or brunch</strong><p>Brunch venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
             <li><time>Before 4:00 PM</time><div><strong>Prepare for the tea ceremony</strong></div></li>
-            <li><time>4:00-4:15 PM</time><div><strong>Registration and attendance</strong><p>Nicholas and June manage guest registration and confirm attendance.</p></div></li>
-            <li><time>4:15 PM</time><div><strong>Tea ceremony begins</strong><p>The bride and groom are ready kneeling in front of the chair once attendance is confirmed.</p></div></li>
+            <li><time>4:00-4:30 PM</time><div><strong>Guest arrival and registration</strong><p>Nicholas and June manage attendance and allow guests 30 minutes to arrive.</p></div></li>
+            <li><time>4:30 PM</time><div><strong>Tea ceremony begins</strong><p>The bride and groom are ready kneeling in front of the chair once attendance is confirmed.</p></div></li>
             <li><time>During ceremony</time><div><strong>Follow the sequence to call</strong><p>Shirley announces each name, June passes the tea and Nicholas collects any gifts.</p></div></li>
             <li><time>Tea service</time><div><strong>Prepare the tea</strong><p>Ground Eatery keeps hot water on standby. Jon and Vivien provide paper cups, a teapot and tea to Shirley.</p></div></li>
             <li><time>After Elders</time><div><strong>Singles come forward</strong><p>Vivien and Jon sit while the Singles kneel.</p></div></li>
@@ -486,8 +486,8 @@ body{background:var(--cream);color:var(--black)}
         <button type="button" data-guest-event="reception" aria-pressed="false" onclick="switchGuestEvent('reception')"><span class="selector-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><span><strong>Reception</strong><small>1 Nov · 69 confirmed, 28 declined</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button>
       </aside>
       <div class="guest-content">
-    <article class="guest-event guest-event-panel" data-guest-panel="tea">
-      <h3>Tea Ceremony - 31 October</h3>
+    <article class="guest-event guest-event-panel" id="teaGuestList" data-guest-panel="tea">
+      <div class="guest-panel-heading"><h3>Tea Ceremony - 31 October</h3><button class="event-print-button" type="button" onclick="exportTeaGuestsCsv()"><i class="ph ph-download-simple" aria-hidden="true"></i>Download CSV</button></div>
       <p class="guest-context"><strong>32 guests total</strong></p>
       <section class="tea-attendee-group">
         <button class="tea-attendee-heading" type="button" aria-expanded="true" aria-controls="tea-direct-list" onclick="toggleTeaGroup(this)"><span><strong>Direct Family</strong><small>7 guests</small></span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
@@ -538,7 +538,7 @@ body{background:var(--cream);color:var(--black)}
       </section>
     </article>
     <article id="familyGuestList" class="guest-event-panel" data-guest-panel="reception" hidden>
-      <h3>Family Reception - 1 November</h3>
+      <div class="guest-panel-heading"><h3>Family Reception - 1 November</h3><button class="event-print-button" type="button" onclick="exportReceptionGuestsCsv()"><i class="ph ph-download-simple" aria-hidden="true"></i>Download CSV</button></div>
       <p class="guest-context">Jon's family list and confirmed RSVPs are tracked below.</p>
       <div class="guest-summary" aria-label="Guest counter">
         <div><strong>97</strong><span>Guests listed</span></div>
@@ -664,6 +664,59 @@ body{background:var(--cream);color:var(--black)}
     </article>
       </div>
     </div>
+    <div class="bottom-nav"><button type="button" onclick="showView('attendance')">Attendance Sheets</button></div>
+  </section>
+
+  <section class="view" id="attendance">
+    <div class="page-head attendance-head">
+      <button class="back" onclick="showView('guests')">Guest List</button>
+      <span class="attendance-kicker">Format preview</span>
+      <h2>Attendance Sheets</h2>
+      <p>Sample layout only. The final sheets will use the complete confirmed lists.</p>
+    </div>
+
+    <article class="attendance-sheet">
+      <header class="attendance-sheet-header">
+        <div><span>31 October 2026</span><h3>Tea Ceremony Attendance</h3><p>32 expected guests · Ground Eatery</p></div>
+        <strong>Guest arrival 4:00-4:30 PM</strong>
+      </header>
+      <div class="attendance-table attendance-table-tea" role="table" aria-label="Tea Ceremony attendance format preview">
+        <div class="attendance-table-head" role="row"><span>Arrived</span><span>Guest</span><span>Family group</span></div>
+        <div class="attendance-row" role="row"><span class="attendance-check" aria-hidden="true"></span><strong>Richard Tay</strong><span>Direct Family</span></div>
+        <div class="attendance-row" role="row"><span class="attendance-check" aria-hidden="true"></span><strong>Mary Thien</strong><span>Direct Family</span></div>
+        <div class="attendance-row" role="row"><span class="attendance-check" aria-hidden="true"></span><strong>Aunty Agnes Thien</strong><span>Mom's Side</span></div>
+      </div>
+    </article>
+
+    <article class="attendance-sheet attendance-reception-preview">
+      <header class="attendance-sheet-header">
+        <div><span>1 November 2026</span><h3>Reception Attendance</h3><p>Batch-based check-in · Table numbers pending</p></div>
+        <strong>69 confirmed guests</strong>
+      </header>
+      <div class="attendance-batches" aria-label="Reception batch attendance format preview">
+        <section class="attendance-batch">
+          <header><div><span>Batch 01</span><strong>Ng Wei Sung's party</strong><small>4 pax</small></div><label>Table <span contenteditable="true" data-key="attendance-preview-table-1" spellcheck="false">TBC</span></label></header>
+          <ul>
+            <li><span class="attendance-check" aria-hidden="true"></span>Ng Wei Sung</li>
+            <li><span class="attendance-check" aria-hidden="true"></span>Stephanie Tay</li>
+            <li><span class="attendance-check" aria-hidden="true"></span>Ethan Ng</li>
+            <li><span class="attendance-check" aria-hidden="true"></span>Elisa Ng</li>
+          </ul>
+        </section>
+        <section class="attendance-batch">
+          <header><div><span>Batch 02</span><strong>Desmond Chin's party</strong><small>2 pax</small></div><label>Table <span contenteditable="true" data-key="attendance-preview-table-2" spellcheck="false">TBC</span></label></header>
+          <ul>
+            <li><span class="attendance-check" aria-hidden="true"></span>Desmond Chin</li>
+            <li><span class="attendance-check" aria-hidden="true"></span>Kate</li>
+          </ul>
+        </section>
+        <section class="attendance-batch">
+          <header><div><span>Batch 03</span><strong>Mary Ong</strong><small>1 pax</small></div><label>Table <span contenteditable="true" data-key="attendance-preview-table-3" spellcheck="false">TBC</span></label></header>
+          <ul><li><span class="attendance-check" aria-hidden="true"></span>Mary Ong</li></ul>
+        </section>
+      </div>
+    </article>
+    <p class="attendance-preview-footnote"><i class="ph ph-info" aria-hidden="true"></i>Preview uses sample names only. Table numbers remain editable and intentionally unconfirmed.</p>
   </section>
 
   <section class="view" id="seating">
@@ -807,6 +860,7 @@ body{background:var(--cream);color:var(--black)}
       </article>
     </div>
     <p class="seating-note"><i class="ph ph-info" aria-hidden="true"></i>Draft arrangement for the 1 November reception. Table 4 requires one baby chair.</p>
+    <div class="bottom-nav"><button type="button" onclick="showView('guests')">Guest List</button><button type="button" onclick="showView('attendance')">Attendance Sheets</button></div>
   </section>
 
   <section class="view" id="pending">
@@ -853,6 +907,12 @@ function toggleMenu(force){const menu=document.querySelector('#siteMenu'),button
 function showView(id,scrollBehavior='smooth'){if(id==='jpn'||id==='venue')id='plan';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===id));location.hash=id==='home'?'':id;if(scrollBehavior)scrollTo({top:0,behavior:scrollBehavior});document.title=id==='home'?'Glasshouse Mansion Reception - Plan Tracker':`${document.querySelector('#'+id+' h2')?.textContent} - Glasshouse Mansion Reception`;toggleMenu(false);if(id==='travel')requestAnimationFrame(updateTravelProgress)}
 function goToPlanSection(sectionId){showView('plan',null);requestAnimationFrame(()=>{const target=document.getElementById(sectionId);if(target)window.scrollTo({top:Math.max(0,target.offsetTop-18),behavior:'auto'})})}
 function printPlanCard(cardId){const card=document.getElementById(cardId);if(!card)return;const previousTitle=document.title;document.querySelectorAll('#plan .event-card').forEach(item=>item.classList.toggle('print-target',item===card));document.body.classList.add('printing-event-card');document.title=`${card.dataset.printTitle||'Event Schedule'} - Vivien & Jon`;const cleanup=()=>{window.removeEventListener('afterprint',cleanup);document.body.classList.remove('printing-event-card');card.classList.remove('print-target');document.title=previousTitle};window.addEventListener('afterprint',cleanup,{once:true});requestAnimationFrame(()=>{window.print();cleanup()})}
+function exportGuestName(element){if(!element)return'';const formName=[...element.querySelectorAll('small')].map(item=>item.textContent.trim()).find(text=>/^In form:/i.test(text));if(formName)return formName.replace(/^In form:\s*/i,'').trim();const copy=element.cloneNode(true);copy.querySelectorAll('small').forEach(item=>item.remove());const text=copy.textContent.trim().replace(/\s+/g,' '),parts=text.split(/\s+—\s+/);return /^(Dad|Mom)$/i.test(parts[0])&&parts[1]?parts[1]:parts[0]}
+function buildTeaGuestCsvRows(){const rows=[['Family Group','Guest Name','Arrived']];document.querySelectorAll('#teaGuestList .tea-attendee-group').forEach(group=>{const familyGroup=group.querySelector('.tea-attendee-heading strong')?.textContent.trim()||'';group.querySelectorAll('.tea-attendee-name').forEach(name=>rows.push([familyGroup,exportGuestName(name),'']))});return rows}
+function buildReceptionGuestCsvRows(){const rows=[['Batch','Family Group','Party Lead','Guest Names','Pax','Table No.','Arrived']];let batch=0;document.querySelectorAll('#familyGuestList .guest-group').forEach(group=>{const familyGroup=group.querySelector('.guest-group-title')?.textContent.trim()||'';group.querySelectorAll('tbody tr').forEach(row=>{if(!row.querySelector('.registered-label'))return;batch+=1;const lead=exportGuestName(row.children[1]?.querySelector('strong'));const guests=[lead,...[...row.querySelectorAll('.guest-subitem > span')].map(exportGuestName)].filter(Boolean);rows.push([`Batch ${String(batch).padStart(2,'0')}`,familyGroup,lead,guests.join('; '),String(guests.length),'',''])})});return rows}
+function downloadCsv(filename,rows){const csv='\uFEFF'+rows.map(row=>row.map(value=>`"${String(value??'').replace(/"/g,'""')}"`).join(',')).join('\r\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),0)}
+function exportTeaGuestsCsv(){downloadCsv('tea-ceremony-attendance-2026-10-31.csv',buildTeaGuestCsvRows())}
+function exportReceptionGuestsCsv(){downloadCsv('reception-attendance-2026-11-01.csv',buildReceptionGuestCsvRows())}
 let travelProgressTick=false;
 function updateTravelProgress(){const timeline=document.querySelector('#travelTimeline'),fill=document.querySelector('#travelProgressFill'),rail=document.querySelector('#travelProgressRail');if(!timeline||!fill||!rail)return;const rect=timeline.getBoundingClientRect(),anchor=Math.min(window.innerHeight*.42,360),timelineTop=rect.top+window.scrollY,maxScroll=Math.max(0,document.documentElement.scrollHeight-window.innerHeight),start=Math.max(0,timelineTop-anchor),end=Math.max(start+1,Math.min(timelineTop+rect.height-anchor,maxScroll)),progress=Math.max(0,Math.min(1,(window.scrollY-start)/(end-start)));fill.style.height=`${progress*100}%`;rail.setAttribute('aria-valuenow',String(Math.round(progress*100)))}
 function requestTravelProgress(){if(travelProgressTick)return;travelProgressTick=true;requestAnimationFrame(()=>{updateTravelProgress();travelProgressTick=false})}
