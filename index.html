@@ -203,7 +203,7 @@ body{background:var(--cream);color:var(--black)}
           <div class="home-stats" aria-label="Wedding plan summary">
             <div><span class="stat-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><p><strong id="daysToReception">68</strong><span>Days to go</span></p></div>
             <div><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
-            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">11</strong><span>Tasks pending</span></p></div>
+            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">14</strong><span>Tasks pending</span></p></div>
           </div>
           <div class="menu" aria-label="Quick links">
             <button onclick="showView('plan')"><span class="menu-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span><span><strong>Plan &amp; Venues</strong><small>Locations, schedule and timings</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
@@ -813,7 +813,7 @@ body{background:var(--cream);color:var(--black)}
     <div class="page-head">
       <button class="back" onclick="showView('home')">Overview</button>
       <h2>Pending Items</h2>
-      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 11 completed</strong></p>
+      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 14 completed</strong></p>
     </div>
     <div class="pending-content">
     <article class="pending-group" id="pending-travel"><h3><time><span class="pending-day">30 Sep-31 Oct</span></time><span class="pending-event">Travel Venues</span><span class="pending-section-count">0 / 6 complete</span></h3><div class="pending-list">
@@ -834,8 +834,10 @@ body{background:var(--cream);color:var(--black)}
     <article class="pending-group pending-group-clear" id="pending-tea"><h3><time datetime="2026-10-31"><span class="pending-day">31</span><span class="pending-month">October</span></time><span class="pending-event">Tea Ceremony</span><span class="pending-section-count">All clear</span></h3><div class="pending-list">
       <p class="pending-clear"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>ALL CLEAR</strong></p>
     </div></article>
-    <article class="pending-group pending-group-clear" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">All clear</span></h3><div class="pending-list">
-      <p class="pending-clear"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>ALL CLEAR</strong></p>
+    <article class="pending-group" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">0 / 3 complete</span></h3><div class="pending-list">
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-table-seating"><span class="pending-check" aria-hidden="true"></span><strong>Finalize the seating arrangement for each table</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-main-table-meals"><span class="pending-check" aria-hidden="true"></span><strong>Jon to confirm the main-table pax count and notify Gibson how many meals to bring from the buffet</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-table-details"><span class="pending-check" aria-hidden="true"></span><strong>Jon to print an A5 QR code for the acrylic stand provided by Glasshouse Decor</strong></label>
     </div></article>
     </div>
   </section>
