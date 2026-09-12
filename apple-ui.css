@@ -893,6 +893,10 @@ body.drawer-open { overflow: hidden; }
 .table-surface span { display: block; margin-top: 4px; font-size: 9px; font-weight: 700; text-transform: uppercase; }
 .seat-button {
   position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px;
   overflow: hidden;
   width: 100%;
   padding: 4px 7px;
@@ -910,10 +914,15 @@ body.drawer-open { overflow: hidden; }
 .seat-button:hover { border-style: solid; border-color: var(--blue); color: var(--blue); }
 .seat-button.occupied { border-style: solid; border-color: rgba(10, 96, 216, .28); background: #fff; color: var(--ink); font-weight: 650; }
 .seat-button .seat-number { margin-right: 4px; color: var(--faint); font-size: 8px; font-weight: 700; }
+.seat-button .seat-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.seat-button.baby-chair-needed { border-style: solid; border-color: rgba(138, 81, 0, .42); background: var(--amber-bg); color: var(--ink); }
+.baby-chair-badge { padding: 2px 4px; border-radius: 999px; background: var(--amber); color: #fff; font-size: 6px; font-weight: 800; letter-spacing: .03em; line-height: 1.2; text-transform: uppercase; }
 .baby-seat-row { display: flex; justify-content: center; margin-top: 7px; }
-.baby-seat-row .seat-button { width: min(100%, 210px); border-color: rgba(138, 81, 0, .38); background: var(--amber-bg); color: var(--amber); text-align: center; }
+.baby-seat-row .seat-button { grid-template-columns: auto auto; justify-content: center; width: min(100%, 210px); border-color: rgba(138, 81, 0, .38); background: var(--amber-bg); color: var(--amber); text-align: center; }
 .seating-note { display: flex; align-items: center; gap: 9px; margin: 18px 0 0; color: var(--muted); font-size: 12px; }
 .seating-note i { color: var(--blue); font-size: 17px; }
+.seating-note + .seating-note { margin-top: 8px; }
+.seating-note-baby i { color: var(--amber); }
 .unassigned-remark { display: flex; align-items: flex-start; gap: 9px; margin: 9px 0 0; color: var(--muted); font-size: 12px; }
 .unassigned-remark > i { flex: 0 0 auto; margin-top: 1px; color: var(--green); font-size: 17px; }
 .unassigned-remark strong { font-weight: 650; }
@@ -928,6 +937,12 @@ body.drawer-open { overflow: hidden; }
 .seat-dialog-close { position: absolute; top: 17px; right: 17px; display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 50%; background: var(--surface-soft); cursor: pointer; }
 .seat-dialog-kicker { margin: 0 44px 7px 0; color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 .seat-dialog h3 { margin: 0 44px 22px 0; font-size: 26px; line-height: 1.15; letter-spacing: -.025em; }
+.seat-baby-toggle { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 11px; align-items: center; margin-top: 14px; padding: 11px 12px; border: 1px solid rgba(138, 81, 0, .25); border-radius: 11px; background: var(--amber-bg); cursor: pointer; }
+.seat-baby-toggle input { width: 18px; height: 18px; margin: 0; accent-color: var(--amber); }
+.seat-baby-toggle span, .seat-baby-toggle strong, .seat-baby-toggle small { display: block; }
+.seat-baby-toggle strong { color: var(--ink); font-size: 11px; }
+.seat-baby-toggle small { margin-top: 2px; color: #775821; font-size: 9px; line-height: 1.35; }
+.seat-baby-toggle:has(input:disabled) { cursor: default; }
 .seat-duplicate-warning { margin: 12px 0 0; padding: 12px 13px; border-radius: 10px; background: #fff4df; color: #6c4100; font-size: 12px; }
 .seat-duplicate-warning p { margin: 0; font-weight: 650; line-height: 1.45; }
 .seat-match-list { display: grid; gap: 7px; margin-top: 10px; }
@@ -996,6 +1011,7 @@ body.drawer-open { overflow: hidden; }
   body.printing-seat-plan .table-surface span { font-size: 5.5px; }
   body.printing-seat-plan .seat-button { padding: .45mm 1mm; border-radius: 1.3mm; font-size: 6px; }
   body.printing-seat-plan .seat-button .seat-number { font-size: 5.5px; }
+  body.printing-seat-plan .baby-chair-badge { padding: .2mm .5mm; font-size: 4.2px; }
   body.printing-seat-plan .baby-seat-row { margin-top: .6mm; }
   body.printing-seat-plan .baby-seat-row .seat-button { width: 52mm; }
 }
