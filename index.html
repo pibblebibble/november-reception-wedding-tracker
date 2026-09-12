@@ -173,7 +173,7 @@ body{background:var(--cream);color:var(--black)}
       <button type="button" data-view="plan" onclick="showView('plan')">Plan &amp; Venues</button>
       <button type="button" data-view="travel" onclick="showView('travel')">Travel Itinerary</button>
       <button type="button" data-view="guests" onclick="showView('guests')">Guest List</button>
-      <button type="button" data-view="seating" onclick="showView('seating')">Table Grouping</button>
+      <button type="button" data-view="seating" onclick="showView('seating')">Seat Planner</button>
       <button type="button" data-view="pending" onclick="showView('pending')">Pending Items</button>
     </nav>
     <button class="icon-button" id="menuButton" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list" aria-hidden="true"></i></button>
@@ -186,7 +186,7 @@ body{background:var(--cream);color:var(--black)}
         <button data-view="plan" onclick="showView('plan')"><i class="ph ph-map-pin" aria-hidden="true"></i>Plan &amp; Venues</button>
         <button data-view="travel" onclick="showView('travel')"><i class="ph ph-airplane-tilt" aria-hidden="true"></i>Travel Itinerary</button>
         <button data-view="guests" onclick="showView('guests')"><i class="ph ph-users" aria-hidden="true"></i>Guest List</button>
-        <button data-view="seating" onclick="showView('seating')"><i class="ph ph-table" aria-hidden="true"></i>Table Grouping</button>
+        <button data-view="seating" onclick="showView('seating')"><i class="ph ph-table" aria-hidden="true"></i>Seat Planner</button>
         <button data-view="pending" onclick="showView('pending')"><i class="ph ph-check-square" aria-hidden="true"></i>Pending Items</button>
       </div>
     </nav>
@@ -209,7 +209,7 @@ body{background:var(--cream);color:var(--black)}
             <button onclick="showView('plan')"><span class="menu-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span><span><strong>Plan &amp; Venues</strong><small>Locations, schedule and timings</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button onclick="showView('travel')"><span class="menu-icon"><i class="ph ph-airplane-tilt" aria-hidden="true"></i></span><span><strong>Travel Itinerary</strong><small>Arrival, daily movements and departure</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button onclick="showView('guests')"><span class="menu-icon"><i class="ph ph-users" aria-hidden="true"></i></span><span><strong>Guest List</strong><small>Tea ceremony and reception attendance</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <button onclick="showView('seating')"><span class="menu-icon"><i class="ph ph-table" aria-hidden="true"></i></span><span><strong>Table Grouping</strong><small>Reception seating draft and open seats</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button onclick="showView('seating')"><span class="menu-icon"><i class="ph ph-table" aria-hidden="true"></i></span><span><strong>Seat Planner</strong><small>Choose tables, assign seats and print the plan</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button onclick="showView('pending')"><span class="menu-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><span><strong>Pending Items</strong><small>Outstanding confirmations</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
@@ -722,145 +722,57 @@ body{background:var(--cream);color:var(--black)}
   <section class="view" id="seating">
     <div class="page-head seating-head">
       <button class="back" onclick="showView('home')">Overview</button>
-      <h2>Table Grouping</h2>
-      <p>1 November reception seating draft.</p>
+      <div>
+        <h2 id="seatingPageTitle">Seat Planner</h2>
+        <p>Select a table, then choose a seat to add or edit a name.</p>
+      </div>
     </div>
-    <div class="seating-summary" aria-label="Seating draft summary">
-      <div><strong>71</strong><span>People assigned</span></div>
-      <div><strong>7</strong><span>Tables</span></div>
-      <div><strong>14</strong><span>Open seats</span></div>
-      <div><strong>1</strong><span>Baby chair</span></div>
+    <div class="seat-planner-toolbar">
+      <div class="seat-planner-summary" aria-label="Seating plan summary">
+        <p><strong id="seatingAssignedCount">71</strong><span>Assigned</span></p>
+        <p><strong id="seatingOpenCount">14</strong><span>Open seats</span></p>
+        <p><strong>7</strong><span>Tables</span></p>
+      </div>
+      <div class="seat-planner-actions">
+        <label class="document-name-field" for="seatingDocumentName">
+          <span>Document name</span>
+          <input id="seatingDocumentName" type="text" maxlength="80" value="Vivien &amp; Jon — Reception Seat Plan" autocomplete="off">
+        </label>
+        <button class="planner-button planner-button-secondary" type="button" onclick="saveSeatingPlan()"><i class="ph ph-floppy-disk" aria-hidden="true"></i>Save plan</button>
+        <button class="planner-button planner-button-primary" type="button" onclick="printSeatingPlan()"><i class="ph ph-printer" aria-hidden="true"></i>Print / Save PDF</button>
+      </div>
     </div>
-    <div class="seating-grid">
-      <article class="seating-table">
-        <header><div><span>Table</span><strong>01</strong></div><p><strong>9 assigned</strong><span>3 open seats</span></p></header>
-        <ol>
-          <li><span class="seat-name"><strong>Jonathan Tay</strong><small>Groom</small></span></li>
-          <li><span class="seat-name"><strong>Vivien Chiew</strong><small>Bride</small></span></li>
-          <li><span class="seat-name"><strong>Richard Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Mary Thien</strong></span></li>
-          <li><span class="seat-name"><strong>Stephanie Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Ng Wei Sung</strong></span></li>
-          <li><span class="seat-name"><strong>Nicholas Tay Yau Yung</strong></span></li>
-          <li><span class="seat-name"><strong>Ethan Ng</strong></span></li>
-          <li><span class="seat-name"><strong>Elisa Ng</strong></span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-        </ol>
-      </article>
-
-      <article class="seating-table">
-        <header><div><span>Table</span><strong>02</strong></div><p><strong>11 assigned</strong><span>1 open seat</span></p></header>
-        <ol>
-          <li><span class="seat-name"><strong>Zizi Dani</strong></span></li>
-          <li><span class="seat-name"><strong>Bashir Jayos</strong></span></li>
-          <li><span class="seat-name"><strong>Anna Leong</strong></span></li>
-          <li><span class="seat-name"><strong>Danial</strong></span></li>
-          <li><span class="seat-name"><strong>Alissa Nassihin</strong></span></li>
-          <li><span class="seat-name"><strong>Lee Xin Ying</strong></span></li>
-          <li><span class="seat-name"><strong>Chong Harry</strong></span></li>
-          <li><span class="seat-name"><strong>Marcovy Duwin</strong></span></li>
-          <li><span class="seat-name"><strong>Evans Hu</strong></span></li>
-          <li><span class="seat-name"><strong>Haziq Rohaimi</strong></span></li>
-          <li><span class="seat-name"><strong>Sufi Khirul Bahri</strong></span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-        </ol>
-      </article>
-
-      <article class="seating-table">
-        <header><div><span>Table</span><strong>03</strong></div><p><strong>10 assigned</strong><span>2 open seats</span></p></header>
-        <ol>
-          <li><span class="seat-name"><strong>Agnes Thien</strong></span></li>
-          <li><span class="seat-name"><strong>Alice Thien</strong></span></li>
-          <li><span class="seat-name"><strong>Amy Thien</strong></span></li>
-          <li><span class="seat-name"><strong>Kent Chin</strong></span></li>
-          <li><span class="seat-name"><strong>Joanne Yoong</strong></span></li>
-          <li><span class="seat-name"><strong>Kayden Chin</strong></span></li>
-          <li><span class="seat-name"><strong>Claire Chin</strong></span></li>
-          <li><span class="seat-name"><strong>Desmond Chin</strong></span></li>
-          <li><span class="seat-name"><strong>Kate</strong></span></li>
-          <li><span class="seat-name"><strong>June Ho</strong></span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-        </ol>
-      </article>
-
-      <article class="seating-table seating-table-baby">
-        <header><div><span>Table</span><strong>04</strong></div><p><strong>13 assigned</strong><span>Includes baby chair</span></p></header>
-        <ol>
-          <li><span class="seat-name"><strong>James Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Susan Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Catherine Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Toh Pang Chun</strong></span></li>
-          <li><span class="seat-name"><strong>Elizabeth Tay Siew Noi</strong></span></li>
-          <li><span class="seat-name"><strong>Terrance Ng</strong></span></li>
-          <li><span class="seat-name"><strong>Sally Tay Siew Git</strong></span></li>
-          <li><span class="seat-name"><strong>RaeAnne</strong></span></li>
-          <li><span class="seat-name"><strong>Michael Ng</strong></span></li>
-          <li><span class="seat-name"><strong>Ann Oh</strong></span></li>
-          <li><span class="seat-name"><strong>Ng Ler Xuan</strong></span></li>
-          <li><span class="seat-name"><strong>Ng Jig Hong</strong></span></li>
-          <li class="seat-baby"><span class="seat-name"><strong>Ng Zhy Xuan</strong><small>Baby chair needed</small></span></li>
-        </ol>
-      </article>
-
-      <article class="seating-table">
-        <header><div><span>Table</span><strong>05</strong></div><p><strong>9 assigned</strong><span>3 open seats</span></p></header>
-        <ol>
-          <li><span class="seat-name"><strong>Sean</strong></span></li>
-          <li><span class="seat-name"><strong>Jasmine Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Xeno</strong></span></li>
-          <li><span class="seat-name"><strong>Gordon Ling</strong></span></li>
-          <li><span class="seat-name"><strong>Jaslynn Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Caitlyn Ling</strong></span></li>
-          <li><span class="seat-name"><strong>Wilson Tay</strong></span></li>
-          <li><span class="seat-name"><strong>Eugene Bong</strong></span></li>
-          <li><span class="seat-name"><strong>Kai Hui</strong></span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-        </ol>
-      </article>
-
-      <article class="seating-table">
-        <header><div><span>Table</span><strong>06</strong></div><p><strong>9 assigned</strong><span>3 open seats</span></p></header>
-        <ol>
-          <li><span class="seat-name"><strong>Ng Ai Cher</strong></span></li>
-          <li><span class="seat-name"><strong>Daniel Yong</strong></span></li>
-          <li><span class="seat-name"><strong>Denise Yong</strong></span></li>
-          <li><span class="seat-name"><strong>Deseree Yong</strong></span></li>
-          <li><span class="seat-name"><strong>Darius Yong</strong></span></li>
-          <li><span class="seat-name"><strong>Jocelyn Hui</strong></span></li>
-          <li><span class="seat-name"><strong>Zhi Hsuen</strong></span></li>
-          <li><span class="seat-name"><strong>Yhi Tong</strong></span></li>
-          <li><span class="seat-name"><strong>Mary Ong</strong></span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-        </ol>
-      </article>
-
-      <article class="seating-table">
-        <header><div><span>Table</span><strong>07</strong></div><p><strong>10 assigned</strong><span>2 open seats</span></p></header>
-        <ol>
-          <li><span class="seat-name"><strong>Choon Yen</strong></span></li>
-          <li><span class="seat-name"><strong>Sara Chong</strong></span></li>
-          <li><span class="seat-name"><strong>Ryan Ng</strong></span></li>
-          <li><span class="seat-name"><strong>Rayden Ng</strong></span></li>
-          <li><span class="seat-name"><strong>Renzo</strong></span></li>
-          <li><span class="seat-name"><strong>Sri Andianti</strong></span></li>
-          <li><span class="seat-name"><strong>Yan Fei</strong></span></li>
-          <li><span class="seat-name"><strong>Ing Ing</strong></span></li>
-          <li><span class="seat-name"><strong>Damian Ng</strong></span></li>
-          <li><span class="seat-name"><strong>Han Yu</strong></span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-          <li class="seat-empty"><span>Open seat</span></li>
-        </ol>
-      </article>
+    <div class="table-picker" id="tablePicker" aria-label="Choose a table"></div>
+    <div class="seat-planner-message" id="seatingSaveStatus" role="status" aria-live="polite">Changes are saved in this browser.</div>
+    <div class="seat-floorplan" id="seatFloorplan" aria-label="Reception seating floor plan"></div>
+    <p class="seating-note"><i class="ph ph-info" aria-hidden="true"></i>The layout follows the venue plan. Table 1 is confirmed; Table 3 includes one baby chair.</p>
+    <div class="unassigned-remark" id="unassignedRemark" aria-live="polite">
+      <i class="ph ph-check-circle" aria-hidden="true"></i>
+      <div>
+        <strong id="unassignedSummary">All listed guests are assigned a seat.</strong>
+        <ul id="unassignedGuestList" aria-label="Guests without an assigned seat" hidden></ul>
+      </div>
     </div>
-    <p class="seating-note"><i class="ph ph-info" aria-hidden="true"></i>Draft arrangement for the 1 November reception. Table 4 requires one baby chair.</p>
     <div class="bottom-nav"><button type="button" onclick="showView('guests')">Guest List</button><button type="button" onclick="showView('attendance')">Attendance Sheets</button></div>
+
+    <dialog class="seat-dialog" id="seatDialog" aria-labelledby="seatDialogTitle">
+      <form method="dialog" id="seatForm" onsubmit="submitSeatName(event)">
+        <button class="seat-dialog-close" type="button" onclick="closeSeatDialog()" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
+        <p class="seat-dialog-kicker" id="seatDialogLocation">Table 1 · Seat 1</p>
+        <h3 id="seatDialogTitle">Add a guest</h3>
+        <label class="seat-name-field" for="seatNameInput"><span>Guest name</span><input id="seatNameInput" type="text" maxlength="80" autocomplete="off" required></label>
+        <div class="seat-duplicate-warning" id="seatDuplicateWarning" role="alert" hidden>
+          <p id="seatMatchMessage"></p>
+          <div class="seat-match-list" id="seatMatchList"></div>
+        </div>
+        <div class="seat-dialog-actions">
+          <button class="planner-button planner-button-danger" id="clearSeatButton" type="button" onclick="clearCurrentSeat()">Clear seat</button>
+          <span></span>
+          <button class="planner-button planner-button-secondary" type="button" onclick="closeSeatDialog()">Cancel</button>
+          <button class="planner-button planner-button-primary" id="saveSeatButton" type="submit">Save name</button>
+        </div>
+      </form>
+    </dialog>
   </section>
 
   <section class="view" id="pending">
@@ -903,6 +815,47 @@ body{background:var(--cream);color:var(--black)}
 </main>
 <script>
 const STORE='vj-wedding-site-v2:';
+const SEATING_STORAGE=STORE+'seat-planner';
+const SEATING_DOCUMENT_STORAGE=STORE+'seat-planner-document-name';
+const SEATING_VERSION_STORAGE=STORE+'seat-planner-version';
+const SEATING_PLAN_VERSION='2026-09-12-confirmed-remap';
+const CONFIRMED_TABLES=new Set([1]);
+const DEFAULT_SEATING=[
+  ['Vivien Chiew','Jonathan Tay','Richard Tay','Mary Thien','Nicholas Tay Yau Yung','','Ng Wei Sung','Ethan Ng','Elisa Ng','Stephanie Tay','',''],
+  ['Agnes Thien','Alice Thien','Amy Thien','Kent Chin','Joanne Yoong','Kayden Chin','Claire Chin','Desmond Chin','Kate','June Ho','',''],
+  ['James Tay','Susan Tay','Catherine Tay','Toh Pang Chun','Elizabeth Tay Siew Noi','Terrance Ng','Sally Tay Siew Git','RaeAnne','Michael Ng','Ann Oh','Ng Ler Xuan','Ng Jig Hong','Ng Zhy Xuan'],
+  ['Sean','Jasmine Tay','Xeno','Gordon Ling','Jaslynn Tay','Caitlyn Ling','Wilson Tay','Eugene Bong','Kai Hui','','',''],
+  ['Ng Ai Cher','Daniel Yong','Denise Yong','Deseree Yong','Darius Yong','Jocelyn Hui','Zhi Hsuen','Yhi Tong','Mary Ong','','',''],
+  ['Evans Hu','Danial','Anna Leong','Alissa Nassihin','Marcovy Duwin','','Chong Harry','Lee Xin Ying','Zizi Dani','Bashir Jayos','Haziq Rohaimi','Sufi Khirul Bahri'],
+  ['Choon Yen','Sara Chong','Ryan Ng','Rayden Ng','Renzo','Sri Andianti','Yan Fei','Ing Ing','Damian Ng','Han Yu','','']
+];
+const SEATING_GUEST_ROSTER=Object.freeze(DEFAULT_SEATING.flat().filter(Boolean));
+const TABLE_POSITIONS=[['left',1],['right',1],['left',2],['right',2],['left',3],['right',3],['left',4]];
+let seatingPlan=loadSeatingPlan(),selectedTable=1,currentSeat=null,seatingStatusTimer=null;
+
+function cleanName(value){return String(value||'').trim().replace(/\s+/g,' ')}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]))}
+function loadSeatingPlan(){try{const saved=JSON.parse(localStorage.getItem(SEATING_STORAGE)),version=localStorage.getItem(SEATING_VERSION_STORAGE);if(version===SEATING_PLAN_VERSION&&Array.isArray(saved)&&saved.length===7&&saved.every((table,index)=>Array.isArray(table)&&table.length===DEFAULT_SEATING[index].length))return saved.map(table=>table.map(cleanName))}catch(error){}return DEFAULT_SEATING.map(table=>[...table])}
+function persistSeatingPlan(){localStorage.setItem(SEATING_STORAGE,JSON.stringify(seatingPlan));localStorage.setItem(SEATING_VERSION_STORAGE,SEATING_PLAN_VERSION);const documentName=document.getElementById('seatingDocumentName');if(documentName)localStorage.setItem(SEATING_DOCUMENT_STORAGE,cleanName(documentName.value))}
+function seatingTotals(){const capacity=seatingPlan.reduce((total,table)=>total+table.length,0),assigned=seatingPlan.reduce((total,table)=>total+table.filter(Boolean).length,0);return{assigned,open:capacity-assigned}}
+function unassignedGuestNames(plan=seatingPlan){const assigned=new Set(plan.flat().filter(Boolean).map(name=>cleanName(name).toLocaleLowerCase()));return SEATING_GUEST_ROSTER.filter(name=>!assigned.has(cleanName(name).toLocaleLowerCase()))}
+function updateUnassignedRemark(){const remark=document.getElementById('unassignedRemark'),summary=document.getElementById('unassignedSummary'),list=document.getElementById('unassignedGuestList'),icon=remark?.querySelector('i'),missing=unassignedGuestNames();if(!remark||!summary||!list)return;remark.classList.toggle('has-unassigned',missing.length>0);icon?.classList.toggle('ph-check-circle',missing.length===0);icon?.classList.toggle('ph-warning-circle',missing.length>0);summary.textContent=missing.length?`${missing.length} ${missing.length===1?'guest has':'guests have'} not been assigned a seat:`:'All 71 listed guests are assigned a seat.';list.hidden=missing.length===0;list.innerHTML=missing.map(name=>`<li>${escapeHtml(name)}</li>`).join('')}
+function setSeatingStatus(message,tone=''){const status=document.getElementById('seatingSaveStatus');if(!status)return;status.textContent=message;status.dataset.tone=tone;clearTimeout(seatingStatusTimer);if(tone!=='error')seatingStatusTimer=setTimeout(()=>{status.textContent='Changes are saved in this browser.';delete status.dataset.tone},2800)}
+function renderTablePicker(){const picker=document.getElementById('tablePicker');if(!picker)return;picker.innerHTML=seatingPlan.map((table,index)=>{const number=index+1,assigned=table.filter(Boolean).length,confirmed=CONFIRMED_TABLES.has(number)?' · Confirmed':'';return`<button type="button" class="${selectedTable===number?'active':''}" onclick="selectTable(${number},true)" aria-pressed="${selectedTable===number}">Table ${number} · ${assigned}/${table.length}${confirmed}</button>`}).join('')}
+function seatButton(tableIndex,seatIndex,isBaby=false){const name=seatingPlan[tableIndex][seatIndex],number=seatIndex+1,label=name||'Open seat';return`<button type="button" class="seat-button${name?' occupied':''}${isBaby?' baby-seat':''}" onclick="openSeatDialog(${tableIndex},${seatIndex})" title="${escapeHtml(name||`Table ${tableIndex+1}, seat ${number}`)}" aria-label="Table ${tableIndex+1}, ${isBaby?'baby chair':`seat ${number}`}: ${escapeHtml(label)}"><span class="seat-number">${isBaby?'Baby':number}</span>${escapeHtml(label)}</button>`}
+function renderFloorplan(){const floorplan=document.getElementById('seatFloorplan');if(!floorplan)return;floorplan.innerHTML=seatingPlan.map((table,index)=>{const number=index+1,[column,row]=TABLE_POSITIONS[index],assigned=table.filter(Boolean).length,left=table.slice(0,6).map((name,seat)=>seatButton(index,seat)).join(''),right=table.slice(6,12).map((name,seat)=>seatButton(index,seat+6)).join(''),baby=table.length>12?`<div class="baby-seat-row">${seatButton(index,12,true)}</div>`:'',confirmed=CONFIRMED_TABLES.has(number);return`<article class="floor-table${selectedTable===number?' selected':''}" data-table="${number}" data-column="${column}" data-row="${row}"><header class="floor-table-heading"><button type="button" onclick="selectTable(${number})">Table ${String(number).padStart(2,'0')}</button><span class="${confirmed?'floor-table-confirmed':''}">${confirmed?'Confirmed · ':''}${assigned} of ${table.length} assigned</span></header><div class="table-diagram"><div class="seat-column">${left}</div><button class="table-surface" type="button" onclick="selectTable(${number})" aria-label="Select table ${number}"><span><strong>${String(number).padStart(2,'0')}</strong>Table</span></button><div class="seat-column">${right}</div></div>${baby}</article>`}).join('');const totals=seatingTotals();document.getElementById('seatingAssignedCount').textContent=totals.assigned;document.getElementById('seatingOpenCount').textContent=totals.open;renderTablePicker();updateUnassignedRemark()}
+function selectTable(number,moveToPlan=false){selectedTable=number;document.querySelectorAll('.floor-table').forEach(table=>table.classList.toggle('selected',Number(table.dataset.table)===number));renderTablePicker();if(moveToPlan&&window.matchMedia('(max-width:680px)').matches)document.getElementById('seatFloorplan')?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}
+function findNameMatches(name,excludeTable,excludeSeat){const normalized=cleanName(name).toLocaleLowerCase(),inputTokens=normalized.split(' ').filter(Boolean);if(!normalized)return[];const matches=[];for(let tableIndex=0;tableIndex<seatingPlan.length;tableIndex+=1){for(let seatIndex=0;seatIndex<seatingPlan[tableIndex].length;seatIndex+=1){if(tableIndex===excludeTable&&seatIndex===excludeSeat)continue;const guestName=cleanName(seatingPlan[tableIndex][seatIndex]),candidate=guestName.toLocaleLowerCase();if(!candidate)continue;const candidateTokens=candidate.split(' '),exact=candidate===normalized,strongPartial=!exact&&inputTokens.every(inputToken=>candidateTokens.some(candidateToken=>candidateToken===inputToken||(inputToken.length>=4&&candidateToken.startsWith(inputToken))));if(exact||strongPartial)matches.push({tableIndex,seatIndex,name:guestName,exact})}}return matches}
+function validateSeatName(){const input=document.getElementById('seatNameInput'),warning=document.getElementById('seatDuplicateWarning'),message=document.getElementById('seatMatchMessage'),list=document.getElementById('seatMatchList'),save=document.getElementById('saveSeatButton');if(!input||!currentSeat)return true;const matches=findNameMatches(input.value,currentSeat.tableIndex,currentSeat.seatIndex),exact=matches.some(match=>match.exact);warning.hidden=matches.length===0;message.textContent=matches.length?exact?`That exact name is already assigned. Move the guest instead of creating a duplicate.`:matches.length===1?`This may be the same guest. Check before adding another person.`:`We found ${matches.length} possible matches. Choose one only if it is the same person.`:'';list.innerHTML=matches.map(match=>{const babySeat=seatingPlan[match.tableIndex].length>12&&match.seatIndex===12;return`<div><span><strong>${escapeHtml(match.name)}</strong><small>Table ${match.tableIndex+1} · ${babySeat?'Baby chair':`Seat ${match.seatIndex+1}`}</small></span><button type="button" onclick="moveMatchedGuest(${match.tableIndex},${match.seatIndex})">${seatingPlan[currentSeat.tableIndex][currentSeat.seatIndex]?'Swap here':'Move here'}</button></div>`}).join('');save.disabled=exact;save.textContent=matches.length&&!exact?'Save as a different guest':'Save name';input.setAttribute('aria-invalid',String(exact));return!exact}
+function moveMatchedGuest(sourceTable,sourceSeat){if(!currentSeat)return;const targetTable=currentSeat.tableIndex,targetSeat=currentSeat.seatIndex,guest=seatingPlan[sourceTable][sourceSeat],displaced=seatingPlan[targetTable][targetSeat];seatingPlan[targetTable][targetSeat]=guest;seatingPlan[sourceTable][sourceSeat]=displaced||'';persistSeatingPlan();renderFloorplan();closeSeatDialog();setSeatingStatus(displaced?`${guest} and ${displaced} swapped seats.`:`${guest} moved to Table ${targetTable+1}, Seat ${targetSeat+1}.`)}
+function openSeatDialog(tableIndex,seatIndex){selectTable(tableIndex+1);currentSeat={tableIndex,seatIndex};const dialog=document.getElementById('seatDialog'),input=document.getElementById('seatNameInput'),name=seatingPlan[tableIndex][seatIndex],isBaby=seatingPlan[tableIndex].length>12&&seatIndex===12;document.getElementById('seatDialogLocation').textContent=`Table ${tableIndex+1} · ${isBaby?'Baby chair':`Seat ${seatIndex+1}`}`;document.getElementById('seatDialogTitle').textContent=name?'Edit guest':'Add a guest';document.getElementById('clearSeatButton').disabled=!name;input.value=name;validateSeatName();dialog.showModal();requestAnimationFrame(()=>input.focus())}
+function closeSeatDialog(){document.getElementById('seatDialog')?.close();currentSeat=null}
+function submitSeatName(event){event.preventDefault();const input=document.getElementById('seatNameInput'),name=cleanName(input.value);input.value=name;if(!name){input.setCustomValidity('Enter a guest name.');input.reportValidity();input.setCustomValidity('');return}if(!validateSeatName())return;seatingPlan[currentSeat.tableIndex][currentSeat.seatIndex]=name;persistSeatingPlan();renderFloorplan();closeSeatDialog();setSeatingStatus(`${name} saved to Table ${selectedTable}.`)}
+function clearCurrentSeat(){if(!currentSeat)return;const oldName=seatingPlan[currentSeat.tableIndex][currentSeat.seatIndex];seatingPlan[currentSeat.tableIndex][currentSeat.seatIndex]='';persistSeatingPlan();renderFloorplan();closeSeatDialog();setSeatingStatus(oldName?`${oldName} removed. The seat is open.`:'Seat is already open.')}
+function saveSeatingPlan(){persistSeatingPlan();setSeatingStatus(`Plan saved at ${new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}.`)}
+function printSeatingPlan(){const nameField=document.getElementById('seatingDocumentName'),pageTitle=document.getElementById('seatingPageTitle'),documentName=cleanName(nameField.value);if(!documentName){setSeatingStatus('Add a document name before printing.','error');nameField.focus();return}nameField.value=documentName;persistSeatingPlan();const previousTitle=document.title,previousHeading=pageTitle.textContent;document.body.classList.add('printing-seat-plan');document.title=documentName;pageTitle.textContent=documentName;const cleanup=()=>{window.removeEventListener('afterprint',cleanup);document.body.classList.remove('printing-seat-plan');document.title=previousTitle;pageTitle.textContent=previousHeading};window.addEventListener('afterprint',cleanup,{once:true});requestAnimationFrame(()=>{window.print();cleanup()})}
+function setupSeatingPlanner(){const nameField=document.getElementById('seatingDocumentName'),savedName=localStorage.getItem(SEATING_DOCUMENT_STORAGE);if(savedName)nameField.value=savedName;nameField.addEventListener('input',()=>{localStorage.setItem(SEATING_DOCUMENT_STORAGE,cleanName(nameField.value));setSeatingStatus('Document name saved.')});document.getElementById('seatNameInput').addEventListener('input',validateSeatName);document.getElementById('seatDialog').addEventListener('cancel',()=>{currentSeat=null});persistSeatingPlan();renderFloorplan()}
+
 function toggleMenu(force){const menu=document.querySelector('#siteMenu'),button=document.querySelector('#menuButton'),backdrop=document.querySelector('#menuBackdrop'),icon=button.querySelector('i');const open=typeof force==='boolean'?force:!menu.classList.contains('open');menu.classList.toggle('open',open);backdrop.classList.toggle('open',open);document.body.classList.toggle('drawer-open',open);button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close menu':'Open menu');icon?.classList.toggle('ph-list',!open);icon?.classList.toggle('ph-x',open)}
 function showView(id,scrollBehavior='smooth'){if(id==='jpn'||id==='venue')id='plan';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===id));location.hash=id==='home'?'':id;if(scrollBehavior)scrollTo({top:0,behavior:scrollBehavior});document.title=id==='home'?'Glasshouse Mansion Reception - Plan Tracker':`${document.querySelector('#'+id+' h2')?.textContent} - Glasshouse Mansion Reception`;toggleMenu(false);if(id==='travel')requestAnimationFrame(updateTravelProgress)}
 function goToPlanSection(sectionId){showView('plan',null);requestAnimationFrame(()=>{const target=document.getElementById(sectionId);if(target)window.scrollTo({top:Math.max(0,target.offsetTop-18),behavior:'auto'})})}
@@ -934,7 +887,7 @@ function updatePendingProgress(){const boxes=[...document.querySelectorAll('#pen
 function bindChecklist(){document.querySelectorAll('#pending input[type="checkbox"][data-key]').forEach(box=>{const key=STORE+box.dataset.key;box.checked=localStorage.getItem(key)==='1';box.addEventListener('change',()=>{localStorage.setItem(key,box.checked?'1':'0');updatePendingProgress()})});updatePendingProgress()}
 function decorateChecklist(){document.querySelectorAll('.pending-check').forEach(check=>{if(!check.querySelector('i'))check.innerHTML='<i class="ph ph-check" aria-hidden="true"></i>'})}
 function updateDaysToReception(){const output=document.querySelector('#daysToReception');if(!output)return;const target=new Date('2026-11-01T00:00:00+08:00');const now=new Date();output.textContent=String(Math.max(0,Math.ceil((target-now)/86400000)))}
-decorateChecklist();bindEdits();bindChecklist();labelTable();setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');updateDaysToReception();showView(location.hash.slice(1)||'home');
+decorateChecklist();bindEdits();bindChecklist();labelTable();setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');updateDaysToReception();setupSeatingPlanner();showView(location.hash.slice(1)||'home');
 </script>
 </body>
 </html>
