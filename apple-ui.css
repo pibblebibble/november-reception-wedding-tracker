@@ -374,6 +374,66 @@ body.drawer-open { overflow: hidden; }
   font-size: 13px;
 }
 .home-note i { font-size: 18px; }
+.quick-directions {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, .88);
+  box-shadow: var(--shadow-soft);
+}
+.quick-directions-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 18px;
+}
+.quick-directions-heading span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.quick-directions-heading h2 { margin: 6px 0 0; font-size: 22px; letter-spacing: -.025em; }
+.quick-directions-heading p { margin: 0; color: var(--muted); font-size: 13px; }
+.direction-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+}
+.direction-links a {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 13px;
+  min-height: 82px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  transition: color .16s ease, background .16s ease;
+}
+.direction-links a:nth-child(odd) { padding-right: 20px; }
+.direction-links a:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
+.direction-links a:hover, .direction-links a:focus-visible { background: rgba(237, 244, 255, .58); color: var(--blue); outline: none; }
+.direction-links a > i { justify-self: end; color: var(--blue); font-size: 17px; }
+.direction-links strong { display: block; font-size: 15px; line-height: 1.25; }
+.direction-links small { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.direction-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--surface-blue);
+  color: var(--blue);
+  font-size: 19px;
+}
 
 /* Plan and venues */
 #plan { max-width: 1100px; }
@@ -1152,6 +1212,11 @@ body.drawer-open { overflow: hidden; }
   .next-up { padding: 19px; }
   .upcoming-event { grid-template-columns: 70px minmax(0, 1fr); }
   .upcoming-event time { min-height: 92px; }
+  .quick-directions { padding: 19px; }
+  .quick-directions-heading { display: block; }
+  .quick-directions-heading p { margin-top: 8px; }
+  .direction-links { grid-template-columns: 1fr; }
+  .direction-links a:nth-child(odd), .direction-links a:nth-child(even) { padding: 14px 2px; border-left: 0; }
   .home-note { align-items: flex-start; }
   .page-head { margin-bottom: 30px; }
   .page-head h2 { font-size: 42px; }
