@@ -114,7 +114,7 @@ body{background:var(--cream);color:var(--black)}
 /* Travelling plan: one continuous, scroll-linked itinerary rather than another stack of cards. */
 #travel .travel-head{margin-bottom:0}
 #travel .travel-head p{max-width:620px}
-.travel-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px;padding-top:18px;border-top:1px solid var(--black)}
+.travel-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:22px;padding-top:18px;border-top:1px solid var(--black)}
 .travel-summary>div{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:0 18px}
 .travel-summary>div:first-child{padding-left:0}
 .travel-summary>div+div{border-left:1px solid var(--black)}
@@ -143,12 +143,10 @@ body{background:var(--cream);color:var(--black)}
 .travel-agenda strong{display:block;font-size:15px}
 .travel-agenda p{margin:3px 0 0;font-size:13px;line-height:1.45}
 .travel-placeholder{display:inline-block;margin-top:6px;padding:2px 6px;background:#f4dfbd;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-.travel-section-break{position:relative;margin:2px 0 58px;padding:30px 0 27px;border-top:3px solid var(--black);border-bottom:1px solid var(--black)}
-.travel-section-break span{display:block;font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:.035em;text-transform:uppercase}
 .travel-plan-link{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:11px 14px;border:1px solid var(--black);background:var(--black);color:var(--white);font-size:13px;font-weight:800;cursor:pointer}
 .travel-plan-link:after{content:"→";font-size:16px}
 .travel-plan-link:hover,.travel-plan-link:focus-visible{background:var(--white);color:var(--black);outline:none}
-@media(max-width:680px){.travel-summary{grid-template-columns:1fr;padding-top:8px}.travel-summary>div{padding:10px 0}.travel-summary>div+div{border-top:1px solid rgba(17,17,17,.3);border-left:0}.travel-draft-note{margin-top:22px}.travel-timeline{margin-top:34px;padding-left:35px}.travel-rail{left:7px}.travel-day{display:block;padding-bottom:54px}.travel-day:before{top:6px;left:-34px}.travel-date{margin:0 0 17px}.travel-date-day{font-size:36px}.travel-date-month{font-size:11px}.travel-date-year{font-size:10px}.travel-day-body{display:block}.travel-day-body h3{min-height:0;margin:0 0 15px;font-size:22px}.travel-agenda{margin-top:0}.travel-agenda li{grid-template-columns:76px minmax(0,1fr);gap:12px}.travel-section-break{margin:0 0 48px;padding:24px 0 22px}.travel-section-break span{font-size:24px}.travel-plan-link{width:100%;justify-content:space-between}}
+@media(max-width:680px){.travel-summary{grid-template-columns:1fr;padding-top:8px}.travel-summary>div{padding:10px 0}.travel-summary>div+div{border-top:1px solid rgba(17,17,17,.3);border-left:0}.travel-draft-note{margin-top:22px}.travel-timeline{margin-top:34px;padding-left:35px}.travel-rail{left:7px}.travel-day{display:block;padding-bottom:54px}.travel-day:before{top:6px;left:-34px}.travel-date{margin:0 0 17px}.travel-date-day{font-size:36px}.travel-date-month{font-size:11px}.travel-date-year{font-size:10px}.travel-day-body{display:block}.travel-day-body h3{min-height:0;margin:0 0 15px;font-size:22px}.travel-agenda{margin-top:0}.travel-agenda li{grid-template-columns:76px minmax(0,1fr);gap:12px}.travel-plan-link{width:100%;justify-content:space-between}}
 @media print{.travel-progress-fill{height:100%!important}}
 .site-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-top:78px;padding:26px 2px 12px;border-top:1px solid var(--black)}
 .site-footer strong,.site-footer span{display:block}
@@ -162,7 +160,7 @@ body{background:var(--cream);color:var(--black)}
 @media print{.site-footer{margin-top:30px}.footer-top{display:none}}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="apple-ui.css?v=20260927-1">
+<link rel="stylesheet" href="apple-ui.css?v=20261003-1">
 </head>
 <body>
 <main class="site">
@@ -203,7 +201,7 @@ body{background:var(--cream);color:var(--black)}
           <div class="home-stats" aria-label="Wedding plan summary">
             <div><span class="stat-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><p><strong id="daysToReception">68</strong><span>Days to go</span></p></div>
             <div><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
-            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">8</strong><span>Tasks pending</span></p></div>
+            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">5</strong><span>Tasks pending</span></p></div>
           </div>
           <div class="menu" aria-label="Quick links">
             <button onclick="showView('plan')"><span class="menu-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span><span><strong>Plan &amp; Venues</strong><small>Locations, schedule and timings</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
@@ -225,63 +223,12 @@ body{background:var(--cream);color:var(--black)}
           </button>
         </aside>
       </div>
-      <section class="quick-directions" aria-labelledby="quickDirectionsTitle">
-        <header class="quick-directions-heading">
-          <div>
-            <span><i class="ph ph-navigation-arrow" aria-hidden="true"></i> D-Day driving</span>
-            <h2 id="quickDirectionsTitle">Quick directions</h2>
-          </div>
-          <p>Tap a destination to open it in Google Maps.</p>
-        </header>
-        <div class="direction-links">
-          <a href="https://maps.app.goo.gl/mT7vRsvQyMoZ6kBg7" target="_blank" rel="noopener noreferrer">
-            <span class="direction-icon"><i class="ph ph-airplane-tilt" aria-hidden="true"></i></span>
-            <span><strong>KLIA2</strong><small>Airport arrivals and departures</small></span>
-            <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
-          </a>
-          <a href="https://maps.app.goo.gl/X4PmXLWWxEVPzgNd7" target="_blank" rel="noopener noreferrer">
-            <span class="direction-icon"><i class="ph ph-bowl-food" aria-hidden="true"></i></span>
-            <span><strong>Tasty Porridge USJ</strong><small>29 Sep · Lunch</small></span>
-            <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
-          </a>
-          <a href="https://maps.app.goo.gl/GRk931MvAzcapwb36" target="_blank" rel="noopener noreferrer">
-            <span class="direction-icon"><i class="ph ph-buildings" aria-hidden="true"></i></span>
-            <span><strong>Concorde Shah Alam</strong><small>Hotel</small></span>
-            <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
-          </a>
-          <a href="https://maps.app.goo.gl/uAjV9YG6ePwfpTQVA" target="_blank" rel="noopener noreferrer">
-            <span class="direction-icon"><i class="ph ph-fork-knife" aria-hidden="true"></i></span>
-            <span><strong>Restoran Bei Ping</strong><small>29 Sep · Dinner</small></span>
-            <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
-          </a>
-          <a href="https://maps.app.goo.gl/PYKSgkbCHZmbZmjk8" target="_blank" rel="noopener noreferrer">
-            <span class="direction-icon"><i class="ph ph-identification-card" aria-hidden="true"></i></span>
-            <span><strong>JPN Shah Alam — Plaza Masalam</strong><small>Inside the mall · Take the lift near ZUS Coffee</small></span>
-            <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
-          </a>
-          <a href="https://maps.app.goo.gl/piSrUNvVs8rG2qAf9" target="_blank" rel="noopener noreferrer">
-            <span class="direction-icon"><i class="ph ph-fork-knife" aria-hidden="true"></i></span>
-            <span><strong>Foo Hing Dim Sum</strong><small>30 Sep · Lunch after the JPN photoshoot</small></span>
-            <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
-          </a>
-        </div>
-      </section>
       <p class="home-note"><i class="ph ph-info" aria-hidden="true"></i>This is a working plan. Details will be updated as confirmations come in.</p>
     </div>
   </section>
 
   <section class="view" id="plan">
     <div class="page-head"><button class="back" onclick="showView('home')">Overview</button><h2>Plan &amp; Venues</h2></div>
-    <article class="event-card" id="plan-jpn-signing" data-print-title="JPN Signing">
-      <header class="event-card-header">
-        <div class="event-card-heading">
-          <h3>JPN Signing</h3>
-          <button class="event-print-button" type="button" onclick="printPlanCard('plan-jpn-signing')"><i class="ph ph-printer" aria-hidden="true"></i>Print / Save PDF</button>
-        </div>
-        <p class="event-place">JPN Shah Alam / Selangor</p>
-        <div class="event-meta"><span>30 September 2026</span><span>9:30 AM</span></div>
-      </header>
-    </article>
     <article class="event-card" id="plan-tea-ceremony" data-print-title="Tea Ceremony &amp; Dinner">
       <header class="event-card-header">
         <div class="event-card-heading">
@@ -382,7 +329,6 @@ body{background:var(--cream);color:var(--black)}
       <h2>Travel Itinerary</h2>
       <p>Family arrivals, departures and daily movements. This is a working itinerary while the final details are collected.</p>
       <div class="travel-summary" aria-label="Key event dates">
-        <div><strong>JPN ROM</strong><time datetime="2026-09-30"><span class="travel-key-day">30</span><span class="travel-key-meta">Sep<small>2026</small></span></time></div>
         <div><strong>Tea Ceremony</strong><time datetime="2026-10-31"><span class="travel-key-day">31</span><span class="travel-key-meta">Oct<small>2026</small></span></time></div>
         <div><strong>Wedding Reception</strong><time datetime="2026-11-01"><span class="travel-key-day">1</span><span class="travel-key-meta">Nov<small>2026</small></span></time></div>
       </div>
@@ -391,40 +337,6 @@ body{background:var(--cream);color:var(--black)}
 
     <article class="travel-timeline" id="travelTimeline" aria-label="Travel itinerary timeline">
       <div class="travel-rail" id="travelProgressRail" role="progressbar" aria-label="Timeline scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="travel-progress-fill" id="travelProgressFill"></span></div>
-
-      <section class="travel-day">
-        <div class="travel-date"><time datetime="2026-09-29"><span class="travel-date-day">29</span><span class="travel-date-meta"><span class="travel-date-month">September</span><span class="travel-date-year">2026</span></span></time></div>
-        <div class="travel-day-body">
-          <h3>Parents Arrival - For JPN ROM</h3>
-          <ol class="travel-agenda">
-            <li><time>12:50 PM</time><div><strong>Parents arrive</strong><p>Flight AK5105.</p></div></li>
-            <li><time>Lunch</time><div><strong>Lunch with Jon</strong><p>Jon and his parents · Tasty Porridge, USJ Taipan.</p></div></li>
-            <li><time>3:00 PM</time><div><strong>Check in at Concorde Hotel Shah Alam</strong></div></li>
-            <li><time>7:30 PM</time><div><strong>Dinner with Jon's parents</strong><p>Jon and Viv · Restaurant Bei Ping, Shah Alam.</p></div></li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="travel-day">
-        <div class="travel-date"><time datetime="2026-09-30"><span class="travel-date-day">30</span><span class="travel-date-meta"><span class="travel-date-month">September</span><span class="travel-date-year">2026</span></span></time></div>
-        <div class="travel-day-body">
-          <h3>JPN Shah Alam - ROM</h3>
-          <ol class="travel-agenda">
-            <li><time>8:30 AM</time><div><strong>Pick up parents at the hotel</strong><p>Request a late checkout.</p></div></li>
-            <li><time>9:00 AM</time><div><strong>Arrive at JPN and meet the photographer</strong><p>The photographer begins the two-hour booking at the JPN registration office.</p></div></li>
-            <li><time>9:30 AM</time><div><strong>JPN signing</strong><p>Allow 45 minutes for verification, payment and registration.</p></div></li>
-            <li><time>After signing</time><div><strong>Leave for the Japanese Garden</strong><p>Continue the photoshoot at the garden.</p></div></li>
-            <li><time>11:00 AM</time><div><strong>Photographer coverage ends</strong><p>Two-hour booking from 9:00-11:00 AM.</p></div></li>
-            <li><time>After photos</time><div><strong>Return to Concorde Hotel Shah Alam</strong><p>Jon's parents prepare to check out.</p></div></li>
-            <li><time>12:00 PM</time><div><strong>Check out of Concorde Hotel Shah Alam</strong></div></li>
-            <li><time>After checkout</time><div><strong>Lunch at Foo Hing Dim Sum</strong></div></li>
-            <li><time>2:00 PM</time><div><strong>Leave for the airport</strong></div></li>
-            <li><time>4:30 PM</time><div><strong>Parents depart</strong><p>Flight AK5112.</p></div></li>
-          </ol>
-        </div>
-      </section>
-
-      <div class="travel-section-break" role="separator" aria-label="Wedding Reception"><span>Wedding Reception</span></div>
 
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-10-25"><span class="travel-date-day">25</span><span class="travel-date-meta"><span class="travel-date-month">October</span><span class="travel-date-year">2026</span></span></time></div>
@@ -826,20 +738,15 @@ body{background:var(--cream);color:var(--black)}
     <div class="page-head">
       <button class="back" onclick="showView('home')">Overview</button>
       <h2>Pending Items</h2>
-      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 8 completed</strong></p>
+      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 5 completed</strong></p>
     </div>
     <div class="pending-content">
-    <article class="pending-group" id="pending-travel"><h3><time><span class="pending-day">30 Sep-31 Oct</span></time><span class="pending-event">Travel Venues</span><span class="pending-section-count">0 / 5 complete</span></h3><div class="pending-list">
+    <article class="pending-group" id="pending-travel"><h3><time><span class="pending-day">29-31 Oct</span></time><span class="pending-event">Travel Venues</span><span class="pending-section-count">0 / 5 complete</span></h3><div class="pending-list">
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct29-hotel"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 October hotel and check-in details</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct29-dinner"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 October family dinner venue</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct30-lunch"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 30 October family brunch or lunch venue</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct30-dinner"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 30 October family dinner venue</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct31-brunch"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 31 October breakfast or brunch venue</strong></label>
-    </div></article>
-    <article class="pending-group" id="pending-jpn"><h3><time datetime="2026-09-30"><span class="pending-day">30</span><span class="pending-month">September</span></time><span class="pending-event">JPN Signing</span><span class="pending-section-count">0 / 3 complete</span></h3><div class="pending-list">
-      <label class="pending-item"><input type="checkbox" data-key="pending-jpn-ic"><span class="pending-check" aria-hidden="true"></span><strong>Prepare IC Copies for Witnesses + Bride and Groom</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-jpn-kc35"><span class="pending-check" aria-hidden="true"></span><strong>Print and bring the approved JPN.KC35 appointment letter from OSKC</strong></label>
-      <label class="pending-item"><input type="checkbox" data-key="pending-jpn-photos"><span class="pending-check" aria-hidden="true"></span><strong>Passport-sized photos</strong></label>
     </div></article>
     <article class="pending-group pending-group-clear" id="pending-tea"><h3><time datetime="2026-10-31"><span class="pending-day">31</span><span class="pending-month">October</span></time><span class="pending-event">Tea Ceremony</span><span class="pending-section-count">All clear</span></h3><div class="pending-list">
       <p class="pending-clear"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>ALL CLEAR</strong></p>
