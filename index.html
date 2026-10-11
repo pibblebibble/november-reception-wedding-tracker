@@ -211,7 +211,7 @@ body{background:var(--cream);color:var(--black)}
           <div class="home-stats" aria-label="Wedding plan summary">
             <div><span class="stat-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><p><strong id="daysToReception">68</strong><span>Days to go</span></p></div>
             <div><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
-            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">5</strong><span>Tasks pending</span></p></div>
+            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">13</strong><span>Tasks pending</span></p></div>
           </div>
           <div class="menu" aria-label="Quick links">
             <button onclick="showView('plan')"><span class="menu-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span><span><strong>Plan &amp; Venues</strong><small>Locations, schedule and timings</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
@@ -319,7 +319,7 @@ body{background:var(--cream);color:var(--black)}
           <li><time>8:00 AM</time><span>Jon and Vivien arrive to set up the table cards, distribute wedding favours on the tables and double-check the venue.</span></li>
           <li><time>8:30 AM</time><span>Jon's family arrives.</span></li>
           <li><time>9:00 AM</time><span>Photography coverage begins. Take family photographs around the venue first, followed by bride-and-groom and individual photographs.</span></li>
-          <li><time>10:30 AM</time><span>Doors open. Nicholas and Wei Sung stand by at the registration table, and the photobooth opens.</span></li>
+          <li><time>10:00 AM</time><span>Doors open. Nicholas and Wei Sung stand by at the registration table, and the photobooth opens.</span></li>
           <li><time>11:00 AM</time><span>Vivien and Jon enter. Jon gives a five-minute welcome speech, then segues to Aunty Amy.</span></li>
           <li><time>11:05 AM</time><span>Aunty Amy gives a five-minute speech.</span></li>
           <li><time>11:30 AM</time><span>Western brunch buffet, mingling and photographs.</span></li>
@@ -750,7 +750,7 @@ body{background:var(--cream);color:var(--black)}
     <div class="page-head">
       <button class="back" onclick="showView('home')">Overview</button>
       <h2>Pending Items</h2>
-      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 5 completed</strong></p>
+      <p aria-live="polite">Checklist · <strong id="pendingProgressCount">0 of 13 completed</strong></p>
     </div>
     <div class="pending-content">
     <article class="pending-group" id="pending-travel"><h3><time><span class="pending-day">29-31 Oct</span></time><span class="pending-event">Travel Venues</span><span class="pending-section-count">0 / 5 complete</span></h3><div class="pending-list">
@@ -763,8 +763,15 @@ body{background:var(--cream);color:var(--black)}
     <article class="pending-group pending-group-clear" id="pending-tea"><h3><time datetime="2026-10-31"><span class="pending-day">31</span><span class="pending-month">October</span></time><span class="pending-event">Tea Ceremony</span><span class="pending-section-count">All clear</span></h3><div class="pending-list">
       <p class="pending-clear"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>ALL CLEAR</strong></p>
     </div></article>
-    <article class="pending-group pending-group-clear" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">All clear</span></h3><div class="pending-list">
-      <p class="pending-clear"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>ALL CLEAR</strong></p>
+    <article class="pending-group" id="pending-reception"><h3><time datetime="2026-11-01"><span class="pending-day">1</span><span class="pending-month">November</span></time><span class="pending-event">Reception</span><span class="pending-section-count">0 / 8 complete</span></h3><div class="pending-list">
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-order-plants"><span class="pending-check" aria-hidden="true"></span><strong>Order plants from SWS Nature</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-gift-favours"><span class="pending-check" aria-hidden="true"></span><strong>Finish up gift favours</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-playlist"><span class="pending-check" aria-hidden="true"></span><strong>Compile playlist for the event</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-registration-photos"><span class="pending-check" aria-hidden="true"></span><strong>Print photos for the registration table</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-attendance-list"><span class="pending-check" aria-hidden="true"></span><strong>Print guest attendance list</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-photobooth-printout"><span class="pending-check" aria-hidden="true"></span><strong>Design photobooth printout</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-event-flow"><span class="pending-check" aria-hidden="true"></span><strong>Finalise event flow</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-reception-gibson-last-minute"><span class="pending-check" aria-hidden="true"></span><strong>Confirm last-minute items with Gibson one week before the event</strong></label>
     </div></article>
     </div>
   </section>
