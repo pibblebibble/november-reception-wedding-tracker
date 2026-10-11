@@ -60,7 +60,7 @@ button:focus-visible, [contenteditable]:focus-visible {
   box-shadow: var(--shadow);
 }
 .lock-card .brand-mark { margin-bottom: 24px; }
-.lock-card h1 { margin: 0; font-size: 32px; line-height: 1.12; letter-spacing: -.03em; }
+.lock-card h1, .lock-card h2 { margin: 0; font-size: 32px; line-height: 1.12; letter-spacing: -.03em; }
 .lock-card > p { margin: 10px 0 26px; color: var(--muted); font-size: 14px; }
 .lock-field { display: grid; gap: 8px; }
 .lock-field span { color: var(--muted); font-size: 12px; font-weight: 700; }
@@ -89,10 +89,13 @@ button:focus-visible, [contenteditable]:focus-visible {
 .lock-submit:hover { opacity: .88; }
 .lock-submit:disabled { cursor: wait; opacity: .55; }
 .lock-card .lock-message { min-height: 21px; margin: 13px 0 0; color: var(--red); font-size: 13px; }
+[data-access="family"] [data-private-only] { display: none !important; }
+[data-access="family"] .home-stats { grid-template-columns: minmax(0, 1fr); }
+[data-access="family"] .home-stats > div { padding-left: 0; }
 @media (max-width: 520px) {
   .lock-screen { padding: 16px; }
   .lock-card { padding: 28px 22px; border-radius: 22px; }
-  .lock-card h1 { font-size: 28px; }
+  .lock-card h1, .lock-card h2 { font-size: 28px; }
 }
 
 .site { min-height: 100vh; }

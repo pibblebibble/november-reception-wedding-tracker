@@ -160,14 +160,14 @@ body{background:var(--cream);color:var(--black)}
 @media print{.site-footer{margin-top:30px}.footer-top{display:none}}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="apple-ui.css?v=20261011-1">
+<link rel="stylesheet" href="apple-ui.css?v=20261011-2">
 </head>
 <body>
 <div class="lock-screen" id="lockScreen">
   <form class="lock-card" id="lockForm">
     <span class="brand-mark" aria-hidden="true">VJ</span>
     <h1>Vivien &amp; Jon</h1>
-    <p>Wedding plan tracker. Enter the passcode to continue.</p>
+    <p>Wedding plan tracker. Enter your passcode to continue.</p>
     <label class="lock-field" for="lockInput"><span>Passcode</span><input id="lockInput" type="password" maxlength="80" autocomplete="current-password" required></label>
     <button class="lock-submit" type="submit">Unlock</button>
     <p class="lock-message" id="lockMessage" role="status" aria-live="polite"></p>
@@ -180,9 +180,9 @@ body{background:var(--cream);color:var(--black)}
       <button type="button" data-view="home" onclick="showView('home')">Overview</button>
       <button type="button" data-view="plan" onclick="showView('plan')">Plan &amp; Venues</button>
       <button type="button" data-view="travel" onclick="showView('travel')">Travel Itinerary</button>
-      <button type="button" data-view="guests" onclick="showView('guests')">Guest List</button>
-      <button type="button" data-view="seating" onclick="showView('seating')">Seat Planner</button>
-      <button type="button" data-view="pending" onclick="showView('pending')">Pending Items</button>
+      <button type="button" data-view="guests" data-private-only onclick="showView('guests')">Guest List</button>
+      <button type="button" data-view="seating" data-private-only onclick="showView('seating')">Seat Planner</button>
+      <button type="button" data-view="pending" data-private-only onclick="showView('pending')">Pending Items</button>
     </nav>
     <button class="icon-button" id="menuButton" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list" aria-hidden="true"></i></button>
   </div>
@@ -193,9 +193,9 @@ body{background:var(--cream);color:var(--black)}
         <button data-view="home" onclick="showView('home')"><i class="ph ph-house" aria-hidden="true"></i>Overview</button>
         <button data-view="plan" onclick="showView('plan')"><i class="ph ph-map-pin" aria-hidden="true"></i>Plan &amp; Venues</button>
         <button data-view="travel" onclick="showView('travel')"><i class="ph ph-airplane-tilt" aria-hidden="true"></i>Travel Itinerary</button>
-        <button data-view="guests" onclick="showView('guests')"><i class="ph ph-users" aria-hidden="true"></i>Guest List</button>
-        <button data-view="seating" onclick="showView('seating')"><i class="ph ph-table" aria-hidden="true"></i>Seat Planner</button>
-        <button data-view="pending" onclick="showView('pending')"><i class="ph ph-check-square" aria-hidden="true"></i>Pending Items</button>
+        <button data-view="guests" data-private-only onclick="showView('guests')"><i class="ph ph-users" aria-hidden="true"></i>Guest List</button>
+        <button data-view="seating" data-private-only onclick="showView('seating')"><i class="ph ph-table" aria-hidden="true"></i>Seat Planner</button>
+        <button data-view="pending" data-private-only onclick="showView('pending')"><i class="ph ph-check-square" aria-hidden="true"></i>Pending Items</button>
       </div>
     </nav>
 
@@ -210,15 +210,15 @@ body{background:var(--cream);color:var(--black)}
         <div class="dashboard-main">
           <div class="home-stats" aria-label="Wedding plan summary">
             <div><span class="stat-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><p><strong id="daysToReception">68</strong><span>Days to go</span></p></div>
-            <div><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
-            <div><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">13</strong><span>Tasks pending</span></p></div>
+            <div data-private-only><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
+            <div data-private-only><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">13</strong><span>Tasks pending</span></p></div>
           </div>
           <div class="menu" aria-label="Quick links">
             <button onclick="showView('plan')"><span class="menu-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span><span><strong>Plan &amp; Venues</strong><small>Locations, schedule and timings</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
             <button onclick="showView('travel')"><span class="menu-icon"><i class="ph ph-airplane-tilt" aria-hidden="true"></i></span><span><strong>Travel Itinerary</strong><small>Arrival, daily movements and departure</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <button onclick="showView('guests')"><span class="menu-icon"><i class="ph ph-users" aria-hidden="true"></i></span><span><strong>Guest List</strong><small>Tea ceremony and reception attendance</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <button onclick="showView('seating')"><span class="menu-icon"><i class="ph ph-table" aria-hidden="true"></i></span><span><strong>Seat Planner</strong><small>Choose tables, assign seats and print the plan</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-            <button onclick="showView('pending')"><span class="menu-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><span><strong>Pending Items</strong><small>Outstanding confirmations</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button data-private-only onclick="showView('guests')"><span class="menu-icon"><i class="ph ph-users" aria-hidden="true"></i></span><span><strong>Guest List</strong><small>Tea ceremony and reception attendance</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button data-private-only onclick="showView('seating')"><span class="menu-icon"><i class="ph ph-table" aria-hidden="true"></i></span><span><strong>Seat Planner</strong><small>Choose tables, assign seats and print the plan</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <button data-private-only onclick="showView('pending')"><span class="menu-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><span><strong>Pending Items</strong><small>Outstanding confirmations</small></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
         <aside class="next-up" aria-label="Upcoming wedding events">
@@ -252,14 +252,14 @@ body{background:var(--cream);color:var(--black)}
         <h4>Schedule</h4>
         <ol>
           <li><time>30 October</time><span>Send the décor to Ground Eatery for Shirley to set up. The décor will be ready before 4:00 PM on 31 October.</span></li>
-          <li><time>4:00-4:30 PM</time><span>Guest arrival and registration. Nicholas and June manage attendance and allow guests 30 minutes to arrive.</span></li>
+          <li><time>4:00-4:30 PM</time><span>Guest arrival and registration. Nick and June manage attendance and allow guests 30 minutes to arrive.</span></li>
           <li><time>4:30 PM</time><span>Tea ceremony begins once guest attendance is confirmed. Jon and Viv stand before the elders.</span></li>
         </ol>
         <div class="tea-ceremony-breakdown">
           <h4>Tea Ceremony Breakdown</h4>
           <ol>
             <li><span>Shirley announces each name according to the sequence for the Elders &amp; Married Cousins.</span></li>
-            <li><span>For each sequence, June passes the tea and Nicholas collects any gifts from the group.</span></li>
+            <li><span>For each sequence, June passes the tea and Nick collects any gifts from the group.</span></li>
             <li><span>Ground Eatery keeps hot water on standby. Jon and Vivien provide the paper cups, teapot and tea to Shirley.</span></li>
             <li><span>Once the Elders &amp; Married Cousins are done, the Singles come forward. Vivien and Jon sit while the Singles kneel.</span></li>
             <li><span>Once the Singles are done, the tea ceremony ends and dinner is announced.</span></li>
@@ -271,12 +271,12 @@ body{background:var(--cream);color:var(--black)}
             <section>
               <h5>Elders &amp; Married Cousins</h5>
               <ol>
-                <li>Richard Tay &amp; Mary Thien</li>
+                <li>Dad &amp; Mom</li>
                 <li>Uncle James Tay &amp; Aunty Susan Tay</li>
                 <li>Uncle Toh Pang Chun &amp; Aunty Elizabeth</li>
                 <li>Aunty Catherine</li>
                 <li>Uncle Terrance &amp; Aunty Sally</li>
-                <li>Ng Wei Sung &amp; Stephanie Tay</li>
+                <li>Wei Sung &amp; Steph</li>
                 <li>Jasmine Tay</li>
                 <li>Aunty Agnes</li>
                 <li>Aunty Alice</li>
@@ -288,9 +288,9 @@ body{background:var(--cream);color:var(--black)}
             <section>
               <h5>Singles</h5>
               <ol start="13">
-                <li>Nicholas Tay</li>
-                <li>Ethan Ng</li>
-                <li>Elisa Ng</li>
+                <li>Nick</li>
+                <li>Ethan</li>
+                <li>Elisa</li>
                 <li>Wilson Tay</li>
                 <li>June Ho</li>
                 <li>Kayden Chin</li>
@@ -319,7 +319,7 @@ body{background:var(--cream);color:var(--black)}
           <li><time>8:00 AM</time><span>Jon and Vivien arrive to set up the table cards, distribute wedding favours on the tables and double-check the venue.</span></li>
           <li><time>8:30 AM</time><span>Jon's family arrives.</span></li>
           <li><time>9:00 AM</time><span>Photography coverage begins. Take family photographs around the venue first, followed by bride-and-groom and individual photographs.</span></li>
-          <li><time>10:00 AM</time><span>Doors open. Nicholas and Wei Sung stand by at the registration table, and the photobooth opens.</span></li>
+          <li><time>10:00 AM</time><span>Doors open. Nick and Wei Sung stand by at the registration table, and the photobooth opens.</span></li>
           <li><time>11:00 AM</time><span>Vivien and Jon enter. Jon gives a five-minute welcome speech, then segues to Aunty Amy.</span></li>
           <li><time>11:05 AM</time><span>Aunty Amy gives a five-minute speech.</span></li>
           <li><time>11:30 AM</time><span>Western brunch buffet, mingling and photographs.</span></li>
@@ -327,10 +327,10 @@ body{background:var(--cream);color:var(--black)}
           <li><time>1:40 PM</time><span>Jon and Vivien move immediately to the front backdrop for guest photographs and farewells.</span></li>
           <li><time>2:00 PM</time><span>Wonderloon @ Mandy's team begins taking down the décor. Venue and photographer coverage end.</span></li>
         </ol>
-        <p class="event-footnote"><strong>Registration team - Nicholas and Wei Sung:</strong> Register guests, receive angpow and direct each guest to their table number using the guest list.</p>
+        <p class="event-footnote"><strong>Registration team - Nick and Wei Sung:</strong> Register guests, receive angpow and direct each guest to their table number using the guest list.</p>
       </div>
     </article>
-    <div class="bottom-nav"><button onclick="showView('guests')">Guest List</button><button onclick="showView('seating')">Table Grouping</button></div>
+    <div class="bottom-nav" data-private-only><button onclick="showView('guests')">Guest List</button><button onclick="showView('seating')">Table Grouping</button></div>
   </section>
 
   <section class="view" id="travel">
@@ -343,7 +343,7 @@ body{background:var(--cream);color:var(--black)}
         <div><strong>Wedding Reception</strong><time datetime="2026-11-01"><span class="travel-key-day">1</span><span class="travel-key-meta">Nov<small>2026</small></span></time></div>
       </div>
     </div>
-    <p class="travel-draft-note"><strong>Working itinerary:</strong> Flight numbers, hotel check-in time and remaining venue details are still pending.</p>
+    <p class="travel-draft-note"><strong>Working itinerary:</strong> Hotel check-in time and remaining venue details are still pending.</p>
 
     <article class="travel-timeline" id="travelTimeline" aria-label="Travel itinerary timeline">
       <div class="travel-rail" id="travelProgressRail" role="progressbar" aria-label="Timeline scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="travel-progress-fill" id="travelProgressFill"></span></div>
@@ -353,7 +353,7 @@ body{background:var(--cream);color:var(--black)}
         <div class="travel-day-body">
           <h3>Nick's Arrival</h3>
           <ol class="travel-agenda">
-            <li><time>4:40 PM</time><div><strong>Nick arrives</strong></div></li>
+            <li><time>4:40 PM</time><div><strong>Nick arrives</strong><p class="private-flight-detail" data-private-flight="nick" hidden></p></div></li>
           </ol>
         </div>
       </section>
@@ -363,8 +363,8 @@ body{background:var(--cream);color:var(--black)}
         <div class="travel-day-body">
           <h3>Family Arrivals</h3>
           <ol class="travel-agenda">
-            <li><time>3:00 PM</time><div><strong>Steph arrives</strong></div></li>
-            <li><time>6:40 PM</time><div><strong>Parents arrive</strong></div></li>
+            <li><time>3:00 PM</time><div><strong>Steph arrives</strong><p class="private-flight-detail" data-private-flight="steph" hidden></p></div></li>
+            <li><time>6:40 PM</time><div><strong>Parents arrive</strong><p class="private-flight-detail" data-private-flight="parents" hidden></p></div></li>
             <li><time>Pending</time><div><strong>Check in at Four Points by Sheraton Kuala Lumpur</strong><p>Check-in time to be confirmed.</p><span class="travel-placeholder">Time pending</span></div></li>
             <li><time>Pending</time><div><strong>Dinner plans</strong><p>Details will be updated tomorrow.</p><span class="travel-placeholder">Update pending</span></div></li>
           </ol>
@@ -396,9 +396,9 @@ body{background:var(--cream);color:var(--black)}
             <li><time>12:00 PM</time><div><strong>Viv and Jon start getting ready</strong></div></li>
             <li><time>2:00 PM</time><div><strong>Viv and Jon depart from the hotel for Ground Eatery</strong></div></li>
             <li><time>3:30 PM</time><div><strong>Family arrives at Ground Eatery</strong></div></li>
-            <li><time>4:00-4:30 PM</time><div><strong>Guest arrival and registration</strong><p>Nicholas and June manage attendance and allow guests 30 minutes to arrive.</p></div></li>
+            <li><time>4:00-4:30 PM</time><div><strong>Guest arrival and registration</strong><p>Nick and June manage attendance and allow guests 30 minutes to arrive.</p></div></li>
             <li><time>4:30 PM</time><div><strong>Tea ceremony begins</strong><p>Jon and Viv stand before the elders once attendance is confirmed.</p></div></li>
-            <li><time>During ceremony</time><div><strong>Follow the sequence to call</strong><p>Shirley announces each name, June passes the tea and Nicholas collects any gifts.</p></div></li>
+            <li><time>During ceremony</time><div><strong>Follow the sequence to call</strong><p>Shirley announces each name, June passes the tea and Nick collects any gifts.</p></div></li>
             <li><time>Tea service</time><div><strong>Prepare the tea</strong><p>Ground Eatery keeps hot water on standby. Jon and Vivien provide paper cups, a teapot and tea to Shirley.</p></div></li>
             <li><time>After Elders</time><div><strong>Singles come forward</strong><p>Vivien and Jon sit while the Singles kneel.</p></div></li>
             <li><time>After Singles</time><div><strong>Tea ceremony ends</strong><p>Dinner is announced.</p></div></li>
@@ -444,309 +444,19 @@ body{background:var(--cream);color:var(--black)}
     </article>
   </section>
 
-  <section class="view" id="guests">
-    <div class="page-head"><button class="back" onclick="showView('home')">Overview</button><h2>Guest List</h2><p>Last Update: 27 Aug 2026</p></div>
-    <div class="guest-shell">
-      <aside class="guest-event-selector" aria-label="Choose guest list">
-        <button class="active" type="button" data-guest-event="tea" aria-pressed="true" onclick="switchGuestEvent('tea')"><span class="selector-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><span><strong>Tea Ceremony</strong><small>31 Oct · 32 guests total</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button>
-        <button type="button" data-guest-event="reception" aria-pressed="false" onclick="switchGuestEvent('reception')"><span class="selector-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><span><strong>Reception</strong><small>1 Nov · 69 confirmed, 28 declined</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button>
-      </aside>
-      <div class="guest-content">
-    <article class="guest-event guest-event-panel" id="teaGuestList" data-guest-panel="tea">
-      <div class="guest-panel-heading"><h3>Tea Ceremony - 31 October</h3><button class="event-print-button" type="button" onclick="exportTeaGuestsCsv()"><i class="ph ph-download-simple" aria-hidden="true"></i>Download CSV</button></div>
-      <p class="guest-context"><strong>32 guests total</strong></p>
-      <section class="tea-attendee-group">
-        <button class="tea-attendee-heading" type="button" aria-expanded="true" aria-controls="tea-direct-list" onclick="toggleTeaGroup(this)"><span><strong>Direct Family</strong><small>7 guests</small></span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
-        <ul class="tea-attendee-list" id="tea-direct-list">
-          <li><span class="tea-attendee-name">Dad — Richard Tay</span></li>
-          <li><span class="tea-attendee-name">Mom — Mary Thien</span></li>
-          <li><span class="tea-attendee-name">Stephanie Tay</span></li>
-          <li><span class="tea-attendee-name">Ng Wei Sung</span></li>
-          <li><span class="tea-attendee-name">Ethan Ng</span></li>
-          <li><span class="tea-attendee-name">Elisa Ng</span></li>
-          <li><span class="tea-attendee-name">Nicholas Tay Yau Yung</span></li>
-        </ul>
-      </section>
-      <section class="tea-attendee-group">
-        <button class="tea-attendee-heading" type="button" aria-expanded="false" aria-controls="tea-mom-list" onclick="toggleTeaGroup(this)"><span><strong>Mom's Side</strong><small>10 guests</small></span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
-        <ul class="tea-attendee-list" id="tea-mom-list" hidden>
-          <li><span class="tea-attendee-name">Aunty Agnes Thien</span></li>
-          <li><span class="tea-attendee-name">Desmond Chin</span></li>
-          <li><span class="tea-attendee-name">Kate</span></li>
-          <li><span class="tea-attendee-name">Kent Chin</span></li>
-          <li><span class="tea-attendee-name">Joanne Yoong</span></li>
-          <li><span class="tea-attendee-name">Kayden Chin</span></li>
-          <li><span class="tea-attendee-name">Claire Chin</span></li>
-          <li><span class="tea-attendee-name">Aunty Alice Thien</span></li>
-          <li><span class="tea-attendee-name">June Ho</span></li>
-          <li><span class="tea-attendee-name">Aunty Amy</span></li>
-        </ul>
-      </section>
-      <section class="tea-attendee-group">
-        <button class="tea-attendee-heading" type="button" aria-expanded="false" aria-controls="tea-dad-list" onclick="toggleTeaGroup(this)"><span><strong>Dad's Side</strong><small>15 guests</small></span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
-        <ul class="tea-attendee-list" id="tea-dad-list" hidden>
-          <li><span class="tea-attendee-name">Uncle James Tay</span></li>
-          <li><span class="tea-attendee-name">Aunty Susan Tay</span></li>
-          <li><span class="tea-attendee-name">Jasmine Tay</span></li>
-          <li><span class="tea-attendee-name">Xeno</span></li>
-          <li><span class="tea-attendee-name">Aunty Catherine</span></li>
-          <li><span class="tea-attendee-name">Aunty Elizabeth</span></li>
-          <li><span class="tea-attendee-name">Toh Pang Chun</span></li>
-          <li><span class="tea-attendee-name">Uncle Terrance</span></li>
-          <li><span class="tea-attendee-name">Aunty Sally</span></li>
-          <li><span class="tea-attendee-name">Ng Zhy Xuan</span></li>
-          <li><span class="tea-attendee-name">Michael Ng — Cousin</span></li>
-          <li><span class="tea-attendee-name">Ann Oh — Michael's wife</span></li>
-          <li><span class="tea-attendee-name">Ng Ler Xuan — Michael's daughter</span></li>
-          <li><span class="tea-attendee-name">Ng Jig Hong — Michael's son</span></li>
-          <li><span class="tea-attendee-name">Wilson Tay</span></li>
-        </ul>
-      </section>
-    </article>
-    <article id="familyGuestList" class="guest-event-panel" data-guest-panel="reception" hidden>
-      <div class="guest-panel-heading"><h3>Family Reception - 1 November</h3><button class="event-print-button" type="button" onclick="exportReceptionGuestsCsv()"><i class="ph ph-download-simple" aria-hidden="true"></i>Download CSV</button></div>
-      <p class="guest-context">Jon's family list and confirmed RSVPs are tracked below.</p>
-      <div class="guest-summary" aria-label="Guest counter">
-        <div><strong>97</strong><span>Guests listed</span></div>
-        <div><strong>69</strong><span>Registered</span></div>
-        <div><strong>0</strong><span>Not registered</span></div>
-        <div><strong>28</strong><span>Declined</span></div>
-      </div>
-      <nav class="guest-tabs" aria-label="Filter guest list">
-        <button class="active" type="button" data-guest-filter="registered" aria-pressed="true" onclick="filterGuestList('registered')">Registered <span>69</span></button>
-        <button type="button" data-guest-filter="full" aria-pressed="false" onclick="filterGuestList('full')">Full List <span>97</span></button>
-        <button type="button" data-guest-filter="not-registered" aria-pressed="false" onclick="filterGuestList('not-registered')">Not Registered <span>0</span></button>
-        <button type="button" data-guest-filter="declined" aria-pressed="false" onclick="filterGuestList('declined')">Declined <span>28</span></button>
-      </nav>
-
-      <section class="guest-group">
-        <h4><button class="guest-group-toggle" type="button" aria-expanded="true" aria-controls="guest-direct-list" onclick="toggleGuestGroup(this)"><span class="guest-group-heading"><span class="guest-group-title">Jon's Direct Family</span><span class="guest-group-count">7 planned guests</span><span class="group-status all-registered">All registered</span></span><i class="ph ph-caret-down guest-group-chevron" aria-hidden="true"></i></button></h4>
-        <div class="guest-list" id="guest-direct-list">
-          <table class="guest-table">
-            <thead><tr><th>No.</th><th>Guest</th><th>Additional Guests</th><th>RSVP Status</th></tr></thead>
-            <tbody>
-              <tr><td class="guest-number" data-label="No.">1</td><td data-label="Guest"><strong>Dad — Richard Tay</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
-              <tr><td class="guest-number" data-label="No.">2</td><td data-label="Guest"><strong>Mom — Mary Thien</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
-              <tr><td class="guest-number" data-label="No.">3</td><td data-label="Guest"><strong>Ng Wei Sung</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>3.1</b><span>Stephanie Tay</span></div><div class="guest-subitem"><b>3.2</b><span>Ethan Ng</span></div><div class="guest-subitem"><b>3.3</b><span>Elisa Ng</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 4</td></tr>
-              <tr><td class="guest-number" data-label="No.">4</td><td data-label="Guest"><strong>Nicholas Tay Yau Yung</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="guest-group">
-        <h4><button class="guest-group-toggle" type="button" aria-expanded="true" aria-controls="guest-mom-list" onclick="toggleGuestGroup(this)"><span class="guest-group-heading"><span class="guest-group-title">Jon's Mom's Side</span><span class="guest-group-count">29 planned guests</span><span class="group-status"><b class="registered-remark">10 registered</b><b class="not-registered-remark">0 not registered</b><b>19 declined</b></span></span><i class="ph ph-caret-down guest-group-chevron" aria-hidden="true"></i></button></h4>
-        <div class="guest-list" id="guest-mom-list">
-          <table class="guest-table">
-            <thead><tr><th>No.</th><th>Guest</th><th>Additional Guests</th><th>RSVP Status</th></tr></thead>
-            <tbody>
-              <tr><td class="guest-number" data-label="No.">5</td><td data-label="Guest"><strong>Uncle Joseph Chin</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status">Declined<small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">6</td><td data-label="Guest"><strong>Aunty Agnes Thien</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · Form + WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">7</td><td data-label="Guest"><strong>Raymond Chin</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>7.1</b><span>Yaya</span></div><div class="guest-subitem"><b>7.2</b><span>Child 1</span></div><div class="guest-subitem"><b>7.3</b><span>Child 2</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status">Declined — 4<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">8</td><td data-label="Guest"><strong>Desmond Chin</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>8.1</b><span>Kate</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 2<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">9</td><td data-label="Guest"><strong>Kent Chin</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>9.1</b><span>Joanne Yoong</span></div><div class="guest-subitem"><b>9.2</b><span>Kayden Chin</span></div><div class="guest-subitem"><b>9.3</b><span>Claire Chin</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 4</td></tr>
-              <tr><td class="guest-number" data-label="No.">10</td><td data-label="Guest"><strong>Uncle Simon Ho</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status">Declined<small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">11</td><td data-label="Guest"><strong>Aunty Alice Thien</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
-              <tr><td class="guest-number" data-label="No.">12</td><td data-label="Guest"><strong>Joyce Ho</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>12.1</b><span>Family member 1</span></div><div class="guest-subitem"><b>12.2</b><span>Family member 2</span></div><div class="guest-subitem"><b>12.3</b><span>Family member 3</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status">Declined — 4<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">13</td><td data-label="Guest"><strong>June Ho</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · Form + WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">14</td><td data-label="Guest"><strong>Kimberly Ho</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>14.1</b><span>Boyfriend — maybe</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status">Declined — 2<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">15</td><td data-label="Guest"><strong>Uncle David</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>15.1</b><span>Aunty Mindy</span></div><div class="guest-subitem"><b>15.2</b><span>Child 1</span></div><div class="guest-subitem"><b>15.3</b><span>Child 2</span></div><div class="guest-subitem"><b>15.4</b><span>Child 3</span></div><div class="guest-subitem"><b>15.5</b><span>Child 4</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status">Declined — 6<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">17</td><td data-label="Guest"><strong>Uncle Ah Jie</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status">Declined<small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">18</td><td data-label="Guest"><strong>Aunty Amy</strong><small>In form: Amy Thien</small></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · Form + WhatsApp</small></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="guest-group">
-        <h4><button class="guest-group-toggle" type="button" aria-expanded="true" aria-controls="guest-dad-list" onclick="toggleGuestGroup(this)"><span class="guest-group-heading"><span class="guest-group-title">Jon's Dad's Side</span><span class="guest-group-count">29 planned guests</span><span class="group-status"><b class="registered-remark">22 registered</b><b class="not-registered-remark">0 not registered</b><b>7 declined</b></span></span><i class="ph ph-caret-down guest-group-chevron" aria-hidden="true"></i></button></h4>
-        <div class="guest-list" id="guest-dad-list">
-          <table class="guest-table">
-            <thead><tr><th>No.</th><th>Guest</th><th>Additional Guests</th><th>RSVP Status</th></tr></thead>
-            <tbody>
-              <tr><td class="guest-number" data-label="No.">19</td><td data-label="Guest"><strong>James Tay</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">20</td><td data-label="Guest"><strong>Susan Tay</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">21</td><td data-label="Guest"><strong>Sean</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>21.1</b><span>Jasmine Tay</span></div><div class="guest-subitem"><b>21.2</b><span>Xeno</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 3<small>Reception: 1 Nov · WhatsApp<br>Tea Ceremony: Jasmine Tay &amp; Xeno attending</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">22</td><td data-label="Guest"><strong>Gordon Ling</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>22.1</b><span>Jaslynn Tay</span></div><div class="guest-subitem"><b>22.2</b><span>Caitlyn Ling</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
-              <tr><td class="guest-number" data-label="No.">23</td><td data-label="Guest"><strong>Catherine Tay</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>23.1</b><span>RaeAnne</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 2</td></tr>
-              <tr><td class="guest-number" data-label="No.">24</td><td data-label="Guest"><strong>Adelyn</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>24.1</b><span>Husband</span></div><div class="guest-subitem"><b>24.2</b><span>Child</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status">Declined — 3<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">25</td><td data-label="Guest"><strong>Eugene</strong><small>In form: Eugene Bong</small></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>25.1</b><span>Wife<small>In form: Kai Hui</small></span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
-              <tr><td class="guest-number" data-label="No.">26</td><td data-label="Guest"><strong>Uncle Tik Peng</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>26.1</b><span>Aunty Mariah</span></div></div></td><td class="guest-rsvp" data-label="RSVP Status">Declined — 2<small>31 Oct &amp; 1 Nov · WhatsApp</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">27</td><td data-label="Guest"><strong>Elizabeth Tay Siew Noi</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>27.1</b><span>Toh Pang Chun</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span></td></tr>
-              <tr><td class="guest-number" data-label="No.">28</td><td data-label="Guest"><strong>Uncle Terrance</strong><small>In form: Terrance Ng</small></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>28.1</b><span>Aunty Sally<small>In form: Sally Tay Siew Git</small></span></div><div class="guest-subitem"><b>28.2</b><span>Ng Zhy Xuan</span></div><div class="guest-subitem"><b>28.3</b><span>Michael Ng<small>Cousin</small></span></div><div class="guest-subitem"><b>28.4</b><span>Ann Oh<small>Michael's wife</small></span></div><div class="guest-subitem"><b>28.5</b><span>Ng Ler Xuan<small>Michael's daughter</small></span></div><div class="guest-subitem"><b>28.6</b><span>Ng Jig Hong<small>Michael's son</small></span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 7<small>Reception: 1 Nov · Form<br>Tea Ceremony: attending</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">29</td><td data-label="Guest"><strong>Aunty Zhan Mei</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status">Declined<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">30</td><td data-label="Guest"><strong>Victor Tay</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status">Declined<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">31</td><td data-label="Guest"><strong>Wilson Tay</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>31 Oct &amp; 1 Nov · Family update</small></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="guest-group">
-        <h4><button class="guest-group-toggle" type="button" aria-expanded="true" aria-controls="guest-vivien-list" onclick="toggleGuestGroup(this)"><span class="guest-group-heading"><span class="guest-group-title">Vivien's Side</span><span class="guest-group-count">11 registered attendees</span><span class="group-status all-registered">All registered</span></span><i class="ph ph-caret-down guest-group-chevron" aria-hidden="true"></i></button></h4>
-        <div class="guest-list" id="guest-vivien-list">
-          <table class="guest-table">
-            <thead><tr><th>No.</th><th>Guest</th><th>Additional Guests</th><th>RSVP Status</th></tr></thead>
-            <tbody>
-              <tr><td class="guest-number" data-label="No.">32</td><td data-label="Guest"><strong>Zizi Dani</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>32.1</b><span>Bashir Jayos</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 2</td></tr>
-              <tr><td class="guest-number" data-label="No.">33</td><td data-label="Guest"><strong>Alissa Nassihin</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 1</td></tr>
-              <tr><td class="guest-number" data-label="No.">34</td><td data-label="Guest"><strong>Anna Leong</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>34.1</b><span>Danial</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 2</td></tr>
-              <tr><td class="guest-number" data-label="No.">35</td><td data-label="Guest"><strong>Lee Xin Ying</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>35.1</b><span>Chong Harry</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 2</td></tr>
-              <tr><td class="guest-number" data-label="No.">36</td><td data-label="Guest"><strong>Marcovy Duwin</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 1</td></tr>
-              <tr><td class="guest-number" data-label="No.">37</td><td data-label="Guest"><strong>Evans Hu</strong></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 1</td></tr>
-              <tr><td class="guest-number" data-label="No.">38</td><td data-label="Guest"><strong>Haziq Rohaimi</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>38.1</b><span>Sufi Khirul Bahri</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status"><span class="registered-label">Registered</span> — 2</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="guest-group">
-        <h4><button class="guest-group-toggle" type="button" aria-expanded="true" aria-controls="guest-wei-sung-list" onclick="toggleGuestGroup(this)"><span class="guest-group-heading"><span class="guest-group-title">Wei Sung's Side</span><span class="guest-group-count">19 registered attendees</span><span class="group-status all-registered">All registered</span></span><i class="ph ph-caret-down guest-group-chevron" aria-hidden="true"></i></button></h4>
-        <div class="guest-list" id="guest-wei-sung-list">
-          <table class="guest-table">
-            <thead><tr><th>No.</th><th>Guest</th><th>Additional Guests</th><th>RSVP Status</th></tr></thead>
-            <tbody>
-              <tr><td class="guest-number" data-label="No.">39</td><td data-label="Guest"><strong>Mary Ong</strong><small>Wei Sung's mom</small></td><td data-label="Additional Guests">—</td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span><small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">40</td><td data-label="Guest"><strong>Ng Ai Cher</strong><small>Wei Sung's sister</small></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>40.1</b><span>Daniel Yong<small>Wei Sung's brother-in-law</small></span></div><div class="guest-subitem"><b>40.2</b><span>Denise Yong<small>Age 10</small></span></div><div class="guest-subitem"><b>40.3</b><span>Deseree Yong<small>Age 9</small></span></div><div class="guest-subitem"><b>40.4</b><span>Darius Yong<small>Age 3</small></span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 5<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">41</td><td data-label="Guest"><strong>Jocelyn Hui</strong><small>Wei Sung's sister-in-law</small></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>41.1</b><span>Zhi Hsuen<small>Age 6</small></span></div><div class="guest-subitem"><b>41.2</b><span>Yhi Tong<small>Age 3</small></span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 3<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">42</td><td data-label="Guest"><strong>Choon Yen</strong><small>Wei Sung's brother</small></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>42.1</b><span>Sara Chong<small>Wei Sung's sister-in-law</small></span></div><div class="guest-subitem"><b>42.2</b><span>Ryan Ng<small>Age 21</small></span></div><div class="guest-subitem"><b>42.3</b><span>Rayden Ng<small>Age 13</small></span></div><div class="guest-subitem"><b>42.4</b><span>Renzo<small>Age 3</small></span></div><div class="guest-subitem"><b>42.5</b><span>Sri Andianti<small>Maid</small></span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 6<small>1 Nov · Family update</small></td></tr>
-              <tr><td class="guest-number" data-label="No.">43</td><td data-label="Guest"><strong>Yan Fei</strong><small>Wei Sung's brother</small></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>43.1</b><span>Ing Ing<small>Wei Sung's sister-in-law</small></span></div><div class="guest-subitem"><b>43.2</b><span>Damian Ng<small>Age 6</small></span></div><div class="guest-subitem"><b>43.3</b><span>Han Yu<small>Age 2</small></span></div></div></td><td class="guest-rsvp" data-label="RSVP Status"><span class="registered-label">Registered</span> — 4<small>1 Nov · Family update</small></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="guest-group">
-        <h4><button class="guest-group-toggle" type="button" aria-expanded="true" aria-controls="guest-declined-list" onclick="toggleGuestGroup(this)"><span class="guest-group-heading"><span class="guest-group-title">Declined</span><span class="guest-group-count">2 declined guests</span></span><i class="ph ph-caret-down guest-group-chevron" aria-hidden="true"></i></button></h4>
-        <div class="guest-list" id="guest-declined-list">
-          <table class="guest-table">
-            <thead><tr><th>No.</th><th>Guest</th><th>Additional Guests</th><th>RSVP Status</th></tr></thead>
-            <tbody>
-              <tr><td class="guest-number" data-label="No.">D1</td><td data-label="Guest"><strong>Uncle Edward Thien</strong></td><td data-label="Additional Guests"><div class="guest-sublist"><div class="guest-subitem"><b>D1.1</b><span>Aunty Emily</span></div></div></td><td class="guest-rsvp" data-label="Form RSVP Status">Declined — 2</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </article>
-      </div>
-    </div>
-    <div class="bottom-nav"><button type="button" onclick="showView('attendance')">Attendance Sheets</button></div>
+  <section class="view private-placeholder-view" id="guests" data-private-view data-private-only>
+    <div class="page-head"><button class="back" type="button" onclick="showView('home')">Overview</button><h2>Guest List</h2><p>Private wedding data. Enter the private passphrase to continue.</p></div>
   </section>
 
-  <section class="view" id="attendance">
-    <div class="page-head attendance-head">
-      <button class="back" onclick="showView('guests')">Guest List</button>
-      <span class="attendance-kicker">Format preview</span>
-      <h2>Attendance Sheets</h2>
-      <p>Sample layout only. The final sheets will use the complete confirmed lists.</p>
-    </div>
-
-    <article class="attendance-sheet">
-      <header class="attendance-sheet-header">
-        <div><span>31 October 2026</span><h3>Tea Ceremony Attendance</h3><p>32 expected guests · Ground Eatery</p></div>
-        <strong>Guest arrival 4:00-4:30 PM</strong>
-      </header>
-      <div class="attendance-table attendance-table-tea" role="table" aria-label="Tea Ceremony attendance format preview">
-        <div class="attendance-table-head" role="row"><span>Arrived</span><span>Guest</span><span>Family group</span></div>
-        <div class="attendance-row" role="row"><span class="attendance-check" aria-hidden="true"></span><strong>Richard Tay</strong><span>Direct Family</span></div>
-        <div class="attendance-row" role="row"><span class="attendance-check" aria-hidden="true"></span><strong>Mary Thien</strong><span>Direct Family</span></div>
-        <div class="attendance-row" role="row"><span class="attendance-check" aria-hidden="true"></span><strong>Aunty Agnes Thien</strong><span>Mom's Side</span></div>
-      </div>
-    </article>
-
-    <article class="attendance-sheet attendance-reception-preview">
-      <header class="attendance-sheet-header">
-        <div><span>1 November 2026</span><h3>Reception Attendance</h3><p>Batch-based check-in · Table numbers pending</p></div>
-        <strong>69 confirmed guests</strong>
-      </header>
-      <div class="attendance-batches" aria-label="Reception batch attendance format preview">
-        <section class="attendance-batch">
-          <header><div><span>Batch 01</span><strong>Ng Wei Sung's party</strong><small>4 pax</small></div><label>Table <span contenteditable="true" data-key="attendance-preview-table-1" spellcheck="false">TBC</span></label></header>
-          <ul>
-            <li><span class="attendance-check" aria-hidden="true"></span>Ng Wei Sung</li>
-            <li><span class="attendance-check" aria-hidden="true"></span>Stephanie Tay</li>
-            <li><span class="attendance-check" aria-hidden="true"></span>Ethan Ng</li>
-            <li><span class="attendance-check" aria-hidden="true"></span>Elisa Ng</li>
-          </ul>
-        </section>
-        <section class="attendance-batch">
-          <header><div><span>Batch 02</span><strong>Desmond Chin's party</strong><small>2 pax</small></div><label>Table <span contenteditable="true" data-key="attendance-preview-table-2" spellcheck="false">TBC</span></label></header>
-          <ul>
-            <li><span class="attendance-check" aria-hidden="true"></span>Desmond Chin</li>
-            <li><span class="attendance-check" aria-hidden="true"></span>Kate</li>
-          </ul>
-        </section>
-        <section class="attendance-batch">
-          <header><div><span>Batch 03</span><strong>Mary Ong</strong><small>1 pax</small></div><label>Table <span contenteditable="true" data-key="attendance-preview-table-3" spellcheck="false">TBC</span></label></header>
-          <ul><li><span class="attendance-check" aria-hidden="true"></span>Mary Ong</li></ul>
-        </section>
-      </div>
-    </article>
-    <p class="attendance-preview-footnote"><i class="ph ph-info" aria-hidden="true"></i>Preview uses sample names only. Table numbers remain editable and intentionally unconfirmed.</p>
+  <section class="view private-placeholder-view" id="attendance" data-private-view data-private-only>
+    <div class="page-head"><button class="back" type="button" onclick="showView('home')">Overview</button><h2>Attendance Sheets</h2><p>Private wedding data. Enter the private passphrase to continue.</p></div>
   </section>
 
-  <section class="view" id="seating">
-    <div class="page-head seating-head">
-      <button class="back" onclick="showView('home')">Overview</button>
-      <div>
-        <h2 id="seatingPageTitle">Seat Planner</h2>
-        <p>Select a table, then choose a seat to add or edit a name.</p>
-      </div>
-    </div>
-    <div class="seat-planner-toolbar">
-      <div class="seat-planner-summary" aria-label="Seating plan summary">
-        <p><strong id="seatingAssignedCount">71</strong><span>Assigned</span></p>
-        <p><strong id="seatingOpenCount">14</strong><span>Open seats</span></p>
-        <p><strong>7</strong><span>Tables</span></p>
-      </div>
-      <div class="seat-planner-actions">
-        <label class="document-name-field" for="seatingDocumentName">
-          <span>Document name</span>
-          <input id="seatingDocumentName" type="text" maxlength="80" value="Vivien &amp; Jon — Reception Seat Plan" autocomplete="off">
-        </label>
-        <button class="planner-button planner-button-secondary" type="button" onclick="saveSeatingPlan()"><i class="ph ph-floppy-disk" aria-hidden="true"></i>Save plan</button>
-        <button class="planner-button planner-button-primary" type="button" onclick="printSeatingPlan()"><i class="ph ph-printer" aria-hidden="true"></i>Print / Save PDF</button>
-      </div>
-    </div>
-    <div class="table-picker" id="tablePicker" aria-label="Choose a table"></div>
-    <div class="seat-planner-message" id="seatingSaveStatus" role="status" aria-live="polite">Changes are saved in this browser.</div>
-    <div class="seat-floorplan" id="seatFloorplan" aria-label="Reception seating floor plan"></div>
-    <p class="seating-note"><i class="ph ph-info" aria-hidden="true"></i>The layout follows the venue plan. Table 1 is confirmed; Table 3 includes the original baby chair.</p>
-    <p class="seating-note seating-note-baby"><i class="ph ph-baby" aria-hidden="true"></i>Additional baby chairs: Elisa Ng (2), Darius Yong (3), Yhi Tong (3), Renzo (3), and Han Yu (2). Darius, Yhi Tong, Renzo, and Han Yu are on Wei Sung's side. To add another, open the guest's seat and select Mark as BABY.</p>
-    <div class="unassigned-remark" id="unassignedRemark" aria-live="polite">
-      <i class="ph ph-check-circle" aria-hidden="true"></i>
-      <div>
-        <strong id="unassignedSummary">All listed guests are assigned a seat.</strong>
-        <ul id="unassignedGuestList" aria-label="Guests without an assigned seat" hidden></ul>
-      </div>
-    </div>
-    <div class="bottom-nav"><button type="button" onclick="showView('guests')">Guest List</button><button type="button" onclick="showView('attendance')">Attendance Sheets</button></div>
-
-    <dialog class="seat-dialog" id="seatDialog" aria-labelledby="seatDialogTitle">
-      <form method="dialog" id="seatForm" onsubmit="submitSeatName(event)">
-        <button class="seat-dialog-close" type="button" onclick="closeSeatDialog()" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
-        <p class="seat-dialog-kicker" id="seatDialogLocation">Table 1 · Seat 1</p>
-        <h3 id="seatDialogTitle">Add a guest</h3>
-        <label class="seat-name-field" for="seatNameInput"><span>Guest name</span><input id="seatNameInput" type="text" maxlength="80" autocomplete="off" required></label>
-        <label class="seat-baby-toggle" for="seatBabyChairInput">
-          <input id="seatBabyChairInput" type="checkbox">
-          <span><strong>Mark as BABY</strong><small id="seatBabyChairHint">Shows a BABY marker on this seat and the PDF.</small></span>
-        </label>
-        <div class="seat-duplicate-warning" id="seatDuplicateWarning" role="alert" hidden>
-          <p id="seatMatchMessage"></p>
-          <div class="seat-match-list" id="seatMatchList"></div>
-        </div>
-        <div class="seat-dialog-actions">
-          <button class="planner-button planner-button-danger" id="clearSeatButton" type="button" onclick="clearCurrentSeat()">Clear seat</button>
-          <span></span>
-          <button class="planner-button planner-button-secondary" type="button" onclick="closeSeatDialog()">Cancel</button>
-          <button class="planner-button planner-button-primary" id="saveSeatButton" type="submit">Save name</button>
-        </div>
-      </form>
-    </dialog>
+  <section class="view private-placeholder-view" id="seating" data-private-view data-private-only>
+    <div class="page-head"><button class="back" type="button" onclick="showView('home')">Overview</button><h2>Seat Planner</h2><p>Private wedding data. Enter the private passphrase to continue.</p></div>
   </section>
 
-  <section class="view" id="pending">
+  <section class="view" id="pending" data-private-only>
     <div class="page-head">
       <button class="back" onclick="showView('home')">Overview</button>
       <h2>Pending Items</h2>
@@ -778,13 +488,16 @@ body{background:var(--cream);color:var(--black)}
 
   <footer class="site-footer">
     <div><strong>Vivien &amp; Jon</strong><span>Wedding Plan Tracker</span></div>
-    <div class="footer-meta"><span>2026</span><button class="footer-top" type="button" onclick="lockTracker()">Lock</button><button class="footer-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</button></div>
+    <div class="footer-meta"><span>2026</span><button class="footer-top" type="button" onclick="lockTracker()">Lock tracker</button><button class="footer-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</button></div>
   </footer>
 </main>
 <script>
 const STORE='vj-wedding-site-v2:';
 const TRACKER_UNLOCK_STORAGE=STORE+'unlocked';
 const TRACKER_PASSCODE_HASH='7b8bd6c0abf53d22888beafc48830e1156907dd4ec7e6ea31e55a0dd6dc5a969';
+const PRIVATE_DATA_URL='private-data.json?v=20261011-1';
+const PRIVATE_VIEWS=new Set(['guests','attendance','seating']);
+const FAMILY_VIEWS=new Set(['home','plan','travel']);
 const SEATING_STORAGE=STORE+'seat-planner';
 const SEATING_DOCUMENT_STORAGE=STORE+'seat-planner-document-name';
 const SEATING_VERSION_STORAGE=STORE+'seat-planner-version';
@@ -792,24 +505,19 @@ const BABY_CHAIR_STORAGE=STORE+'seat-planner-baby-chairs';
 const NG_JIG_HONG_RESTORE_STORAGE=STORE+'seat-planner-ng-jig-hong-restored';
 const SEATING_PLAN_VERSION='2026-09-12-confirmed-remap';
 const CONFIRMED_TABLES=new Set([1]);
-const DEFAULT_SEATING=[
-  ['Vivien Chiew','Jonathan Tay','Richard Tay','Mary Thien','Nicholas Tay Yau Yung','','Ng Wei Sung','Ethan Ng','Elisa Ng','Stephanie Tay','',''],
-  ['Agnes Thien','Alice Thien','Amy Thien','Kent Chin','Joanne Yoong','Kayden Chin','Claire Chin','Desmond Chin','Kate','June Ho','',''],
-  ['James Tay','Susan Tay','Catherine Tay','Toh Pang Chun','Elizabeth Tay Siew Noi','Terrance Ng','Sally Tay Siew Git','RaeAnne','Michael Ng','Ann Oh','Ng Ler Xuan','Ng Jig Hong','Ng Zhy Xuan'],
-  ['Sean','Jasmine Tay','Xeno','Gordon Ling','Jaslynn Tay','Caitlyn Ling','Wilson Tay','Eugene Bong','Kai Hui','','',''],
-  ['Ng Ai Cher','Daniel Yong','Denise Yong','Deseree Yong','Darius Yong','Jocelyn Hui','Zhi Hsuen','Yhi Tong','Mary Ong','','',''],
-  ['Evans Hu','Danial','Anna Leong','Alissa Nassihin','Marcovy Duwin','','Chong Harry','Lee Xin Ying','Zizi Dani','Bashir Jayos','Haziq Rohaimi','Sufi Khirul Bahri'],
-  ['Choon Yen','Sara Chong','Ryan Ng','Rayden Ng','Renzo','Sri Andianti','Yan Fei','Ing Ing','Damian Ng','Han Yu','','']
-];
-const SEATING_GUEST_ROSTER=Object.freeze(DEFAULT_SEATING.flat().filter(Boolean));
-const BABY_CHAIR_GUESTS=new Set(['elisa ng','darius yong','yhi tong','renzo','han yu']);
+let DEFAULT_SEATING=[];
+let SEATING_GUEST_ROSTER=Object.freeze([]);
+let BABY_CHAIR_GUESTS=new Set();
 const TABLE_POSITIONS=[['left',1],['right',1],['left',2],['right',2],['left',3],['right',3],['left',4]];
-let seatingPlan=loadSeatingPlan(),babyChairPlan=loadBabyChairPlan(),selectedTable=1,currentSeat=null,seatingStatusTimer=null;
+const PRIVATE_NAME_ALIASES=Object.freeze({'3553bc0e':'Dad','14311bba':'Mom','62099512':'Steph','5063abbc':'Wei Sung','9390acbe':'Ethan','62a97572':'Elisa','7aa46d44':'Nick'});
+let seatingPlan=[],babyChairPlan=[],selectedTable=1,currentSeat=null,seatingStatusTimer=null,privateDataLoaded=false,accessLevel='locked';
 
 function cleanName(value){return String(value||'').trim().replace(/\s+/g,' ')}
+function nameFingerprint(value){let hash=0x811c9dc5;for(const character of cleanName(value).toLocaleLowerCase()){hash^=character.charCodeAt(0);hash=Math.imul(hash,0x01000193)}return(hash>>>0).toString(16).padStart(8,'0')}
+function privacyName(value){const name=cleanName(value);return PRIVATE_NAME_ALIASES[nameFingerprint(name)]||name}
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]))}
 function restoreNgJigHong(plan){if(localStorage.getItem(NG_JIG_HONG_RESTORE_STORAGE)==='1')return plan;const isAssigned=plan.flat().some(name=>cleanName(name).toLocaleLowerCase()==='ng jig hong');if(isAssigned){localStorage.setItem(NG_JIG_HONG_RESTORE_STORAGE,'1');return plan}if(Array.isArray(plan[2])&&!cleanName(plan[2][11])){plan[2][11]='Ng Jig Hong';localStorage.setItem(NG_JIG_HONG_RESTORE_STORAGE,'1')}return plan}
-function loadSeatingPlan(){try{const saved=JSON.parse(localStorage.getItem(SEATING_STORAGE)),version=localStorage.getItem(SEATING_VERSION_STORAGE);if(version===SEATING_PLAN_VERSION&&Array.isArray(saved)&&saved.length===7&&saved.every((table,index)=>Array.isArray(table)&&table.length===DEFAULT_SEATING[index].length))return restoreNgJigHong(saved.map(table=>table.map(cleanName)))}catch(error){}return restoreNgJigHong(DEFAULT_SEATING.map(table=>[...table]))}
+function loadSeatingPlan(){try{const saved=JSON.parse(localStorage.getItem(SEATING_STORAGE)),version=localStorage.getItem(SEATING_VERSION_STORAGE);if(version===SEATING_PLAN_VERSION&&Array.isArray(saved)&&saved.length===7&&saved.every((table,index)=>Array.isArray(table)&&table.length===DEFAULT_SEATING[index].length))return restoreNgJigHong(saved.map(table=>table.map(privacyName)))}catch(error){}return restoreNgJigHong(DEFAULT_SEATING.map(table=>[...table]))}
 function loadBabyChairPlan(){try{const saved=JSON.parse(localStorage.getItem(BABY_CHAIR_STORAGE));if(Array.isArray(saved)&&saved.length===DEFAULT_SEATING.length&&saved.every((table,index)=>Array.isArray(table)&&table.length===DEFAULT_SEATING[index].length))return saved.map(table=>table.map(Boolean))}catch(error){}return DEFAULT_SEATING.map(table=>table.map(()=>false))}
 function persistSeatingPlan(){localStorage.setItem(SEATING_STORAGE,JSON.stringify(seatingPlan));localStorage.setItem(SEATING_VERSION_STORAGE,SEATING_PLAN_VERSION);localStorage.setItem(BABY_CHAIR_STORAGE,JSON.stringify(babyChairPlan));const documentName=document.getElementById('seatingDocumentName');if(documentName)localStorage.setItem(SEATING_DOCUMENT_STORAGE,cleanName(documentName.value))}
 function seatingTotals(){const capacity=seatingPlan.reduce((total,table)=>total+table.length,0),assigned=seatingPlan.reduce((total,table)=>total+table.filter(Boolean).length,0);return{assigned,open:capacity-assigned}}
@@ -834,7 +542,7 @@ function printSeatingPlan(){const nameField=document.getElementById('seatingDocu
 function setupSeatingPlanner(){const nameField=document.getElementById('seatingDocumentName'),savedName=localStorage.getItem(SEATING_DOCUMENT_STORAGE);if(savedName)nameField.value=savedName;nameField.addEventListener('input',()=>{localStorage.setItem(SEATING_DOCUMENT_STORAGE,cleanName(nameField.value));setSeatingStatus('Document name saved.')});document.getElementById('seatNameInput').addEventListener('input',()=>{syncBabyChairControl();validateSeatName()});document.getElementById('seatDialog').addEventListener('cancel',()=>{currentSeat=null});persistSeatingPlan();renderFloorplan()}
 
 function toggleMenu(force){const menu=document.querySelector('#siteMenu'),button=document.querySelector('#menuButton'),backdrop=document.querySelector('#menuBackdrop'),icon=button.querySelector('i');const open=typeof force==='boolean'?force:!menu.classList.contains('open');menu.classList.toggle('open',open);backdrop.classList.toggle('open',open);document.body.classList.toggle('drawer-open',open);button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close menu':'Open menu');icon?.classList.toggle('ph-list',!open);icon?.classList.toggle('ph-x',open)}
-function showView(id,scrollBehavior='smooth'){if(id==='jpn'||id==='venue')id='plan';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===id));location.hash=id==='home'?'':id;if(scrollBehavior)scrollTo({top:0,behavior:scrollBehavior});document.title=id==='home'?'Glasshouse Mansion Reception - Plan Tracker':`${document.querySelector('#'+id+' h2')?.textContent} - Glasshouse Mansion Reception`;toggleMenu(false);if(id==='travel')requestAnimationFrame(updateTravelProgress)}
+function showView(id,scrollBehavior='smooth'){if(id==='jpn'||id==='venue')id='plan';if(accessLevel==='family'&&!FAMILY_VIEWS.has(id))id='home';if(PRIVATE_VIEWS.has(id)&&!privateDataLoaded)id='home';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===id));location.hash=id==='home'?'':id;if(scrollBehavior)scrollTo({top:0,behavior:scrollBehavior});document.title=id==='home'?'Glasshouse Mansion Reception - Plan Tracker':`${document.querySelector('#'+id+' h2')?.textContent} - Glasshouse Mansion Reception`;toggleMenu(false);if(id==='travel')requestAnimationFrame(updateTravelProgress)}
 function goToPlanSection(sectionId){showView('plan',null);requestAnimationFrame(()=>{const target=document.getElementById(sectionId);if(target)window.scrollTo({top:Math.max(0,target.offsetTop-18),behavior:'auto'})})}
 function printPlanCard(cardId){const card=document.getElementById(cardId);if(!card)return;const previousTitle=document.title;document.querySelectorAll('#plan .event-card').forEach(item=>item.classList.toggle('print-target',item===card));document.body.classList.add('printing-event-card');document.title=`${card.dataset.printTitle||'Event Schedule'} - Vivien & Jon`;const cleanup=()=>{window.removeEventListener('afterprint',cleanup);document.body.classList.remove('printing-event-card');card.classList.remove('print-target');document.title=previousTitle};window.addEventListener('afterprint',cleanup,{once:true});requestAnimationFrame(()=>{window.print();cleanup()})}
 function exportGuestName(element){if(!element)return'';const formName=[...element.querySelectorAll('small')].map(item=>item.textContent.trim()).find(text=>/^In form:/i.test(text));if(formName)return formName.replace(/^In form:\s*/i,'').trim();const copy=element.cloneNode(true);copy.querySelectorAll('small').forEach(item=>item.remove());const text=copy.textContent.trim().replace(/\s+/g,' '),parts=text.split(/\s+—\s+/);return /^(Dad|Mom)$/i.test(parts[0])&&parts[1]?parts[1]:parts[0]}
@@ -865,10 +573,13 @@ function bindChecklist(){document.querySelectorAll('#pending input[type="checkbo
 function decorateChecklist(){document.querySelectorAll('.pending-check').forEach(check=>{if(!check.querySelector('i'))check.innerHTML='<i class="ph ph-check" aria-hidden="true"></i>'})}
 function updateDaysToReception(){const output=document.querySelector('#daysToReception');if(!output)return;const target=new Date('2026-11-01T00:00:00+08:00');const now=new Date();output.textContent=String(Math.max(0,Math.ceil((target-now)/86400000)))}
 let appStarted=false;
-function startApp(){document.getElementById('lockScreen').hidden=true;document.querySelector('main.site').hidden=false;if(appStarted)return;appStarted=true;decorateChecklist();bindEdits();bindChecklist();labelTable();setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');updateDaysToReception();setupSeatingPlanner();showView(location.hash.slice(1)||'home')}
+function base64Bytes(value){return Uint8Array.from(atob(value),character=>character.charCodeAt(0))}
+async function decryptPrivateData(passphrase){const response=await fetch(PRIVATE_DATA_URL,{cache:'no-store'});if(!response.ok)throw new Error('Private data could not be loaded.');const envelope=await response.json(),material=await crypto.subtle.importKey('raw',new TextEncoder().encode(passphrase),'PBKDF2',false,['deriveKey']),key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:base64Bytes(envelope.salt),iterations:envelope.iterations,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['decrypt']),plaintext=await crypto.subtle.decrypt({name:'AES-GCM',iv:base64Bytes(envelope.iv)},key,base64Bytes(envelope.ciphertext));return JSON.parse(new TextDecoder().decode(plaintext))}
+function installPrivateData(payload){for(const id of PRIVATE_VIEWS){const current=document.getElementById(id),template=document.createElement('template');template.innerHTML=payload.sections[id].trim();current.replaceWith(template.content.firstElementChild)}document.querySelectorAll('[data-private-flight]').forEach(detail=>{const flight=payload.flightDetails?.[detail.dataset.privateFlight];if(flight){detail.textContent=`Flight no. ${flight}`;detail.hidden=false}});DEFAULT_SEATING=payload.defaultSeating.map(table=>table.map(cleanName));SEATING_GUEST_ROSTER=Object.freeze(DEFAULT_SEATING.flat().filter(Boolean));BABY_CHAIR_GUESTS=new Set(payload.babyChairGuests.map(name=>cleanName(name).toLocaleLowerCase()));seatingPlan=loadSeatingPlan();babyChairPlan=loadBabyChairPlan();privateDataLoaded=true;labelTable();bindEdits(document.getElementById('attendance'));setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');setupSeatingPlanner()}
+function startApp(level){accessLevel=level;document.documentElement.dataset.access=level;document.getElementById('lockScreen').hidden=true;document.querySelector('main.site').hidden=false;if(appStarted)return;appStarted=true;decorateChecklist();bindEdits();bindChecklist();labelTable();updateDaysToReception();showView(location.hash.slice(1)||'home')}
 function lockTracker(){sessionStorage.removeItem(TRACKER_UNLOCK_STORAGE);location.reload()}
 async function hashPasscode(value){const bytes=new TextEncoder().encode(value);const digest=await crypto.subtle.digest('SHA-256',bytes);return Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,'0')).join('')}
-function setupLock(){const form=document.getElementById('lockForm'),input=document.getElementById('lockInput'),message=document.getElementById('lockMessage'),button=form.querySelector('button[type="submit"]');form.addEventListener('submit',async event=>{event.preventDefault();const passcode=input.value.trim();if(!passcode)return;button.disabled=true;message.textContent='Checking…';try{if(await hashPasscode(passcode)!==TRACKER_PASSCODE_HASH){message.textContent='That passcode is not right. Please try again.';input.select();return}sessionStorage.setItem(TRACKER_UNLOCK_STORAGE,'1');input.value='';message.textContent='';startApp()}catch(error){message.textContent='Could not check the passcode. Please try again.'}finally{button.disabled=false}});if(sessionStorage.getItem(TRACKER_UNLOCK_STORAGE)==='1')startApp();else requestAnimationFrame(()=>input.focus())}
+function setupLock(){const form=document.getElementById('lockForm'),input=document.getElementById('lockInput'),message=document.getElementById('lockMessage'),button=form.querySelector('button[type="submit"]');form.addEventListener('submit',async event=>{event.preventDefault();const passcode=input.value;if(!passcode)return;button.disabled=true;message.textContent='Checking…';try{const familyAccess=await hashPasscode(passcode.trim())===TRACKER_PASSCODE_HASH;if(familyAccess){sessionStorage.setItem(TRACKER_UNLOCK_STORAGE,'family');input.value='';message.textContent='';startApp('family');return}try{installPrivateData(await decryptPrivateData(passcode))}catch(error){if(error instanceof DOMException&&error.name==='OperationError'){message.textContent='That passcode is not right. Please try again.';input.select();return}throw error}sessionStorage.removeItem(TRACKER_UNLOCK_STORAGE);input.value='';message.textContent='';startApp('private')}catch(error){message.textContent='Could not check the passcode. Please try again.'}finally{button.disabled=false}});if(sessionStorage.getItem(TRACKER_UNLOCK_STORAGE)==='family')startApp('family');else requestAnimationFrame(()=>input.focus())}
 setupLock();
 </script>
 </body>
