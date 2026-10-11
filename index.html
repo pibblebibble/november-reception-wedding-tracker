@@ -160,10 +160,20 @@ body{background:var(--cream);color:var(--black)}
 @media print{.site-footer{margin-top:30px}.footer-top{display:none}}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="apple-ui.css?v=20261003-1">
+<link rel="stylesheet" href="apple-ui.css?v=20261011-1">
 </head>
 <body>
-<main class="site">
+<div class="lock-screen" id="lockScreen">
+  <form class="lock-card" id="lockForm">
+    <span class="brand-mark" aria-hidden="true">VJ</span>
+    <h1>Vivien &amp; Jon</h1>
+    <p>Wedding plan tracker. Enter the passcode to continue.</p>
+    <label class="lock-field" for="lockInput"><span>Passcode</span><input id="lockInput" type="password" maxlength="80" autocomplete="current-password" required></label>
+    <button class="lock-submit" type="submit">Unlock</button>
+    <p class="lock-message" id="lockMessage" role="status" aria-live="polite"></p>
+  </form>
+</div>
+<main class="site" hidden>
   <div class="topbar">
     <button class="site-brand" type="button" onclick="showView('home')" aria-label="Open overview"><span class="brand-mark" aria-hidden="true">VJ</span><span>Family Events</span></button>
     <nav class="desktop-nav" aria-label="Primary navigation">
@@ -333,17 +343,17 @@ body{background:var(--cream);color:var(--black)}
         <div><strong>Wedding Reception</strong><time datetime="2026-11-01"><span class="travel-key-day">1</span><span class="travel-key-meta">Nov<small>2026</small></span></time></div>
       </div>
     </div>
-    <p class="travel-draft-note"><strong>Working itinerary:</strong> Flight numbers, hotel and remaining venue details are still pending.</p>
+    <p class="travel-draft-note"><strong>Working itinerary:</strong> Flight numbers, hotel check-in time and remaining venue details are still pending.</p>
 
     <article class="travel-timeline" id="travelTimeline" aria-label="Travel itinerary timeline">
       <div class="travel-rail" id="travelProgressRail" role="progressbar" aria-label="Timeline scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="travel-progress-fill" id="travelProgressFill"></span></div>
 
       <section class="travel-day">
-        <div class="travel-date"><time datetime="2026-10-25"><span class="travel-date-day">25</span><span class="travel-date-meta"><span class="travel-date-month">October</span><span class="travel-date-year">2026</span></span></time></div>
+        <div class="travel-date"><time datetime="2026-10-26"><span class="travel-date-day">26</span><span class="travel-date-meta"><span class="travel-date-month">October</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Brother's Arrival</h3>
+          <h3>Nick's Arrival</h3>
           <ol class="travel-agenda">
-            <li><time>9:30 PM</time><div><strong>Brother arrives</strong></div></li>
+            <li><time>4:40 PM</time><div><strong>Nick arrives</strong></div></li>
           </ol>
         </div>
       </section>
@@ -353,9 +363,9 @@ body{background:var(--cream);color:var(--black)}
         <div class="travel-day-body">
           <h3>Family Arrivals</h3>
           <ol class="travel-agenda">
-            <li><time>3:00 PM</time><div><strong>Sister arrives</strong></div></li>
+            <li><time>3:00 PM</time><div><strong>Steph arrives</strong></div></li>
             <li><time>6:40 PM</time><div><strong>Parents arrive</strong></div></li>
-            <li><time>Pending</time><div><strong>Hotel check-in</strong><p>Details will be updated tomorrow.</p><span class="travel-placeholder">Update pending</span></div></li>
+            <li><time>Pending</time><div><strong>Check in at Four Points by Sheraton Kuala Lumpur</strong><p>Check-in time to be confirmed.</p><span class="travel-placeholder">Time pending</span></div></li>
             <li><time>Pending</time><div><strong>Dinner plans</strong><p>Details will be updated tomorrow.</p><span class="travel-placeholder">Update pending</span></div></li>
           </ol>
         </div>
@@ -368,9 +378,9 @@ body{background:var(--cream);color:var(--black)}
           <ol class="travel-agenda">
             <li><time>All day</time><div><strong>Family free time</strong><p>Jon's family can spend the day as they wish.</p></div></li>
             <li><time>8–9 AM</time><div><strong>Breakfast at the hotel</strong></div></li>
-            <li><time>10:00 AM</time><div><strong>Jon collects the wedding items</strong><p>Wedding gown, Cheong Sam and decorations.</p></div></li>
-            <li><time>After collection</time><div><strong>Send décor to Ground Eatery</strong><p>Shirley, the Ground Eatery venue coordinator, will set it up. Bring the clothes back to the hotel.</p></div></li>
+            <li><time>By 10:30 AM</time><div><strong>Tea ceremony décor arrives at Ground Eatery</strong><p>The décor will be sent via Lalamove for Shirley, the venue coordinator, to receive and set up.</p></div></li>
             <li><time>Brunch / Lunch</time><div><strong>Meal with the family</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
+            <li><time>3:00 PM</time><div><strong>Collect flowers from SWS Nature</strong><p>Pick up the flowers from the plant nursery.</p></div></li>
             <li><time>4–5 PM</time><div><strong>Jon &amp; Viv return home for housekeeping</strong></div></li>
             <li><time>7:00 PM</time><div><strong>Meet for dinner</strong><p>Venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
           </ol>
@@ -383,7 +393,9 @@ body{background:var(--cream);color:var(--black)}
           <h3>Tea Ceremony — Ground Eatery</h3>
           <ol class="travel-agenda">
             <li><time>Morning</time><div><strong>Breakfast at the hotel or brunch</strong><p>Brunch venue to be confirmed.</p><span class="travel-placeholder">Venue TBC</span></div></li>
-            <li><time>Before 4:00 PM</time><div><strong>Prepare for the tea ceremony</strong></div></li>
+            <li><time>12:00 PM</time><div><strong>Viv and Jon start getting ready</strong></div></li>
+            <li><time>2:00 PM</time><div><strong>Viv and Jon depart from the hotel for Ground Eatery</strong></div></li>
+            <li><time>3:30 PM</time><div><strong>Family arrives at Ground Eatery</strong></div></li>
             <li><time>4:00-4:30 PM</time><div><strong>Guest arrival and registration</strong><p>Nicholas and June manage attendance and allow guests 30 minutes to arrive.</p></div></li>
             <li><time>4:30 PM</time><div><strong>Tea ceremony begins</strong><p>Jon and Viv stand before the elders once attendance is confirmed.</p></div></li>
             <li><time>During ceremony</time><div><strong>Follow the sequence to call</strong><p>Shirley announces each name, June passes the tea and Nicholas collects any gifts.</p></div></li>
@@ -414,7 +426,7 @@ body{background:var(--cream);color:var(--black)}
         <div class="travel-day-body">
           <h3>Family Departures</h3>
           <ol class="travel-agenda">
-            <li><time>1:10 PM</time><div><strong>Sister departs</strong></div></li>
+            <li><time>1:10 PM</time><div><strong>Steph departs</strong></div></li>
             <li><time>5:20 PM</time><div><strong>Parents depart</strong></div></li>
           </ol>
         </div>
@@ -423,9 +435,9 @@ body{background:var(--cream);color:var(--black)}
       <section class="travel-day">
         <div class="travel-date"><time datetime="2026-11-15"><span class="travel-date-day">15</span><span class="travel-date-meta"><span class="travel-date-month">November</span><span class="travel-date-year">2026</span></span></time></div>
         <div class="travel-day-body">
-          <h3>Brother's Departure</h3>
+          <h3>Nick's Departure</h3>
           <ol class="travel-agenda">
-            <li><time>11:55 PM</time><div><strong>Brother departs</strong></div></li>
+            <li><time>11:55 PM</time><div><strong>Nick departs</strong></div></li>
           </ol>
         </div>
       </section>
@@ -742,7 +754,7 @@ body{background:var(--cream);color:var(--black)}
     </div>
     <div class="pending-content">
     <article class="pending-group" id="pending-travel"><h3><time><span class="pending-day">29-31 Oct</span></time><span class="pending-event">Travel Venues</span><span class="pending-section-count">0 / 5 complete</span></h3><div class="pending-list">
-      <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct29-hotel"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 October hotel and check-in details</strong></label>
+      <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct29-hotel"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 October check-in time at Four Points by Sheraton Kuala Lumpur</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct29-dinner"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 29 October family dinner venue</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct30-lunch"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 30 October family brunch or lunch venue</strong></label>
       <label class="pending-item"><input type="checkbox" data-key="pending-travel-oct30-dinner"><span class="pending-check" aria-hidden="true"></span><strong>Confirm the 30 October family dinner venue</strong></label>
@@ -759,11 +771,13 @@ body{background:var(--cream);color:var(--black)}
 
   <footer class="site-footer">
     <div><strong>Vivien &amp; Jon</strong><span>Wedding Plan Tracker</span></div>
-    <div class="footer-meta"><span>2026</span><button class="footer-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</button></div>
+    <div class="footer-meta"><span>2026</span><button class="footer-top" type="button" onclick="lockTracker()">Lock</button><button class="footer-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</button></div>
   </footer>
 </main>
 <script>
 const STORE='vj-wedding-site-v2:';
+const TRACKER_UNLOCK_STORAGE=STORE+'unlocked';
+const TRACKER_PASSCODE_HASH='7b8bd6c0abf53d22888beafc48830e1156907dd4ec7e6ea31e55a0dd6dc5a969';
 const SEATING_STORAGE=STORE+'seat-planner';
 const SEATING_DOCUMENT_STORAGE=STORE+'seat-planner-document-name';
 const SEATING_VERSION_STORAGE=STORE+'seat-planner-version';
@@ -843,7 +857,12 @@ function updatePendingProgress(){const boxes=[...document.querySelectorAll('#pen
 function bindChecklist(){document.querySelectorAll('#pending input[type="checkbox"][data-key]').forEach(box=>{const key=STORE+box.dataset.key;box.checked=localStorage.getItem(key)==='1';box.addEventListener('change',()=>{localStorage.setItem(key,box.checked?'1':'0');updatePendingProgress()})});updatePendingProgress()}
 function decorateChecklist(){document.querySelectorAll('.pending-check').forEach(check=>{if(!check.querySelector('i'))check.innerHTML='<i class="ph ph-check" aria-hidden="true"></i>'})}
 function updateDaysToReception(){const output=document.querySelector('#daysToReception');if(!output)return;const target=new Date('2026-11-01T00:00:00+08:00');const now=new Date();output.textContent=String(Math.max(0,Math.ceil((target-now)/86400000)))}
-decorateChecklist();bindEdits();bindChecklist();labelTable();setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');updateDaysToReception();setupSeatingPlanner();showView(location.hash.slice(1)||'home');
+let appStarted=false;
+function startApp(){document.getElementById('lockScreen').hidden=true;document.querySelector('main.site').hidden=false;if(appStarted)return;appStarted=true;decorateChecklist();bindEdits();bindChecklist();labelTable();setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');updateDaysToReception();setupSeatingPlanner();showView(location.hash.slice(1)||'home')}
+function lockTracker(){sessionStorage.removeItem(TRACKER_UNLOCK_STORAGE);location.reload()}
+async function hashPasscode(value){const bytes=new TextEncoder().encode(value);const digest=await crypto.subtle.digest('SHA-256',bytes);return Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,'0')).join('')}
+function setupLock(){const form=document.getElementById('lockForm'),input=document.getElementById('lockInput'),message=document.getElementById('lockMessage'),button=form.querySelector('button[type="submit"]');form.addEventListener('submit',async event=>{event.preventDefault();const passcode=input.value.trim();if(!passcode)return;button.disabled=true;message.textContent='Checking…';try{if(await hashPasscode(passcode)!==TRACKER_PASSCODE_HASH){message.textContent='That passcode is not right. Please try again.';input.select();return}sessionStorage.setItem(TRACKER_UNLOCK_STORAGE,'1');input.value='';message.textContent='';startApp()}catch(error){message.textContent='Could not check the passcode. Please try again.'}finally{button.disabled=false}});if(sessionStorage.getItem(TRACKER_UNLOCK_STORAGE)==='1')startApp();else requestAnimationFrame(()=>input.focus())}
+setupLock();
 </script>
 </body>
 </html>

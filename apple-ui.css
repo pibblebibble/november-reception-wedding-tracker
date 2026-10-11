@@ -43,6 +43,58 @@ button:focus-visible, [contenteditable]:focus-visible {
 }
 [hidden] { display: none !important; }
 
+/* Session lock: a lightweight front door for the static tracker. */
+.lock-screen {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 24px;
+  background: var(--canvas);
+}
+.lock-card {
+  width: min(100%, 420px);
+  padding: 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.lock-card .brand-mark { margin-bottom: 24px; }
+.lock-card h1 { margin: 0; font-size: 32px; line-height: 1.12; letter-spacing: -.03em; }
+.lock-card > p { margin: 10px 0 26px; color: var(--muted); font-size: 14px; }
+.lock-field { display: grid; gap: 8px; }
+.lock-field span { color: var(--muted); font-size: 12px; font-weight: 700; }
+.lock-field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 13px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.lock-field input:focus { border-color: var(--blue); outline: 3px solid rgba(10, 96, 216, .16); }
+.lock-submit {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 14px;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: 700;
+  cursor: pointer;
+}
+.lock-submit:hover { opacity: .88; }
+.lock-submit:disabled { cursor: wait; opacity: .55; }
+.lock-card .lock-message { min-height: 21px; margin: 13px 0 0; color: var(--red); font-size: 13px; }
+@media (max-width: 520px) {
+  .lock-screen { padding: 16px; }
+  .lock-card { padding: 28px 22px; border-radius: 22px; }
+  .lock-card h1 { font-size: 28px; }
+}
+
 .site { min-height: 100vh; }
 .view {
   display: none;
