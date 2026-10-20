@@ -210,7 +210,7 @@ body{background:var(--cream);color:var(--black)}
         <div class="dashboard-main">
           <div class="home-stats" aria-label="Wedding plan summary">
             <div><span class="stat-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span><p><strong id="daysToReception">68</strong><span>Days to go</span></p></div>
-            <div data-private-only><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>69</strong><span>Reception confirmed</span></p></div>
+            <div data-private-only><span class="stat-icon"><i class="ph ph-users" aria-hidden="true"></i></span><p><strong>67</strong><span>Reception confirmed</span></p></div>
             <div data-private-only><span class="stat-icon"><i class="ph ph-check-square" aria-hidden="true"></i></span><p><strong id="homePendingCount">13</strong><span>Tasks pending</span></p></div>
           </div>
           <div class="menu" aria-label="Quick links">
@@ -281,7 +281,6 @@ body{background:var(--cream);color:var(--black)}
                 <li>Aunty Agnes</li>
                 <li>Aunty Alice</li>
                 <li>Aunty Amy</li>
-                <li>Desmond Chin &amp; Kate</li>
                 <li>Kent Chin &amp; Joanne</li>
               </ol>
             </section>
@@ -343,7 +342,7 @@ body{background:var(--cream);color:var(--black)}
         <div><strong>Wedding Reception</strong><time datetime="2026-11-01"><span class="travel-key-day">1</span><span class="travel-key-meta">Nov<small>2026</small></span></time></div>
       </div>
     </div>
-    <p class="travel-draft-note"><strong>Working itinerary:</strong> Hotel check-in time and remaining venue details are still pending.</p>
+    <p class="travel-draft-note"><strong>Working itinerary:</strong> Remaining venue details are still pending.</p>
 
     <article class="travel-timeline" id="travelTimeline" aria-label="Travel itinerary timeline">
       <div class="travel-rail" id="travelProgressRail" role="progressbar" aria-label="Timeline scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="travel-progress-fill" id="travelProgressFill"></span></div>
@@ -365,7 +364,7 @@ body{background:var(--cream);color:var(--black)}
           <ol class="travel-agenda">
             <li><time>3:00 PM</time><div><strong>Steph arrives</strong><p class="private-flight-detail" data-private-flight="steph" hidden></p></div></li>
             <li><time>6:40 PM</time><div><strong>Parents arrive</strong><p class="private-flight-detail" data-private-flight="parents" hidden></p></div></li>
-            <li><time>Pending</time><div><strong>Check in at Four Points by Sheraton Kuala Lumpur</strong><p>Check-in time to be confirmed.</p><span class="travel-placeholder">Time pending</span></div></li>
+            <li><time>Handled</time><div><strong>Check in at Four Points by Sheraton Kuala Lumpur</strong><p>Steph will handle the hotel check-in for the family.</p></div></li>
             <li><time>Pending</time><div><strong>Dinner plans</strong><p>Details will be updated tomorrow.</p><span class="travel-placeholder">Update pending</span></div></li>
           </ol>
         </div>
@@ -494,8 +493,10 @@ body{background:var(--cream);color:var(--black)}
 <script>
 const STORE='vj-wedding-site-v2:';
 const TRACKER_UNLOCK_STORAGE=STORE+'unlocked';
+const PRIVATE_SESSION_STORAGE=STORE+'private-session';
 const TRACKER_PASSCODE_HASH='7b8bd6c0abf53d22888beafc48830e1156907dd4ec7e6ea31e55a0dd6dc5a969';
-const PRIVATE_DATA_URL='private-data.json?v=20261011-1';
+const PRIVATE_DATA_REVISION='20261020-1';
+const PRIVATE_DATA_URL=`private-data.json?v=${PRIVATE_DATA_REVISION}`;
 const PRIVATE_VIEWS=new Set(['guests','attendance','seating']);
 const FAMILY_VIEWS=new Set(['home','plan','travel']);
 const SEATING_STORAGE=STORE+'seat-planner';
@@ -510,19 +511,21 @@ let SEATING_GUEST_ROSTER=Object.freeze([]);
 let BABY_CHAIR_GUESTS=new Set();
 const TABLE_POSITIONS=[['left',1],['right',1],['left',2],['right',2],['left',3],['right',3],['left',4]];
 const PRIVATE_NAME_ALIASES=Object.freeze({'3553bc0e':'Dad','14311bba':'Mom','62099512':'Steph','5063abbc':'Wei Sung','9390acbe':'Ethan','62a97572':'Elisa','7aa46d44':'Nick'});
+const DECLINED_SEATING_GUESTS=new Set(['desmond chin','kate']);
 let seatingPlan=[],babyChairPlan=[],selectedTable=1,currentSeat=null,seatingStatusTimer=null,privateDataLoaded=false,accessLevel='locked';
 
 function cleanName(value){return String(value||'').trim().replace(/\s+/g,' ')}
 function nameFingerprint(value){let hash=0x811c9dc5;for(const character of cleanName(value).toLocaleLowerCase()){hash^=character.charCodeAt(0);hash=Math.imul(hash,0x01000193)}return(hash>>>0).toString(16).padStart(8,'0')}
 function privacyName(value){const name=cleanName(value);return PRIVATE_NAME_ALIASES[nameFingerprint(name)]||name}
+function migrateSeatingPlan(plan){const cleaned=plan.map(table=>table.map(name=>DECLINED_SEATING_GUESTS.has(cleanName(name).toLocaleLowerCase())?'':name)),tableFive=cleaned[4],oldOrder=['jocelyn hui','zhi hsuen','yhi tong','mary ong'];if(Array.isArray(tableFive)&&oldOrder.every((name,index)=>cleanName(tableFive[index+5]).toLocaleLowerCase()===name))[tableFive[5],tableFive[6],tableFive[7],tableFive[8],tableFive[9]]=['','Jocelyn Hui','Zhi Hsuen','Yhi Tong','Mary Ong'];return cleaned}
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]))}
 function restoreNgJigHong(plan){if(localStorage.getItem(NG_JIG_HONG_RESTORE_STORAGE)==='1')return plan;const isAssigned=plan.flat().some(name=>cleanName(name).toLocaleLowerCase()==='ng jig hong');if(isAssigned){localStorage.setItem(NG_JIG_HONG_RESTORE_STORAGE,'1');return plan}if(Array.isArray(plan[2])&&!cleanName(plan[2][11])){plan[2][11]='Ng Jig Hong';localStorage.setItem(NG_JIG_HONG_RESTORE_STORAGE,'1')}return plan}
-function loadSeatingPlan(){try{const saved=JSON.parse(localStorage.getItem(SEATING_STORAGE)),version=localStorage.getItem(SEATING_VERSION_STORAGE);if(version===SEATING_PLAN_VERSION&&Array.isArray(saved)&&saved.length===7&&saved.every((table,index)=>Array.isArray(table)&&table.length===DEFAULT_SEATING[index].length))return restoreNgJigHong(saved.map(table=>table.map(privacyName)))}catch(error){}return restoreNgJigHong(DEFAULT_SEATING.map(table=>[...table]))}
+function loadSeatingPlan(){try{const saved=JSON.parse(localStorage.getItem(SEATING_STORAGE)),version=localStorage.getItem(SEATING_VERSION_STORAGE);if(version===SEATING_PLAN_VERSION&&Array.isArray(saved)&&saved.length===7&&saved.every((table,index)=>Array.isArray(table)&&table.length===DEFAULT_SEATING[index].length))return restoreNgJigHong(migrateSeatingPlan(saved.map(table=>table.map(privacyName))))}catch(error){}return restoreNgJigHong(migrateSeatingPlan(DEFAULT_SEATING.map(table=>[...table])))}
 function loadBabyChairPlan(){try{const saved=JSON.parse(localStorage.getItem(BABY_CHAIR_STORAGE));if(Array.isArray(saved)&&saved.length===DEFAULT_SEATING.length&&saved.every((table,index)=>Array.isArray(table)&&table.length===DEFAULT_SEATING[index].length))return saved.map(table=>table.map(Boolean))}catch(error){}return DEFAULT_SEATING.map(table=>table.map(()=>false))}
 function persistSeatingPlan(){localStorage.setItem(SEATING_STORAGE,JSON.stringify(seatingPlan));localStorage.setItem(SEATING_VERSION_STORAGE,SEATING_PLAN_VERSION);localStorage.setItem(BABY_CHAIR_STORAGE,JSON.stringify(babyChairPlan));const documentName=document.getElementById('seatingDocumentName');if(documentName)localStorage.setItem(SEATING_DOCUMENT_STORAGE,cleanName(documentName.value))}
 function seatingTotals(){const capacity=seatingPlan.reduce((total,table)=>total+table.length,0),assigned=seatingPlan.reduce((total,table)=>total+table.filter(Boolean).length,0);return{assigned,open:capacity-assigned}}
 function unassignedGuestNames(plan=seatingPlan){const assigned=new Set(plan.flat().filter(Boolean).map(name=>cleanName(name).toLocaleLowerCase()));return SEATING_GUEST_ROSTER.filter(name=>!assigned.has(cleanName(name).toLocaleLowerCase()))}
-function updateUnassignedRemark(){const remark=document.getElementById('unassignedRemark'),summary=document.getElementById('unassignedSummary'),list=document.getElementById('unassignedGuestList'),icon=remark?.querySelector('i'),missing=unassignedGuestNames();if(!remark||!summary||!list)return;remark.classList.toggle('has-unassigned',missing.length>0);icon?.classList.toggle('ph-check-circle',missing.length===0);icon?.classList.toggle('ph-warning-circle',missing.length>0);summary.textContent=missing.length?`${missing.length} ${missing.length===1?'guest has':'guests have'} not been assigned a seat:`:'All 71 listed guests are assigned a seat.';list.hidden=missing.length===0;list.innerHTML=missing.map(name=>`<li>${escapeHtml(name)}</li>`).join('')}
+function updateUnassignedRemark(){const remark=document.getElementById('unassignedRemark'),summary=document.getElementById('unassignedSummary'),list=document.getElementById('unassignedGuestList'),icon=remark?.querySelector('i'),missing=unassignedGuestNames();if(!remark||!summary||!list)return;remark.classList.toggle('has-unassigned',missing.length>0);icon?.classList.toggle('ph-check-circle',missing.length===0);icon?.classList.toggle('ph-warning-circle',missing.length>0);summary.textContent=missing.length?`${missing.length} ${missing.length===1?'guest has':'guests have'} not been assigned a seat:`:`All ${SEATING_GUEST_ROSTER.length} listed guests are assigned a seat.`;list.hidden=missing.length===0;list.innerHTML=missing.map(name=>`<li>${escapeHtml(name)}</li>`).join('')}
 function setSeatingStatus(message,tone=''){const status=document.getElementById('seatingSaveStatus');if(!status)return;status.textContent=message;status.dataset.tone=tone;clearTimeout(seatingStatusTimer);if(tone!=='error')seatingStatusTimer=setTimeout(()=>{status.textContent='Changes are saved in this browser.';delete status.dataset.tone},2800)}
 function renderTablePicker(){const picker=document.getElementById('tablePicker');if(!picker)return;picker.innerHTML=seatingPlan.map((table,index)=>{const number=index+1,assigned=table.filter(Boolean).length,confirmed=CONFIRMED_TABLES.has(number)?' · Confirmed':'';return`<button type="button" class="${selectedTable===number?'active':''}" onclick="selectTable(${number},true)" aria-pressed="${selectedTable===number}">Table ${number} · ${assigned}/${table.length}${confirmed}</button>`}).join('')}
 function seatNeedsBabyChair(tableIndex,seatIndex){const name=cleanName(seatingPlan[tableIndex][seatIndex]).toLocaleLowerCase();return(seatingPlan[tableIndex].length>12&&seatIndex===12)||BABY_CHAIR_GUESTS.has(name)||Boolean(babyChairPlan[tableIndex]?.[seatIndex])}
@@ -576,10 +579,12 @@ let appStarted=false;
 function base64Bytes(value){return Uint8Array.from(atob(value),character=>character.charCodeAt(0))}
 async function decryptPrivateData(passphrase){const response=await fetch(PRIVATE_DATA_URL,{cache:'no-store'});if(!response.ok)throw new Error('Private data could not be loaded.');const envelope=await response.json(),material=await crypto.subtle.importKey('raw',new TextEncoder().encode(passphrase),'PBKDF2',false,['deriveKey']),key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:base64Bytes(envelope.salt),iterations:envelope.iterations,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['decrypt']),plaintext=await crypto.subtle.decrypt({name:'AES-GCM',iv:base64Bytes(envelope.iv)},key,base64Bytes(envelope.ciphertext));return JSON.parse(new TextDecoder().decode(plaintext))}
 function installPrivateData(payload){for(const id of PRIVATE_VIEWS){const current=document.getElementById(id),template=document.createElement('template');template.innerHTML=payload.sections[id].trim();current.replaceWith(template.content.firstElementChild)}document.querySelectorAll('[data-private-flight]').forEach(detail=>{const flight=payload.flightDetails?.[detail.dataset.privateFlight];if(flight){detail.textContent=`Flight no. ${flight}`;detail.hidden=false}});DEFAULT_SEATING=payload.defaultSeating.map(table=>table.map(cleanName));SEATING_GUEST_ROSTER=Object.freeze(DEFAULT_SEATING.flat().filter(Boolean));BABY_CHAIR_GUESTS=new Set(payload.babyChairGuests.map(name=>cleanName(name).toLocaleLowerCase()));seatingPlan=loadSeatingPlan();babyChairPlan=loadBabyChairPlan();privateDataLoaded=true;labelTable();bindEdits(document.getElementById('attendance'));setupGuestAccordions();filterGuestList('registered');switchGuestEvent('tea');setupSeatingPlanner()}
+function savePrivateSession(payload){sessionStorage.setItem(PRIVATE_SESSION_STORAGE,JSON.stringify({revision:PRIVATE_DATA_REVISION,payload}))}
+function restorePrivateSession(){try{const saved=JSON.parse(sessionStorage.getItem(PRIVATE_SESSION_STORAGE));return saved?.revision===PRIVATE_DATA_REVISION&&saved.payload?saved.payload:null}catch(error){return null}}
 function startApp(level){accessLevel=level;document.documentElement.dataset.access=level;document.getElementById('lockScreen').hidden=true;document.querySelector('main.site').hidden=false;if(appStarted)return;appStarted=true;decorateChecklist();bindEdits();bindChecklist();labelTable();updateDaysToReception();showView(location.hash.slice(1)||'home')}
-function lockTracker(){sessionStorage.removeItem(TRACKER_UNLOCK_STORAGE);location.reload()}
+function lockTracker(){sessionStorage.removeItem(TRACKER_UNLOCK_STORAGE);sessionStorage.removeItem(PRIVATE_SESSION_STORAGE);location.reload()}
 async function hashPasscode(value){const bytes=new TextEncoder().encode(value);const digest=await crypto.subtle.digest('SHA-256',bytes);return Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,'0')).join('')}
-function setupLock(){const form=document.getElementById('lockForm'),input=document.getElementById('lockInput'),message=document.getElementById('lockMessage'),button=form.querySelector('button[type="submit"]');form.addEventListener('submit',async event=>{event.preventDefault();const passcode=input.value;if(!passcode)return;button.disabled=true;message.textContent='Checking…';try{const familyAccess=await hashPasscode(passcode.trim())===TRACKER_PASSCODE_HASH;if(familyAccess){sessionStorage.setItem(TRACKER_UNLOCK_STORAGE,'family');input.value='';message.textContent='';startApp('family');return}try{installPrivateData(await decryptPrivateData(passcode))}catch(error){if(error instanceof DOMException&&error.name==='OperationError'){message.textContent='That passcode is not right. Please try again.';input.select();return}throw error}sessionStorage.removeItem(TRACKER_UNLOCK_STORAGE);input.value='';message.textContent='';startApp('private')}catch(error){message.textContent='Could not check the passcode. Please try again.'}finally{button.disabled=false}});if(sessionStorage.getItem(TRACKER_UNLOCK_STORAGE)==='family')startApp('family');else requestAnimationFrame(()=>input.focus())}
+function setupLock(){const form=document.getElementById('lockForm'),input=document.getElementById('lockInput'),message=document.getElementById('lockMessage'),button=form.querySelector('button[type="submit"]');form.addEventListener('submit',async event=>{event.preventDefault();const passcode=input.value;if(!passcode)return;button.disabled=true;message.textContent='Checking…';try{const familyAccess=await hashPasscode(passcode.trim())===TRACKER_PASSCODE_HASH;if(familyAccess){sessionStorage.setItem(TRACKER_UNLOCK_STORAGE,'family');sessionStorage.removeItem(PRIVATE_SESSION_STORAGE);input.value='';message.textContent='';startApp('family');return}let payload;try{payload=await decryptPrivateData(passcode);installPrivateData(payload)}catch(error){if(error instanceof DOMException&&error.name==='OperationError'){message.textContent='That passcode is not right. Please try again.';input.select();return}throw error}savePrivateSession(payload);sessionStorage.setItem(TRACKER_UNLOCK_STORAGE,'private');input.value='';message.textContent='';startApp('private')}catch(error){message.textContent='Could not check the passcode. Please try again.'}finally{button.disabled=false}});const savedAccess=sessionStorage.getItem(TRACKER_UNLOCK_STORAGE);if(savedAccess==='family')startApp('family');else if(savedAccess==='private'){const payload=restorePrivateSession();if(payload){installPrivateData(payload);startApp('private')}else{sessionStorage.removeItem(TRACKER_UNLOCK_STORAGE);sessionStorage.removeItem(PRIVATE_SESSION_STORAGE);requestAnimationFrame(()=>input.focus())}}else requestAnimationFrame(()=>input.focus())}
 setupLock();
 </script>
 </body>
