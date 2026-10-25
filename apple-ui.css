@@ -771,8 +771,8 @@ body.drawer-open { overflow: hidden; }
 #familyGuestList[data-filter="full"] tr[data-rsvp="registered"] td { background: rgba(237, 244, 255, .62); }
 .guest-list[hidden], .guest-group[hidden], .guest-table tr[hidden] { display: none !important; }
 
-/* Attendance format preview */
-#attendance { max-width: 1120px; }
+/* Attendance checklists: adapted from the October Ground Eatery registration sheet. */
+#attendance { max-width: 1180px; }
 .attendance-head { position: relative; }
 .attendance-kicker {
   display: inline-block;
@@ -783,44 +783,72 @@ body.drawer-open { overflow: hidden; }
   letter-spacing: .09em;
   text-transform: uppercase;
 }
-.attendance-sheet {
-  overflow: hidden;
-  margin-bottom: 26px;
+.attendance-sheet-switcher {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.attendance-sheet-switcher button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 3px 16px;
+  align-items: center;
+  min-height: 82px;
+  padding: 17px 20px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background: var(--surface);
-  box-shadow: var(--shadow-soft);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
 }
-.attendance-sheet-header {
+.attendance-sheet-switcher button:hover, .attendance-sheet-switcher button:focus-visible { border-color: var(--blue); outline: none; box-shadow: var(--shadow-soft); }
+.attendance-sheet-switcher span { grid-row: 1 / span 2; color: var(--blue-dark); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.attendance-sheet-switcher strong { font-size: 15px; }
+.attendance-sheet-switcher small { color: var(--muted); font-size: 11px; }
+.attendance-document { margin-top: 34px; scroll-margin-top: 92px; }
+.attendance-document + .attendance-document { margin-top: 54px; padding-top: 54px; border-top: 1px solid var(--line); }
+.attendance-document-actions { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-bottom: 18px; }
+.attendance-document-actions div > span { display: block; color: var(--blue-dark); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.attendance-document-actions div > strong { display: block; margin-top: 4px; font-size: 20px; }
+.attendance-document-actions div > small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+.attendance-pages { display: grid; gap: 26px; }
+.attendance-print-page {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 26px 28px;
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  width: min(100%, 210mm);
+  min-height: 272mm;
+  margin: 0 auto;
+  padding: 48px 50px 34px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #111;
+  box-shadow: 0 18px 50px rgba(22, 28, 45, .1);
 }
-.attendance-sheet-header span { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.attendance-sheet-header h3 { margin: 5px 0 2px; font-size: 25px; letter-spacing: -.025em; }
-.attendance-sheet-header p { margin: 0; color: var(--muted); font-size: 12px; }
-.attendance-sheet-header > strong { color: var(--blue-dark); font-size: 12px; }
-.attendance-table { padding: 8px 28px 20px; }
-.attendance-table-head, .attendance-row { display: grid; grid-template-columns: 62px minmax(170px, 1.2fr) minmax(150px, .8fr); gap: 14px; align-items: center; }
-.attendance-table-head { padding: 12px 0 9px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.attendance-row { min-height: 52px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 12px; }
-.attendance-row strong { font-size: 13px; font-weight: 600; }
-.attendance-check { display: inline-block; width: 17px; height: 17px; border: 1.5px solid var(--line-strong); border-radius: 4px; background: var(--surface); }
-.attendance-batches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 22px 28px 28px; }
-.attendance-batch { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); }
-.attendance-batch > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 18px 15px; background: var(--surface-soft); }
-.attendance-batch > header div > span { display: block; color: var(--blue-dark); font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
-.attendance-batch > header div > strong { display: block; margin-top: 4px; font-size: 15px; }
-.attendance-batch > header div > small { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
-.attendance-batch > header label { display: flex; align-items: baseline; gap: 7px; color: var(--muted); font-size: 10px; font-weight: 600; text-transform: uppercase; }
-.attendance-batch > header label span { min-width: 44px; padding: 2px 5px; border-bottom: 1px solid var(--ink); color: var(--ink); font-size: 13px; font-weight: 700; text-align: center; text-transform: none; }
-.attendance-batch ul { display: grid; gap: 10px; margin: 0; padding: 16px 18px; list-style: none; }
-.attendance-batch li { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-.attendance-preview-footnote { display: flex; align-items: flex-start; gap: 9px; margin: 0; color: var(--muted); font-size: 12px; }
-.attendance-preview-footnote i { color: var(--blue); font-size: 17px; }
+.attendance-checklist-tag { align-self: flex-start; margin: 0 0 17px; padding: 7px 13px; border-radius: 999px; background: #2469d8; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.attendance-print-page h3 { margin: 0; font-size: clamp(25px, 3vw, 36px); line-height: 1.08; letter-spacing: -.035em; }
+.attendance-print-meta { display: flex; flex-wrap: wrap; gap: 5px 10px; margin: 8px 0 0; color: #666; font-size: 11px; }
+.attendance-print-meta span + span::before { content: "|"; margin-right: 10px; color: #aaa; }
+.attendance-count-bar { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin: 28px 0 24px; padding: 14px 17px; border-radius: 10px; background: #eaf1ff; color: #2469d8; font-size: 11px; font-weight: 700; }
+.attendance-count-bar span:last-child { color: #666; font-weight: 500; }
+.attendance-count-bar b { color: #111; font-weight: 600; }
+.registration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.registration-column-head, .registration-row { display: grid; grid-template-columns: 23px 27px minmax(0, 1fr) 40px; gap: 8px; align-items: center; }
+.registration-column-head { min-height: 28px; color: #666; font-size: 8px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.registration-column-head > span:first-child { grid-column: 1 / 3; }
+.registration-column-head .registration-name-heading { grid-column: 3; }
+.registration-row { min-height: 39px; border-bottom: 1px solid #d7d7d7; font-size: 11px; }
+.registration-row .attendance-check { width: 15px; height: 15px; border: 1.4px solid #111; border-radius: 3px; background: #fff; }
+.registration-number { color: #747474; font-size: 9px; font-variant-numeric: tabular-nums; }
+.registration-name { min-width: 0; }
+.registration-name strong { display: block; overflow: hidden; font-size: 11px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.registration-name small { display: block; overflow: hidden; margin-top: 1px; color: #777; font-size: 7.5px; text-overflow: ellipsis; white-space: nowrap; }
+.registration-table { font-size: 9px; font-weight: 800; text-align: right; }
+.attendance-print-page[data-event="tea"] .registration-column-head, .attendance-print-page[data-event="tea"] .registration-row { grid-template-columns: 23px 27px minmax(0, 1fr); }
+.attendance-print-page[data-event="tea"] .registration-column-head .registration-name-heading { grid-column: 3; }
+.attendance-print-footer { display: flex; justify-content: space-between; gap: 20px; margin-top: auto; padding-top: 24px; border-top: 1px solid #d7d7d7; color: #747474; font-size: 8px; }
+.attendance-print-footer span:last-child { text-align: right; }
 
 /* Reception seat planner */
 #seating { max-width: 1180px; }
@@ -1142,6 +1170,11 @@ body.drawer-open { overflow: hidden; }
 .footer-meta span { margin: 0; }
 .footer-top { padding: 6px 0; border: 0; background: transparent; color: var(--blue); font-size: 11px; font-weight: 600; cursor: pointer; }
 
+@media (max-width: 1100px) {
+  .desktop-nav { display: none; }
+  .icon-button { display: grid; }
+}
+
 @media (max-width: 1050px) {
   .desktop-nav button { padding: 0 11px; font-size: 12px; }
   .dashboard-grid { grid-template-columns: 1fr; }
@@ -1238,16 +1271,18 @@ body.drawer-open { overflow: hidden; }
   .guest-table td.no-additional-guests { display: none; }
   .guest-group-toggle { min-height: 84px; }
   .group-status { gap: 7px; }
-  .attendance-sheet-header { display: block; padding: 22px 20px; }
-  .attendance-sheet-header > strong { display: block; margin-top: 14px; }
-  .attendance-table { padding: 8px 20px 18px; }
-  .attendance-table-head { display: none; }
-  .attendance-row { grid-template-columns: 24px minmax(0, 1fr); gap: 5px 10px; }
-  .attendance-row > span:nth-child(3) { grid-column: 2; }
-  .attendance-row > span:nth-child(3) { color: var(--muted); }
-  .attendance-batches { grid-template-columns: 1fr; padding: 18px 20px 22px; }
-  .attendance-batch > header { padding: 16px; }
-  .attendance-batch ul { padding-right: 16px; padding-left: 16px; }
+  .attendance-sheet-switcher { grid-template-columns: 1fr; }
+  .attendance-document-actions { display: block; }
+  .attendance-document-actions .planner-button { width: 100%; margin-top: 15px; }
+  .attendance-print-page { min-height: 0; padding: 28px 20px 24px; }
+  .attendance-print-page h3 { font-size: 27px; }
+  .attendance-count-bar { display: block; }
+  .attendance-count-bar span:last-child { display: block; margin-top: 5px; }
+  .registration-grid { grid-template-columns: 1fr; gap: 0; }
+  .registration-column + .registration-column { margin-top: 18px; }
+  .registration-row { min-height: 44px; }
+  .registration-name strong { font-size: 12px; }
+  .registration-name small { font-size: 8px; }
   .pending-group { display: block; }
   .pending-group h3 { padding: 22px; border-right: 0; border-bottom: 1px solid var(--line); }
   .pending-list { padding: 8px 20px; }
@@ -1278,4 +1313,41 @@ body.drawer-open { overflow: hidden; }
   body.printing-event-card .event-card-header { padding: 0 0 22px; }
   body.printing-event-card .event-schedule { padding: 22px 0 0; background: #fff; }
   body.printing-event-card .event-schedule li { break-inside: avoid; }
+}
+
+@page attendance-checklist { size: A4 portrait; margin: 0; }
+@media print {
+  body.printing-attendance { background: #fff; }
+  body.printing-attendance .site { max-width: none; padding: 0; }
+  body.printing-attendance .site > * { display: none !important; }
+  body.printing-attendance .site > #attendance { display: block !important; max-width: none; padding: 0; }
+  body.printing-attendance #attendance > * { display: none !important; }
+  body.printing-attendance #attendance > .attendance-document.print-target { display: block !important; margin: 0; padding: 0; border: 0; }
+  body.printing-attendance .attendance-document-actions { display: none !important; }
+  body.printing-attendance .attendance-pages { display: block; }
+  body.printing-attendance .attendance-print-page {
+    page: attendance-checklist;
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 14mm 15mm 11mm;
+    border: 0;
+    box-shadow: none;
+    break-after: page;
+    overflow: hidden;
+  }
+  body.printing-attendance .attendance-print-page:last-child { break-after: auto; }
+  body.printing-attendance .attendance-print-page h3 { font-size: 25pt; }
+  body.printing-attendance .attendance-checklist-tag { margin-bottom: 4mm; padding: 2mm 4mm; font-size: 8pt; }
+  body.printing-attendance .attendance-print-meta { margin-top: 2mm; font-size: 8pt; }
+  body.printing-attendance .attendance-count-bar { margin: 7mm 0 5mm; padding: 3.5mm 5mm; font-size: 8pt; }
+  body.printing-attendance .registration-grid { gap: 9mm; }
+  body.printing-attendance .registration-column-head { min-height: 6mm; font-size: 6.5pt; }
+  body.printing-attendance .registration-row { min-height: 10.1mm; font-size: 8pt; }
+  body.printing-attendance .registration-row .attendance-check { width: 4.5mm; height: 4.5mm; }
+  body.printing-attendance .registration-number, body.printing-attendance .registration-table { font-size: 7pt; }
+  body.printing-attendance .registration-name strong { font-size: 8.5pt; }
+  body.printing-attendance .registration-name small { font-size: 5.8pt; }
+  body.printing-attendance .attendance-print-footer { padding-top: 4mm; font-size: 6pt; }
 }
