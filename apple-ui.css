@@ -826,7 +826,6 @@ body.drawer-open { overflow: hidden; }
   color: #111;
   box-shadow: 0 18px 50px rgba(22, 28, 45, .1);
 }
-.attendance-checklist-tag { align-self: flex-start; margin: 0 0 17px; padding: 7px 13px; border-radius: 999px; background: #2469d8; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .attendance-print-page h3 { margin: 0; font-size: clamp(25px, 3vw, 36px); line-height: 1.08; letter-spacing: -.035em; }
 .attendance-print-meta { display: flex; flex-wrap: wrap; gap: 5px 10px; margin: 8px 0 0; color: #666; font-size: 11px; }
 .attendance-print-meta span + span::before { content: "|"; margin-right: 10px; color: #aaa; }
@@ -1007,6 +1006,24 @@ body.drawer-open { overflow: hidden; }
 .unassigned-remark ul { display: flex; flex-wrap: wrap; gap: 2px 0; margin: 4px 0 0; padding: 0; list-style: none; color: var(--ink); }
 .unassigned-remark li { font-weight: 600; }
 .unassigned-remark li:not(:last-child)::after { content: ",\00a0"; }
+.seat-directory { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--line-strong); }
+.seat-directory-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 20px; }
+.seat-directory-heading > div > span { display: block; color: var(--blue-dark); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.seat-directory-heading h3 { margin: 5px 0 0; font-size: 28px; letter-spacing: -.03em; }
+.seat-directory-heading p { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+.seat-directory-heading label { display: grid; gap: 7px; flex: 0 0 min(300px, 40%); }
+.seat-directory-heading label span { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.seat-directory-heading input { min-height: 42px; padding: 9px 12px; border: 1px solid var(--line-strong); border-radius: 11px; background: var(--surface); color: var(--ink); }
+.seat-directory-heading input:focus { border-color: var(--blue); outline: 3px solid rgba(10, 96, 216, .17); }
+.seat-directory-table-wrap { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgba(255,255,255,.82); }
+.seat-directory-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.seat-directory-table th { padding: 12px 16px; background: var(--surface-soft); color: var(--muted); font-size: 9px; letter-spacing: .06em; text-align: left; text-transform: uppercase; }
+.seat-directory-table td { padding: 11px 16px; border-top: 1px solid var(--line); }
+.seat-directory-table th:nth-child(2), .seat-directory-table td:nth-child(2) { width: 92px; text-align: center; }
+.seat-directory-table th:last-child, .seat-directory-table td:last-child { width: 130px; }
+.seat-directory-table strong { font-weight: 650; }
+.seat-directory-note { color: var(--amber); font-size: 10px; font-weight: 750; }
+.seat-directory-empty { margin: 0; padding: 28px 16px; color: var(--muted); font-size: 12px; text-align: center; }
 .seat-dialog { width: min(92vw, 470px); padding: 0; border: 0; border-radius: 20px; background: var(--surface); color: var(--ink); box-shadow: 0 24px 80px rgba(17, 17, 19, .2); }
 .seat-dialog::backdrop { background: rgba(17, 17, 19, .34); backdrop-filter: blur(4px); }
 .seat-dialog form { position: relative; padding: 29px; }
@@ -1055,6 +1072,21 @@ body.drawer-open { overflow: hidden; }
   .seat-dialog-actions { grid-template-columns: 1fr 1fr; }
   .seat-dialog-actions span { display: none; }
   .seat-dialog-actions .planner-button-danger { grid-column: 1 / -1; grid-row: 2; }
+  .seat-directory { margin-top: 36px; padding-top: 30px; }
+  .seat-directory-heading { display: block; }
+  .seat-directory-heading label { margin-top: 18px; }
+  .seat-directory-table-wrap { border-radius: 14px; }
+  .seat-directory-table, .seat-directory-table tbody, .seat-directory-table tr, .seat-directory-table td { display: block; width: 100%; }
+  .seat-directory-table thead { display: none; }
+  .seat-directory-table tr { display: grid; grid-template-columns: minmax(0, 1fr) 68px; padding: 13px 15px; border-top: 1px solid var(--line); }
+  .seat-directory-table tr:first-child { border-top: 0; }
+  .seat-directory-table td { padding: 3px 0; border: 0; }
+  .seat-directory-table td:first-child { grid-row: 1 / span 2; align-self: center; }
+  .seat-directory-table td:nth-child(2) { width: auto; text-align: right; }
+  .seat-directory-table td:nth-child(2)::before { content: attr(data-label) " "; color: var(--muted); font-size: 8px; font-weight: 700; text-transform: uppercase; }
+  .seat-directory-table td:last-child { grid-column: 1 / -1; width: auto; padding-top: 5px; }
+  .seat-directory-table td:last-child:has(.seat-directory-note)::before { content: "Note: "; color: var(--muted); font-size: 8px; font-weight: 700; text-transform: uppercase; }
+  .seat-directory-table td:last-child:not(:has(.seat-directory-note)) { display: none; }
 }
 @media print {
   @page { size: A4 landscape; margin: 8mm; }
@@ -1090,6 +1122,17 @@ body.drawer-open { overflow: hidden; }
   body.printing-seat-plan .baby-chair-badge { padding: .2mm .5mm; font-size: 4.2px; }
   body.printing-seat-plan .baby-seat-row { margin-top: .6mm; }
   body.printing-seat-plan .baby-seat-row .seat-button { width: 52mm; }
+  body.printing-seat-plan .seat-directory { break-before: page; margin: 0; padding: 8mm 0 0; border: 0; }
+  body.printing-seat-plan .seat-directory-heading { margin-bottom: 4mm; }
+  body.printing-seat-plan .seat-directory-heading h3 { font-size: 18px; }
+  body.printing-seat-plan .seat-directory-heading p { font-size: 8px; }
+  body.printing-seat-plan .seat-directory-heading label { display: none; }
+  body.printing-seat-plan .seat-directory-table-wrap { overflow: visible; border: 0; border-radius: 0; }
+  body.printing-seat-plan .seat-directory-table { font-size: 7.5px; }
+  body.printing-seat-plan .seat-directory-table thead { display: table-header-group; }
+  body.printing-seat-plan .seat-directory-table th { padding: 2mm 3mm; font-size: 6.5px; }
+  body.printing-seat-plan .seat-directory-table td { padding: 1.7mm 3mm; }
+  body.printing-seat-plan .seat-directory-table tr { break-inside: avoid; }
 }
 
 /* Pending */
@@ -1339,7 +1382,6 @@ body.drawer-open { overflow: hidden; }
   }
   body.printing-attendance .attendance-print-page:last-child { break-after: auto; }
   body.printing-attendance .attendance-print-page h3 { font-size: 25pt; }
-  body.printing-attendance .attendance-checklist-tag { margin-bottom: 4mm; padding: 2mm 4mm; font-size: 8pt; }
   body.printing-attendance .attendance-print-meta { margin-top: 2mm; font-size: 8pt; }
   body.printing-attendance .attendance-count-bar { margin: 7mm 0 5mm; padding: 3.5mm 5mm; font-size: 8pt; }
   body.printing-attendance .registration-grid { gap: 9mm; }
