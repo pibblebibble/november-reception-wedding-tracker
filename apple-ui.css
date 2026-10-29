@@ -478,7 +478,9 @@ body.drawer-open { overflow: hidden; }
 .tea-ceremony-breakdown li { counter-increment: tea-step; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; }
 .tea-ceremony-breakdown li::before { content: counter(tea-step, decimal-leading-zero); color: var(--muted); font-size: 10px; font-weight: 700; }
 .tea-call-sequence { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line-strong); }
-.tea-call-sequence > h4 { margin-bottom: 18px; }
+.tea-call-sequence-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+.tea-call-sequence-heading h4 { margin: 0; }
+.tea-call-sequence-heading .event-print-button { margin: 0; }
 .tea-call-groups { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(220px, .75fr); gap: 34px; }
 .tea-call-groups h5 { margin: 0 0 10px; font-size: 14px; font-weight: 700; }
 .tea-call-groups ol { list-style: decimal; padding-left: 28px; }
@@ -1356,6 +1358,25 @@ body.drawer-open { overflow: hidden; }
   body.printing-event-card .event-card-header { padding: 0 0 22px; }
   body.printing-event-card .event-schedule { padding: 22px 0 0; background: #fff; }
   body.printing-event-card .event-schedule li { break-inside: avoid; }
+}
+
+@page tea-call-sequence { size: A4 portrait; margin: 16mm; }
+@media print {
+  body.printing-tea-call { background: #fff; }
+  body.printing-tea-call .site { max-width: none; padding: 0; }
+  body.printing-tea-call .site > * { display: none !important; }
+  body.printing-tea-call .site > #plan { display: block !important; max-width: none; padding: 0; }
+  body.printing-tea-call #plan > * { display: none !important; }
+  body.printing-tea-call #plan > #plan-tea-ceremony { display: block !important; margin: 0; border: 0; background: #fff; box-shadow: none; }
+  body.printing-tea-call #plan-tea-ceremony > * { display: none !important; }
+  body.printing-tea-call #plan-tea-ceremony > .event-schedule { display: block !important; padding: 0; border: 0; background: #fff; }
+  body.printing-tea-call .event-schedule > * { display: none !important; }
+  body.printing-tea-call .event-schedule > .tea-call-sequence.print-target { display: block !important; page: tea-call-sequence; margin: 0; padding: 0; border: 0; }
+  body.printing-tea-call .tea-call-sequence-heading { margin-bottom: 9mm; padding-bottom: 4mm; border-bottom: 1px solid #111; }
+  body.printing-tea-call .tea-call-sequence-heading h4 { color: #111; font-size: 22pt; letter-spacing: -.025em; text-transform: none; }
+  body.printing-tea-call .tea-call-groups { grid-template-columns: minmax(0, 1.45fr) minmax(55mm, .75fr); gap: 12mm; }
+  body.printing-tea-call .tea-call-groups h5 { margin-bottom: 3mm; font-size: 11pt; }
+  body.printing-tea-call .tea-call-groups li { padding: 3mm 0 3mm 1mm; font-size: 11pt; break-inside: avoid; }
 }
 
 @page attendance-checklist { size: A4 portrait; margin: 0; }

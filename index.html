@@ -160,7 +160,7 @@ body{background:var(--cream);color:var(--black)}
 @media print{.site-footer{margin-top:30px}.footer-top{display:none}}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="apple-ui.css?v=20261011-2">
+<link rel="stylesheet" href="apple-ui.css?v=20261030-1">
 </head>
 <body>
 <div class="lock-screen" id="lockScreen">
@@ -268,8 +268,11 @@ body{background:var(--cream);color:var(--black)}
             <li><span>Once the Singles are done, the tea ceremony ends and dinner is announced.</span></li>
           </ol>
         </div>
-        <div class="tea-call-sequence" aria-label="Tea ceremony sequence to call">
-          <h4>Sequence to Call</h4>
+        <div class="tea-call-sequence" id="teaCallSequence" aria-label="Tea ceremony sequence to call">
+          <div class="tea-call-sequence-heading">
+            <h4>Sequence to Call</h4>
+            <button class="event-print-button" type="button" onclick="printTeaCallSequence()"><i class="ph ph-printer" aria-hidden="true"></i>Print / Save PDF</button>
+          </div>
           <div class="tea-call-groups">
             <section>
               <h5>Elders &amp; Married Cousins</h5>
@@ -553,6 +556,7 @@ function toggleMenu(force){const menu=document.querySelector('#siteMenu'),button
 function showView(id,scrollBehavior='smooth'){if(id==='jpn'||id==='venue')id='plan';if(accessLevel==='family'&&!FAMILY_VIEWS.has(id))id='home';if(PRIVATE_VIEWS.has(id)&&!privateDataLoaded)id='home';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===id));location.hash=id==='home'?'':id;if(scrollBehavior)scrollTo({top:0,behavior:scrollBehavior});document.title=id==='home'?'Glasshouse Mansion Reception - Plan Tracker':`${document.querySelector('#'+id+' h2')?.textContent} - Glasshouse Mansion Reception`;toggleMenu(false);if(id==='travel')requestAnimationFrame(updateTravelProgress)}
 function goToPlanSection(sectionId){showView('plan',null);requestAnimationFrame(()=>{const target=document.getElementById(sectionId);if(target)window.scrollTo({top:Math.max(0,target.offsetTop-18),behavior:'auto'})})}
 function printPlanCard(cardId){const card=document.getElementById(cardId);if(!card)return;const previousTitle=document.title;document.querySelectorAll('#plan .event-card').forEach(item=>item.classList.toggle('print-target',item===card));document.body.classList.add('printing-event-card');document.title=`${card.dataset.printTitle||'Event Schedule'} - Vivien & Jon`;const cleanup=()=>{window.removeEventListener('afterprint',cleanup);document.body.classList.remove('printing-event-card');card.classList.remove('print-target');document.title=previousTitle};window.addEventListener('afterprint',cleanup,{once:true});requestAnimationFrame(()=>{window.print();cleanup()})}
+function printTeaCallSequence(){const sequence=document.getElementById('teaCallSequence');if(!sequence)return;const previousTitle=document.title;sequence.classList.add('print-target');document.body.classList.add('printing-tea-call');document.title='Tea Ceremony Sequence to Call - Vivien & Jon';const cleanup=()=>{window.removeEventListener('afterprint',cleanup);document.body.classList.remove('printing-tea-call');sequence.classList.remove('print-target');document.title=previousTitle};window.addEventListener('afterprint',cleanup,{once:true});requestAnimationFrame(()=>{window.print();cleanup()})}
 function exportGuestName(element){if(!element)return'';const formName=[...element.querySelectorAll('small')].map(item=>item.textContent.trim()).find(text=>/^In form:/i.test(text));if(formName)return formName.replace(/^In form:\s*/i,'').trim();const copy=element.cloneNode(true);copy.querySelectorAll('small').forEach(item=>item.remove());const text=copy.textContent.trim().replace(/\s+/g,' '),parts=text.split(/\s+—\s+/);return /^(Dad|Mom)$/i.test(parts[0])&&parts[1]?parts[1]:parts[0]}
 function buildTeaGuestCsvRows(){const rows=[['Family Group','Guest Name','Arrived']];document.querySelectorAll('#teaGuestList .tea-attendee-group').forEach(group=>{const familyGroup=group.querySelector('.tea-attendee-heading strong')?.textContent.trim()||'';group.querySelectorAll('.tea-attendee-name').forEach(name=>rows.push([familyGroup,exportGuestName(name),'']))});return rows}
 function seatingLookupKey(value){const aliases={'amy':'amy thien','eugene':'eugene bong','terrance':'terrance ng'};const key=cleanName(value).toLocaleLowerCase().replace(/^(aunty|uncle)\s+/,'');return aliases[key]||key}
